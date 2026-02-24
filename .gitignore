@@ -215,3 +215,6 @@ allure-report/
 report.html
 htmlcov/
 mutants/
+
+# Tracing
+test-results/
