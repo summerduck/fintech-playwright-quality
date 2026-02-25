@@ -5,13 +5,12 @@ Provides:
 - Playwright browser context configuration
 - Screenshot and trace capture on test failure with Allure attachment
 - Per-test file logging
-- App base URL resolution via markers
+- Target environment resolution (--env / TEST_ENV)
 """
 
 import logging
 import os
 from collections.abc import Generator
-from enum import StrEnum, unique
 from typing import Any
 
 import allure
@@ -34,19 +33,15 @@ from utils.log_helpers import (
 logger = logging.getLogger(__name__)
 
 
-# ── App base URLs ────────────────────────────────────────────────────────────
-@unique
-class AppUrl(StrEnum):
-    """Supported application base URLs, keyed by pytest marker name."""
-
-    SAUCEDEMO = "https://www.saucedemo.com"
-    THEINTERNET = "https://the-internet.herokuapp.com"
-    UIPLAYGROUND = "http://uitestingplayground.com"
-
-
 # ── CLI Options ──────────────────────────────────────────────────────────────
 def pytest_addoption(parser: pytest.Parser) -> None:
     """Register custom CLI options for the test suite."""
+    parser.addoption(
+        "--env",
+        action="store",
+        help="Target environment: prod | local",
+        default=os.getenv("TEST_ENV", "prod"),
+    )
     parser.addoption(
         "--user-pw",
         action="store",
@@ -92,24 +87,20 @@ def user_password(request: pytest.FixtureRequest) -> str:
     return password
 
 
-@pytest.fixture
-def app_url(request: pytest.FixtureRequest) -> str:
-    """Resolve the base URL for the current test based on its app marker.
+@pytest.fixture(scope="session")
+def env(request: pytest.FixtureRequest) -> str:
+    """Resolve the target environment from ``--env`` CLI or ``TEST_ENV``.
 
-    Falls back to --base-url if no app marker is present.
+    Resolution order:
+      1. ``--env`` CLI option  (highest priority)
+      2. ``TEST_ENV`` from ``.env`` / environment variable
     """
-    for app in AppUrl:
-        if request.node.get_closest_marker(app.name.lower()):
-            return app.value
+    resolved: str | None = request.config.getoption("--env") or os.getenv("TEST_ENV")
 
-    base: str | None = request.config.getoption("--base-url", default=None)
-    if base:
-        return base
+    if not resolved:
+        pytest.fail("No environment specified. Set TEST_ENV in .env or pass --env.")
 
-    pytest.fail(
-        "No app marker (@pytest.mark.saucedemo, @pytest.mark.theinternet, "
-        "@pytest.mark.uiplayground) or --base-url provided."
-    )
+    return resolved
 
 
 # ── Failure Artifact Capture ─────────────────────────────────────────────────

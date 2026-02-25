@@ -19,6 +19,8 @@ class TheInternetBasePage(BasePage):
     that appear across all The Internet pages.
     """
 
+    APP_NAME = "theinternet"
+
     def __init__(self, page: Page, base_url: str) -> None:
         super().__init__(page, base_url)
         # ── Shared locators ───────────────────────────────────────────
