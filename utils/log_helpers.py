@@ -12,8 +12,6 @@ from pathlib import Path
 # ── Directory layout for test artifacts ──────────────────────────────────────
 LOG_DIR = Path("test-logs")
 FAILED_LOG_DIR = LOG_DIR / "failed_tests"
-SCREENSHOTS_DIR = LOG_DIR / "screenshots"
-TRACES_DIR = LOG_DIR / "traces"
 
 
 def clean_and_create_log_dirs() -> None:
@@ -23,16 +21,12 @@ def clean_and_create_log_dirs() -> None:
 
     LOG_DIR.mkdir(exist_ok=True)
     FAILED_LOG_DIR.mkdir(parents=True, exist_ok=True)
-    SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-    TRACES_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def ensure_log_dirs_exist() -> None:
     """Create log directories if they don't exist (safe for xdist workers)."""
     LOG_DIR.mkdir(exist_ok=True)
     FAILED_LOG_DIR.mkdir(parents=True, exist_ok=True)
-    SCREENSHOTS_DIR.mkdir(parents=True, exist_ok=True)
-    TRACES_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def sanitize_nodeid(node_id: str) -> str:

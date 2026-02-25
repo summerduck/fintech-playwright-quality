@@ -3,26 +3,20 @@
 Provides:
 - Environment and log directory setup (xdist-aware)
 - Playwright browser context configuration
-- Screenshot and trace capture on test failure with Allure attachment
 - Per-test file logging
 - Target environment resolution (--env / TEST_ENV)
 """
 
 import logging
 import os
-from collections.abc import Generator
 from typing import Any
 
-import allure
 import pytest
 from dotenv import load_dotenv
-from playwright.sync_api import Page
 
 from utils.log_helpers import (
     FAILED_LOG_DIR,
     LOG_DIR,
-    SCREENSHOTS_DIR,
-    TRACES_DIR,
     build_log_filename,
     clean_and_create_log_dirs,
     ensure_log_dirs_exist,
@@ -101,61 +95,6 @@ def env(request: pytest.FixtureRequest) -> str:
         pytest.fail("No environment specified. Set TEST_ENV in .env or pass --env.")
 
     return resolved
-
-
-# ── Failure Artifact Capture ─────────────────────────────────────────────────
-@pytest.hookimpl(hookwrapper=True)
-def pytest_runtest_makereport(
-    item: pytest.Item,
-    call: pytest.CallInfo[None],  # noqa: ARG001
-) -> Generator[None, pytest.TestReport, None]:
-    """Capture screenshot and trace on test failure, attach to Allure."""
-    outcome = yield
-    report = outcome.get_result()
-
-    if report.when == "call" and report.failed:
-        funcargs: dict[str, Any] = getattr(item, "funcargs", {})
-        page: Page | None = funcargs.get("page")
-        if page and not page.is_closed():
-            _capture_and_attach_screenshot(page, item)
-            _capture_and_attach_trace(page, item)
-
-
-def _capture_and_attach_screenshot(page: Page, item: pytest.Item) -> None:
-    """Save a failure screenshot and attach it to the Allure report."""
-    test_name = get_last_element(sanitize_nodeid(item.nodeid))
-    screenshot_path = SCREENSHOTS_DIR / f"{test_name}.png"
-
-    try:
-        page.screenshot(path=str(screenshot_path))
-        allure.attach.file(
-            str(screenshot_path),
-            name="failure-screenshot",
-            attachment_type=allure.attachment_type.PNG,
-        )
-        logger.info("Screenshot saved: %s", screenshot_path)
-    except Exception:
-        logger.warning(
-            "Failed to capture screenshot for %s", item.nodeid, exc_info=True
-        )
-
-
-def _capture_and_attach_trace(page: Page, item: pytest.Item) -> None:
-    """Save a Playwright trace and attach it to the Allure report."""
-    test_name = get_last_element(sanitize_nodeid(item.nodeid))
-    trace_path = TRACES_DIR / f"{test_name}.zip"
-
-    try:
-        context = page.context
-        context.tracing.stop(path=str(trace_path))
-        allure.attach.file(
-            str(trace_path),
-            name="failure-trace",
-            attachment_type=allure.attachment_type.TEXT,
-        )
-        logger.info("Trace saved: %s", trace_path)
-    except Exception:
-        logger.warning("Failed to capture trace for %s", item.nodeid, exc_info=True)
 
 
 # ── Per-Test Logging ─────────────────────────────────────────────────────────
