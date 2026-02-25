@@ -20,6 +20,7 @@ globs: **/*.py, src/**/*.py, tests/**/*.py
 - Example: `def process_data(name: str, count: Optional[int] = None) -> Dict[str, Any]:`
 
 ## Testing with Pytest
+- **No Python logic in test bodies** — tests must be flat sequences of method calls on page objects / fixtures / workflows. Loops (`for`, `while`), conditionals (`if`/`else`), try/except, list comprehensions, and inline calculations belong in page object or workflow methods, never in the test itself.
 - Use pytest fixtures for setup and teardown
 - Follow AAA pattern: Arrange, Act, Assert
 - Parametrize tests for multiple scenarios: `@pytest.mark.parametrize`

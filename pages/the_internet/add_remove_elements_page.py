@@ -29,22 +29,32 @@ class AddRemoveElementsPage(TheInternetBasePage):
 
     # ── Actions ──────────────────────────────────────────────────────────
 
-    @allure.step("Click 'Add Element' button")
-    def click_add_element(self) -> Self:
-        """Click the Add Element button to create a new Delete button."""
-        logger.info("Clicking 'Add Element' button")
-        self._add_element_button.click()
+    @allure.step("Click 'Add Element' button {count} time(s)")
+    def click_add_element(self, count: int = 1) -> Self:
+        """Click the Add Element button one or more times.
+
+        Args:
+            count: Number of times to click the button.
+        """
+        logger.info("Clicking 'Add Element' button %s time(s)", count)
+        for _ in range(count):
+            self._add_element_button.click()
         return self
 
-    @allure.step("Click Delete button at index {index}")
-    def click_delete_element(self, index: int = 0) -> Self:
-        """Click a Delete button by its zero-based index.
+    @allure.step("Click Delete button at index {index}, {count} time(s)")
+    def click_delete_element(self, index: int = 0, count: int = 1) -> Self:
+        """Click Delete button(s) starting from a zero-based index.
+
+        Removes *count* buttons, always clicking at *index* (since
+        the list shifts after each removal).
 
         Args:
             index: Zero-based position of the Delete button to click.
+            count: Number of Delete buttons to remove.
         """
-        logger.info("Clicking Delete button at index: %s", index)
-        self._delete_buttons.nth(index).click()
+        logger.info("Clicking Delete button at index %s, %s time(s)", index, count)
+        for _ in range(count):
+            self._delete_buttons.nth(index).click()
         return self
 
     # ── Getters ──────────────────────────────────────────────────────────

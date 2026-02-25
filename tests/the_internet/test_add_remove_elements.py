@@ -75,8 +75,7 @@ class TestAddRemoveElements:
         add_remove_elements_page.navigate()
 
         # Act
-        for _ in range(count):
-            add_remove_elements_page.click_add_element()
+        add_remove_elements_page.click_add_element(count)
 
         # Assert
         add_remove_elements_page.verify_delete_button_count(count)
@@ -113,12 +112,10 @@ class TestAddRemoveElements:
         """Verify all added elements can be removed one by one."""
         # Arrange
         add_remove_elements_page.navigate()
-        for _ in range(3):
-            add_remove_elements_page.click_add_element()
+        add_remove_elements_page.click_add_element(count=3)
 
         # Act
-        for _ in range(3):
-            add_remove_elements_page.click_delete_element()
+        add_remove_elements_page.click_delete_element(count=3)
 
         # Assert
         add_remove_elements_page.verify_delete_button_count(0)
