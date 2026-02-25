@@ -8,7 +8,7 @@ APP_URLS: dict[str, dict[str, str]] = {
     },
     "theinternet": {
         "prod": "https://the-internet.herokuapp.com",
-        "local": "http://localhost:9292",
+        "local": "http://localhost:4567",
     },
     "uiplayground": {
         "prod": "http://uitestingplayground.com",
