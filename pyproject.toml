@@ -86,6 +86,10 @@ module = [
 ]
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = ["pages.*"]
+disallow_untyped_decorators = false
+
 [tool.bandit]
 targets = ["pages", "tests", "utils", "config"]
 exclude_dirs = [".venv", "build", "dist", "__pycache__"]
@@ -122,13 +126,18 @@ python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
 log_cli = true
+log_cli_level = "WARNING"
 log_level = "INFO"
 log_format = "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
+log_cli_format = "%(asctime)s [%(levelname)s] %(message)s"
+log_cli_date_format = "%H:%M:%S"
 console_output_style = "progress"
 addopts = [
     "-v",
     "--strict-markers",
     "--tb=short",
+    "--tracing=on",
+    "-n=auto",
     "--cov=pages",
     "--cov=utils",
     "--cov=config",

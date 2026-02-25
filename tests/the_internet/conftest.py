@@ -1,9 +1,20 @@
-"""Pytest fixtures for The Internet tests."""
+"""Pytest fixtures for The Internet tests.
+
+Provides page object fixtures so tests receive ready-to-use page
+instances without instantiating them directly. Each page fixture
+resolves its own base URL from the page's ``APP_NAME`` and the
+session-scoped ``env`` fixture.
+"""
 
 import pytest
+from playwright.sync_api import Page
+
+from config import get_base_url
+from pages.the_internet.add_remove_elements_page import AddRemoveElementsPage
 
 
 @pytest.fixture
-def base_url() -> str:
-    """Base URL for The Internet application."""
-    return "https://the-internet.herokuapp.com"
+def add_remove_elements_page(page: Page, env: str) -> AddRemoveElementsPage:
+    """Provide an AddRemoveElementsPage instance for the current test."""
+    base_url = get_base_url(AddRemoveElementsPage.APP_NAME, env)
+    return AddRemoveElementsPage(page, base_url)

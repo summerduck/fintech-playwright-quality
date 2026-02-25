@@ -379,6 +379,7 @@ Apply all rules from the **code-quality-standards** skill.
 - Use `allure.dynamic.title()` inside the test body for parametrized tests
 
 ### Do not
+- Put **any** Python logic (loops, conditionals, list comprehensions, try/except) in test bodies — tests must consist exclusively of method calls on page objects and fixtures; push all logic into page object or workflow methods
 - Use `assert` to check DOM elements — use `expect()` for auto-waiting assertions on DOM
 - Instantiate page objects in tests — receive them as fixtures via app-level `conftest.py`
 - Put page object logic in tests — keep it in `pages/`
@@ -461,6 +462,25 @@ def test_login(self, login_page: LoginPage) -> None:
 ```
 
 ## Common Anti-Patterns to Avoid
+
+### Anti-Pattern 0: Python Logic in Tests
+
+```python
+# Bad: Loop in test body — logic leaks out of the page object layer
+def test_add_multiple_elements(self, page: AddRemoveElementsPage) -> None:
+    page.navigate()
+    for _ in range(5):
+        page.click_add_element()
+    page.verify_delete_button_count(5)
+
+# Good: Count parameter pushes the loop into the page object
+def test_add_multiple_elements(self, page: AddRemoveElementsPage) -> None:
+    page.navigate()
+    page.click_add_element(5)
+    page.verify_delete_button_count(5)
+```
+
+**Rule:** Test bodies must be flat sequences of method calls — no `for`, `while`, `if`/`else`, `try`/`except`, list comprehensions, or inline calculations. Push all logic into page objects or workflow methods.
 
 ### Anti-Pattern 1: Test Knows Page Structure
 

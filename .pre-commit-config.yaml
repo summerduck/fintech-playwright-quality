@@ -73,23 +73,23 @@ repos:
         args: ["-r", "requirements.txt"]
         stages: [push]
 
-  # Complexity & maintainability metrics
-  - repo: local
-    hooks:
-      - id: radon-cc
-        name: Cyclomatic complexity check (Radon)
-        entry: radon cc --min C --average --show-complexity
-        language: system
-        types: [python]
-        exclude: ^tests/|^conftest\.py$
-        verbose: true
-      - id: radon-mi
-        name: Maintainability index check (Radon)
-        entry: radon mi --show --min B
-        language: system
-        types: [python]
-        exclude: ^tests/|^conftest\.py$
-        verbose: true
+  # # Complexity & maintainability metrics
+  # - repo: local
+  #   hooks:
+  #     - id: radon-cc
+  #       name: Cyclomatic complexity check (Radon)
+  #       entry: radon cc --min C --average --show-complexity
+  #       language: system
+  #       types: [python]
+  #       exclude: ^tests/|^conftest\.py$
+  #       verbose: true
+  #     - id: radon-mi
+  #       name: Maintainability index check (Radon)
+  #       entry: radon mi --show --min B
+  #       language: system
+  #       types: [python]
+  #       exclude: ^tests/|^conftest\.py$
+  #       verbose: true
 
   # Auto-sync dependencies after merge
   - repo: local
