@@ -36,12 +36,6 @@ def pytest_addoption(parser: pytest.Parser) -> None:
         help="Target environment: prod | local",
         default=os.getenv("TEST_ENV", "prod"),
     )
-    parser.addoption(
-        "--user-pw",
-        action="store",
-        help="USER_PASSWORD",
-        default=os.getenv("USER_PASSWORD"),
-    )
 
 
 # ── Session Configuration ────────────────────────────────────────────────────
@@ -74,13 +68,6 @@ def browser_context_args(
 
 
 # ── Shared Fixtures ──────────────────────────────────────────────────────────
-@pytest.fixture
-def user_password(request: pytest.FixtureRequest) -> str:
-    """Retrieve user password from --user-pw CLI option or USER_PASSWORD env var."""
-    password: str = request.config.getoption("--user-pw")
-    return password
-
-
 @pytest.fixture(scope="session")
 def env(request: pytest.FixtureRequest) -> str:
     """Resolve the target environment from ``--env`` CLI or ``TEST_ENV``.

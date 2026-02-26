@@ -14,19 +14,29 @@ Reference: [Programming Principles Repository](https://github.com/webpro/program
 ## Generic Principles
 
 ### KISS (Keep It Simple, Stupid)
+Reference: [Principles Wiki — KISS](https://principles-wiki.net/principles:keep_it_simple_stupid)
+
 Most systems work and are understood better if they are kept simple rather than made complex.
 - Less code takes less time to write, has less bugs, and is easier to modify
 - Simplicity is the ultimate sophistication
 - Perfection is reached not when there is nothing left to add, but when there is nothing left to take away
+- When reviewing a design, ask: "Can anything be removed without losing functionality?"
 
 ### YAGNI (You Aren't Gonna Need It)
 Don't implement something until it is necessary.
 - Implement things when you actually need them, never when you just foresee that you need them
 - Prevents code bloat and unnecessary complexity
 
-### Do The Simplest Thing That Could Possibly Work
+### Do The Simplest Thing That Could Possibly Work (DTSTTCPW)
+Reference: [C2 Wiki — DTSTTCPW](https://c2.com/xp/DoTheSimplestThingThatCouldPossiblyWork.html)
+
 Real progress against the real problem is maximized if we just work on what the problem really is.
-- Ask yourself: "What is the simplest thing that could possibly work?"
+- Two-step process: (1) implement the capability in the simplest straightforward way, (2) refactor the system to be the simplest possible code including all features it now has
+- Know at least two ways to do a thing so you can pick the simpler one
+- "Could possibly work" — not "will work"; your tests tell you whether it does
+- Second-order benefits: done sooner, easier to communicate, duplication is obvious, tests are easier to write, code is easier to performance-tune, less stress
+- The cost of recovering from a corner is almost always less than the cost of big up-front design that tries to cover every contingency
+- It is far easier to add something to a simple design when needed than to tear apart an extensive design that is not quite right
 
 ### Separation of Concerns
 Separate a computer program into distinct sections, such that each section addresses a separate concern.
@@ -77,12 +87,13 @@ Favor object composition over class inheritance.
 # Testing Principles
 
 ### FIRST Principles of Testing
-Tests should be:
-- **F**ast - Tests should run quickly
-- **I**solated - Tests should not depend on each other
-- **R**epeatable - Tests should produce same results every time
-- **S**elf-validating - Tests should have a boolean output (pass/fail)
-- **T**imely - Tests should be written at the right time (ideally before production code)
+Reference: [Agile in a Flash — F.I.R.S.T](https://agileinaflash.blogspot.com/2009/02/first.html)
+
+- **F**ast — Tests must be fast enough that developers never hesitate to run them. A test taking a second is impossibly slow; tens of thousands of unit tests should run in under a minute. If setup + teardown spans an eighth of a second, that is already slow.
+- **I**solated — Each test has a laser-tight focus on a single effect or decision. No order-of-run dependency; tests pass or fail the same way in a suite or individually. Each test imposes its own initial state and cleans up after itself. Test class name + method name + assertion text should state exactly what is wrong and where.
+- **R**epeatable — Tests run repeatedly without intervention. They must not depend on assumed initial state or leave residue behind. They do not depend on external services, the network, or a specific server environment.
+- **S**elf-validating — Tests are pass/fail with no manual examination of results. Avoid over-specification so peripheral changes don't break assertions.
+- **T**imely — Tests are written immediately before the production code that makes them pass. Writing tests post-facto leads to fewer, fatter tests that are slow, poorly isolated, and eventually abandoned.
 
 ### Arrange, Act, Assert (AAA Pattern)
 Pattern to arrange and format code in tests:
