@@ -74,10 +74,12 @@ def main() -> None:
     # Create interactive menu
     terminal_menu = TerminalMenu(
         menu_items,
-        title=f"Select trace ({len(traces)} found):",
+        title=f"Select trace ({len(traces)} found) — type to search:",
         menu_cursor="❯ ",
         menu_cursor_style=("fg_cyan", "bold"),
         menu_highlight_style=("fg_cyan", "bold"),
+        search_key=None,
+        search_highlight_style=("fg_yellow", "bold"),
         cycle_cursor=True,
         clear_screen=True,
     )
