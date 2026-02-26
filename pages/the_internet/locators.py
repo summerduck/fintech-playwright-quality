@@ -10,3 +10,6 @@ FOOTER_LINK = "#page-footer a"
 # ── Add/Remove Elements ──────────────────────────────────────────────────────
 ADD_ELEMENT_BUTTON = "button[onclick='addElement()']"
 DELETE_BUTTON = ".added-manually"
+
+# ── Basic Auth ────────────────────────────────────────────────────────────────
+BASIC_AUTH_SUCCESS_MESSAGE = "#content .example p"
