@@ -168,6 +168,22 @@ tasks:
       - allure serve allure-report
 
   # ============================================================================
+  # Developer Tools
+  # ============================================================================
+
+  logs:
+    desc: Interactive log file viewer
+    cmds:
+      - '{{.PYTHON}} scripts/open_logs.py'
+    interactive: true
+
+  trace:
+    desc: Interactive Playwright trace viewer
+    cmds:
+      - '{{.PYTHON}} scripts/open_trace.py'
+    interactive: true
+
+  # ============================================================================
   # Cleanup
   # ============================================================================
 
