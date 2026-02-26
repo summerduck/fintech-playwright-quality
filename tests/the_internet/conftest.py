@@ -10,8 +10,6 @@ import pytest
 from playwright.sync_api import Page
 
 from config import get_base_url
-from config.data.models import User
-from config.settings import TheInternetSettings
 from pages.the_internet.add_remove_elements_page import AddRemoveElementsPage
 from pages.the_internet.basic_auth_page import BasicAuthPage
 
@@ -28,9 +26,3 @@ def basic_auth_page(page: Page, env: str) -> BasicAuthPage:
     """Provide a BasicAuthPage instance for the current test."""
     base_url = get_base_url(BasicAuthPage.APP_NAME, env)
     return BasicAuthPage(page, base_url)
-
-
-@pytest.fixture
-def valid_auth_user() -> User:
-    """Valid Basic Auth user with credentials resolved from environment."""
-    return TheInternetSettings().as_user()

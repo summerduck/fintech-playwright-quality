@@ -25,7 +25,6 @@ pytest-reportlog==0.4.0
 pytest-rerunfailures==15.0
 pytest-sugar==1.0.0
 pytest-xdist==3.6.1
-pydantic-settings==2.13.1
 python-dotenv==1.1.0
 python-slugify==8.0.4
 requests==2.32.5

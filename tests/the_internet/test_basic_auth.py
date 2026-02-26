@@ -6,6 +6,7 @@ import allure
 import pytest
 
 from config.data.models import User
+from config.data.the_internet import TheInternetUser
 from pages.the_internet.basic_auth_page import BasicAuthPage
 
 logger = logging.getLogger(__name__)
@@ -24,11 +25,10 @@ class TestBasicAuth:
     def test_successful_auth_with_valid_credentials(
         self,
         basic_auth_page: BasicAuthPage,
-        valid_auth_user: User,
     ) -> None:
         """Verify that valid HTTP Basic Auth credentials grant access."""
         # Arrange
-        basic_auth_page.set_credentials(valid_auth_user)
+        basic_auth_page.set_credentials(TheInternetUser.valid())
 
         # Act
         basic_auth_page.navigate()
@@ -44,11 +44,10 @@ class TestBasicAuth:
     def test_success_message_content(
         self,
         basic_auth_page: BasicAuthPage,
-        valid_auth_user: User,
     ) -> None:
         """Verify the success message mentions congratulations and credentials."""
         # Arrange
-        basic_auth_page.set_credentials(valid_auth_user)
+        basic_auth_page.set_credentials(TheInternetUser.valid())
 
         # Act
         basic_auth_page.navigate()
@@ -64,11 +63,10 @@ class TestBasicAuth:
     def test_page_structure_after_auth(
         self,
         basic_auth_page: BasicAuthPage,
-        valid_auth_user: User,
     ) -> None:
         """Verify the complete page structure after successful authentication."""
         # Arrange
-        basic_auth_page.set_credentials(valid_auth_user)
+        basic_auth_page.set_credentials(TheInternetUser.valid())
 
         # Act
         basic_auth_page.navigate()
