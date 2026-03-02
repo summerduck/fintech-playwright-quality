@@ -139,15 +139,9 @@ addopts = [
     "--tb=short",
     "--tracing=on",
     "-n=auto",
-    "--cov=pages",
-    "--cov=utils",
-    "--cov=config",
-    "--cov-report=term-missing",
-    "--cov-report=html",
     "--html=report.html",
     "--self-contained-html",
     "--alluredir=allure-report",
-    "--capture=tee-sys",
     "--reruns=1",
 ]
 markers = [
