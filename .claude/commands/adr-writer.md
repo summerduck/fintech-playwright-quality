@@ -1,6 +1,5 @@
 ---
-name: adr-writer
-description: Write Architecture Decision Records in the project's Cognitect ADR format with Status, Context, Decision, and Consequences sections. Use when documenting architecture decisions, recording technical choices, writing ADRs, or when the user mentions ADR, architecture decision, or technical decision.
+description: Write Architecture Decision Records (ADRs) in the project's Cognitect format Status, Context, Decision, Consequences.
 ---
 
 # ADR Writer

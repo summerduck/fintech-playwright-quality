@@ -1,6 +1,5 @@
 ---
-name: code-quality-standards
-description: Project Python code quality rules enforced by ruff, mypy, and bandit (pyproject.toml). Use when generating or reviewing any Python file — page objects, tests, workflows, conftest, Locust scenarios — to ensure generated code passes pre-commit hooks without modification.
+description: Code quality rules
 ---
 
 # Code Quality Standards

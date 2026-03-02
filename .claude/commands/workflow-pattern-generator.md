@@ -1,6 +1,5 @@
 ---
-name: workflow-pattern-generator
-description: Generate Workflow classes that orchestrate multiple page objects into reusable end-to-end business flows with Allure step decorators, full type hints, structured logging, and method chaining. Use when creating workflows, end-to-end flows, business processes, user journeys, or orchestration layers for saucedemo, theinternet, or uiplayground apps.
+description: Generate Workflow classes that orchestrate multiple page objects into reusable end-to-end business flows
 ---
 
 # Workflow Pattern Generator

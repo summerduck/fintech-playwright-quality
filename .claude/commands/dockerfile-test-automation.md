@@ -1,6 +1,5 @@
 ---
-name: dockerfile-test-automation
-description: Generate Dockerfiles and Docker Compose configurations for the multi-app Playwright test platform with multi-stage builds, layer caching, non-root user security, and single-browser CI builds. Use when creating Dockerfiles, Docker Compose files, containerizing tests, or setting up Docker-based test infrastructure.
+description: Generate Dockerfiles and Docker Compose configurations
 ---
 
 # Dockerfile Test Automation

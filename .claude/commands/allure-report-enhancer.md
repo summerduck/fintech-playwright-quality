@@ -1,6 +1,5 @@
 ---
-name: allure-report-enhancer
-description: Ensure every test has proper Allure annotations for professional reports — epics, features, stories, severity, steps, dynamic titles, attachments on failure, links, tags, and environment configuration. Use when adding Allure annotations, improving report quality, reviewing test metadata, or setting up Allure report configuration.
+description: Add essential Allure annotations for informative test reports. Use to enhance Allure report quality and metadata.
 ---
 
 # Allure Report Enhancer
