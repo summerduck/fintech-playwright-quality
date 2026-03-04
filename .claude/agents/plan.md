@@ -1,3 +1,11 @@
+---
+name: plan
+description: "Use this agent to produce a phased implementation plan from an approved design document. It defines what files to create or change, in what order, with acceptance criteria per phase. It never writes code. Use it after the design agent and before the implement agent."
+tools: Glob, Grep, Read
+model: sonnet
+color: cyan
+---
+
 # Plan Agent
 
 ## Role

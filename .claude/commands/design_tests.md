@@ -40,7 +40,7 @@ Research is needed when:
 - There are existing implementations that might be reusable
 - Integration points with other pages or fixtures are unclear
 
-If research is needed, spawn **2–3 parallel tasks** using the `codebase-researcher` subagent (Agent tool with `subagent_type: "codebase-researcher"`):
+If research is needed, spawn **2–3 parallel tasks** using the `codebase-explorer` subagent (Agent tool with `subagent_type: "codebase-explorer"`):
 
 **Research Task 1: Architecture Analysis**
 - What base classes exist and what do they provide?

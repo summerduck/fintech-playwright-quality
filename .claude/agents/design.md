@@ -1,3 +1,11 @@
+---
+name: design
+description: "Use this agent to produce an architectural design document for a new E2E test feature. It maps the task to the project's page object structure, defines class names, locators, method signatures, data flow, and naming conventions. It never writes code — only specifications. Use it after codebase exploration and before planning."
+tools: Glob, Grep, Read
+model: sonnet
+color: blue
+---
+
 # Design Agent
 
 ## Role

@@ -29,7 +29,7 @@ After receiving the research question:
 
 ### 3. Spawn Parallel Research Tasks
 
-Use the `codebase-researcher` subagent (Task tool with `subagent_type: "codebase-researcher"`).
+Use the `codebase-explorer` subagent (Task tool with `subagent_type: "codebase-explorer"`).
 
 Routing rules:
 - **2-4 parallel tasks** for independent investigation areas (never more than 4 — context overflow risk)

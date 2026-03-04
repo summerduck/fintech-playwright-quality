@@ -1,201 +1,158 @@
-# Multi-Agent E2E Workflow
+# E2E Test Automation Workflow
 
-This document describes the end-to-end process for adding a new E2E test feature using the agent system defined in `.claude/agents/`.
-
----
-
-## How to Start
-
-Provide a task description to Lead Agent. Example:
-
-> "Add E2E tests for the Checkboxes page on The Internet app. Verify that checkboxes can be checked and unchecked, and that their state persists correctly."
-
-Lead Agent orchestrates the rest. Do not skip stages or bypass the quality gates.
+This document describes the end-to-end process for adding, running, and maintaining E2E tests using the command system in `.claude/commands/`.
 
 ---
 
-## Stage 1 — Research
+## Command Sequence
 
-**Agent:** Research Agent
-**Prompt file:** `.claude/agents/research.md`
-**Input:** Task description only
-**Output:** `.claude/agents/research.md` (overwritten with facts)
+Run commands in this order. Each command is a self-contained stage — complete one before starting the next.
 
-What happens:
-- Research Agent reads `pages/`, `tests/`, `config/`, `conftest.py`, `pyproject.toml`, `utils/`.
-- Produces a factual inventory: files, classes, methods, fixtures, markers, browser config.
-- Reports only what is present — no opinions or suggestions.
+```
+/requirements_review <slug> <requirement text>
+        ↓
+/explore_codebase
+        ↓
+/design_tests <slug> <description>
+        ↓
+/implement_tests <slug>
+        ↓
+/run_and_debug <app>
+        ↓
+/reporting <app>
+        ↓
+/commit
+```
 
-Gate before proceeding:
-- `research.md` contains at minimum: page objects list, test files list, fixtures list, markers list, browser config.
+---
+
+## Stage 0 — Requirements Review
+
+**Command:** `/requirements_review <slug> <requirement>`
+**Agent:** `requirements-reviewer`
+**Output:** `thoughts/requirements/YYYY-MM-DD-<slug>.md`
+
+Checks testability, flags ambiguities, identifies missing edge cases.
+Gate: verdict must be `READY` before proceeding to design.
+
+---
+
+## Stage 1 — Explore Codebase
+
+**Command:** `/explore_codebase`
+**Agent:** `codebase-explorer`
+**Output:** `thoughts/research/YYYY-MM-DD-<topic>.md`
+
+Maps existing page objects, fixtures, base classes, and conventions.
+Use when the codebase structure is unfamiliar or when designing for a new app.
 
 ---
 
 ## Stage 2 — Design
 
-**Agent:** Design Agent
-**Prompt file:** `.claude/agents/design.md`
-**Input:** `research.md` + task description
-**Output:** `.claude/agents/design.md` (overwritten with architecture)
+**Command:** `/design_tests <slug> <description>`
+**Agents:** `codebase-explorer`, `design`, `plan`
+**Output:** `thoughts/test-designs/YYYY-MM-DD-<slug>.md`, `.claude/agents/design.md`
 
-What happens:
-- Design Agent maps the task to the project's containers (pages, tests, fixtures, config).
-- Specifies exactly: new file paths, class names, `URL_PATH`, `APP_NAME`, method names, locator strategies.
-- Defines data flow from fixture → page object → Playwright → assertion.
-- States naming conventions and Playwright usage rules that apply to this task.
-
-Gate before proceeding:
-- `design.md` contains: Context, Containers, Components (with file paths and class names), Data Flow, Naming Conventions, Playwright Rules.
-- No code is present in `design.md` — only specifications.
+Proposes page object structure, locators, methods, and test cases.
+Gate: user must approve the design before implementation begins.
 
 ---
 
-## Stage 3 — Plan
+## Stage 3 — Implement
 
-**Agent:** Plan Agent
-**Prompt file:** `.claude/agents/plan.md`
-**Input:** `research.md` + `design.md` + task description
-**Output:** `.claude/agents/plan.md` (overwritten with phased plan)
+**Command:** `/implement_tests <slug>`
+**Agents:** `plan`, `implement`, `review`, `test-runner`
+**Output:** code files + `.claude/agents/plan.md`
 
-What happens:
-- Plan Agent divides the work into 2–5 phases.
-- Each phase defines: goal, files to create or change, constraints, acceptance criteria.
-- Produces a review checklist for Review Agent specific to this task.
-- Produces instructions for Implement Agent.
+Prerequisite: `.claude/agents/design.md` must exist (produced by `/design_tests`).
+Works phase by phase: each phase goes through Implement → Review → Test Runner before proceeding.
 
-Typical phases:
+Implementation order within each phase:
 ```
-Phase 1: Page Object(s) — locators + page class
-Phase 2: Core happy-path tests
-Phase 3: Edge cases and negative scenarios
-Phase 4: Smoke test annotation (if applicable)
+1. pages/<app>/locators.py     (new constants)
+2. pages/<app>/<feature>_page.py  (page object)
+3. tests/<app>/conftest.py     (fixture)
+4. tests/<app>/test_<feature>.py  (test file)
 ```
-
-Gate before proceeding:
-- `plan.md` contains at least one phase with: goal, file table, constraints, acceptance criteria.
-- The review checklist section is present.
 
 ---
 
-## Stage 4 — Implement (per phase)
+## Stage 4 — Run & Debug
 
-**Agent:** Implement Agent
-**Prompt file:** `.claude/agents/implement.md`
-**Input:** `plan.md` (current phase) + `design.md`
-**Output:** Code files listed in the current phase
+**Command:** `/run_and_debug <scope>`
+**Agents:** `bug-tracer`, `implement`
+**Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
 
-What happens:
-- Implement Agent works on exactly one phase at a time.
-- Creates or modifies only the files listed in the current phase of `plan.md`.
-- Follows the code standards in `implement.md` exactly.
-- Reports back to Lead Agent with a list of created/changed files and acceptance criteria status.
-
-Order within each phase:
-```
-1. locators.py  (add new constants)
-2. <feature>_page.py  (page object class)
-3. conftest.py  (add fixture)
-4. test_<feature>.py  (test file)
-```
-
-Gate before proceeding to Review:
-- All files in the phase exist on disk.
-- Implement Agent confirms acceptance criteria are met.
+Runs tests, diagnoses failures by category (SELECTOR, TIMING, LOGIC, FIXTURE, etc.), and optionally applies fixes.
 
 ---
 
-## Stage 5 — Review (per phase)
+## Stage 5 — Review
 
-**Agent:** Review Agent
-**Prompt file:** `.claude/agents/review.md`
-**Input:** `plan.md` + `design.md` + changed files
-**Output:** `.claude/agents/review.md` (overwritten with review report)
-
-What happens:
-- Review Agent runs through the universal checklist in `review.md`.
-- Checks naming, locators, hardcoded values, Playwright patterns, Allure decorators, test body rules, code quality.
-- Produces a report: `APPROVED` or `CHANGES REQUIRED`.
-- For every failing item: file, line, rule, problem description, fix instruction.
-
-Gate before proceeding to QA:
-- `review.md` shows `Status: APPROVED`.
-- If `CHANGES REQUIRED`: send back to Implement Agent with the full issue list. Repeat Stage 4 → Stage 5.
+Review is embedded inside `/implement_tests` — the `review` agent runs automatically after each phase. No separate command needed.
 
 ---
 
-## Stage 6 — QA (per phase)
+## Stage 6 — Commit & PR
 
-**Agent:** QA Agent
-**Prompt file:** `.claude/agents/qa.md`
-**Input:** `plan.md` + `review.md` + list of test files
-**Output:** `.claude/agents/qa.md` (overwritten with QA report)
-
-What happens:
-
-1. Pre-run gate: confirms `review.md` is `APPROVED` and all files exist.
-2. Static analysis: runs `ruff` and `mypy` on changed files.
-3. Targeted test run: runs only the tests from the current phase.
-4. Records every test result (node ID, PASSED/FAILED/ERROR/SKIPPED, duration).
-5. For failures: records full traceback from `--tb=short`.
-6. Produces QA report with summary and escalation recommendation.
-
-Escalation:
-- `ruff`/`mypy` errors → Implement Agent.
-- Collection errors → Implement Agent.
-- Test failures → Review Agent (who routes to Implement Agent if code fix is needed).
-
-Gate before Lead Agent approval:
-- `qa.md` shows `Status: ALL PASSED`.
-- No tests in scope are FAILED, ERROR, or unexplained SKIPPED.
+Use the built-in `/commit` command to stage files, write a commit message, and open a PR.
 
 ---
 
-## Stage 7 — Lead Agent Approval
+## Stage 7 — CI Execution
 
-**Agent:** Lead Agent
-**Input:** `qa.md` with `Status: ALL PASSED`
-
-What happens:
-- Lead Agent confirms all stages completed with passing gates.
-- Summarises: which files were created or changed, which phases were completed.
-- States: **"Ready for merge."**
-
-If any gate failed at any stage, Lead Agent routes back to the appropriate agent with the reason.
+Manual — monitor the pipeline. If CI fails, run `/run_and_debug` with the failing test scope.
 
 ---
 
-## Repeat for Each Phase
+## Stage 8 — Reporting
 
-Stages 4 → 5 → 6 repeat for each phase defined in `plan.md`. Lead Agent does not approve the full task until all phases have passed QA.
+**Command:** `/reporting <scope>`
+**Agent:** `reporter`
+**Output:** `thoughts/reports/YYYY-MM-DD-<scope>.md`
 
-```
-Phase 1: Implement → Review → QA → (approved) →
-Phase 2: Implement → Review → QA → (approved) →
-...
-Phase N: Implement → Review → QA → (approved) →
-Lead Agent: "Ready for merge."
-```
+Parses pytest output into structured pass/fail/flaky/gap report.
+
+---
+
+## Stage 9 — Maintenance
+
+**Command:** `/maintenance <app> <description of change>`
+**Agents:** `codebase-explorer`, `maintainer`
+**Output:** `thoughts/maintenance/YYYY-MM-DD-<slug>.md`
+
+Updates selectors and page object methods when the app changes. Does not change test intent.
+
+---
+
+## Stage 10 — Optimization
+
+**Command:** `/optimization <scope>`
+**Agents:** `optimizer`, `maintainer`
+**Output:** `thoughts/optimization/YYYY-MM-DD-<scope>.md`
+
+Detects flaky tests, slow tests, dead code, and coverage gaps.
 
 ---
 
 ## Document Map
 
 | File | Written by | Read by |
-|---|---|---|
-| `.claude/agents/research.md` | Research Agent | Design Agent, Plan Agent |
-| `.claude/agents/design.md` | Design Agent | Plan Agent, Implement Agent, Review Agent |
-| `.claude/agents/plan.md` | Plan Agent | Implement Agent, Review Agent, QA Agent |
-| `.claude/agents/review.md` | Review Agent | QA Agent, Lead Agent |
-| `.claude/agents/qa.md` | QA Agent | Lead Agent |
+|------|-----------|---------|
+| `.claude/agents/design.md` | `design` agent (via `/design_tests`) | `/implement_tests` |
+| `.claude/agents/plan.md` | `plan` agent (via `/implement_tests`) | `implement`, `review`, `test-runner` agents |
+| `.claude/agents/review.md` | `review` agent | `test-runner` agent |
+| `.claude/agents/qa.md` | `test-runner` agent | — |
 
 ---
 
 ## Troubleshooting
 
 | Symptom | Action |
-|---|---|
-| Implement Agent cannot find a file mentioned in `design.md` | Report to Lead Agent → Lead Agent asks user |
-| Review Agent finds an issue that requires changing `design.md` | Lead Agent restarts from Design Agent |
-| QA tests fail due to environment (network, browser crash) | Re-run once; if still failing, report to Lead Agent as infrastructure issue |
-| `mypy` reports errors in existing (unchanged) files | Report to Lead Agent; do not fix unless the current phase changed those files |
-| Plan phases are ambiguous | Lead Agent asks user to clarify before continuing |
+|---------|--------|
+| `/implement_tests` says no design found | Run `/design_tests <slug>` first |
+| Test fails after implementation | Run `/run_and_debug <app>` |
+| Selector broke after app update | Run `/maintenance <app> <what changed>` |
+| Suite is slow or flaky | Run `/optimization <app>` |
+| `mypy`/`ruff` errors in unchanged files | Do not fix — report and skip |
