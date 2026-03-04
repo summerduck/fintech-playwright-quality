@@ -2,7 +2,7 @@
 
 ## Stages & Responsibilities
 
-| # | Stage | Human | AI |
+| # | Stage | Engineer | AI |
 |---|-------|-------|----|
 | 0 | Requirements Review | writes the requirement, answers clarifying questions | checks testability, flags ambiguities, asks questions |
 | 1 | Explore Codebase | — | reads files, maps structure, finds reusable patterns |
@@ -18,9 +18,9 @@
 
 ## Key Pattern
 
-- **Human owns:** intent (requirements, approvals, decisions)
+- **Engineer owns:** intent (requirements, approvals, decisions)
 - **AI owns:** execution (reading, writing, running, analyzing)
-- **Shared:** design (AI proposes, human approves) and review (AI checks, human decides)
+- **Shared:** design (AI proposes, Engineer approves) and review (AI checks, Engineer decides)
 
 ## Commands & Agents Map
 

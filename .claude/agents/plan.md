@@ -122,5 +122,5 @@ Review Agent must verify for every file in this task:
 
 - Do not write Python code.
 - Do not repeat content from `design.md` — reference it, do not copy it.
-- The acceptance criteria must be specific and checkable by a human or automated tool.
+- The acceptance criteria must be specific and checkable by a Engineer or automated tool.
 - Save the completed document to `.claude/agents/plan.md`, replacing this file's content.

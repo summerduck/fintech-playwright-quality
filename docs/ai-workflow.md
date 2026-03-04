@@ -347,7 +347,7 @@ Each stage has a gate — a condition that must be true before moving to the nex
 | Stage | Gate |
 |-------|------|
 | Requirements Review | verdict = `READY` |
-| Design | human approves page object + test case design |
+| Design | Engineer approves page object + test case design |
 | Implement (per phase) | review = `APPROVED` + all tests pass |
 | Run & Debug | all tests in scope pass |
 | Maintenance | affected tests pass after update |

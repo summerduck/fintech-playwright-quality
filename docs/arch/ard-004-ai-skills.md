@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The project requires consistent code generation across multiple contributors (human and AI) for page objects, tests, workflows, Dockerfiles, CI workflows, performance tests, and documentation. Without codified standards, each generation produces inconsistent patterns — different locator strategies, missing Allure annotations, inconsistent logging, or non-standard file placement.
+The project requires consistent code generation across multiple contributors (Engineer and AI) for page objects, tests, workflows, Dockerfiles, CI workflows, performance tests, and documentation. Without codified standards, each generation produces inconsistent patterns — different locator strategies, missing Allure annotations, inconsistent logging, or non-standard file placement.
 
 The framework has established conventions (BasePage inheritance, per-app `base_url` fixtures, per-test FileHandler logging, Allure step decorators, method chaining with `Self`, 17 pytest markers, xdist-aware artifact management) that must be followed in every new file. Manual enforcement through code review is slow and error-prone.
 
