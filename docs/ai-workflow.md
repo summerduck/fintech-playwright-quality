@@ -64,8 +64,10 @@ For adding a new test from scratch, run commands in this order:
 /design_tests <slug> <description>          ← Plan the page object + tests
 /implement_tests <slug>                     ← Write the code
 /run_and_debug <app>                        ← Run tests, fix failures
+/review <app>                               ← Final POM/AAA/FIRST check
+/commit                                     ← Stage files, write message, open PR
+/ci [<pr-number>]                           ← Monitor pipeline, diagnose failures
 /reporting <app>                            ← Summary report
-/commit                                     ← Commit and open PR
 ```
 
 For ongoing work (no new tests):
@@ -203,6 +205,60 @@ Examples:
 5. Does NOT change what a test asserts — only how it gets there
 
 **Output:** `thoughts/maintenance/YYYY-MM-DD-<slug>.md`
+
+---
+
+### `/review <scope>`
+
+**When to use:** After implementation passes tests, before committing — to verify code quality against project standards.
+
+Scope can be:
+- App name: `the_internet`
+- Test file: `tests/the_internet/test_login.py`
+- Feature slug: `login`
+- Omit to review all files changed since last commit
+
+**What happens:**
+1. Identifies files to review (from argument or `git diff`)
+2. Spawns a `review` agent to check: POM structure, AAA pattern, FIRST principles, Playwright patterns, naming conventions, Allure decorators, locator quality
+3. Presents issues grouped by severity (HIGH / MEDIUM / LOW)
+4. Asks whether to fix automatically or manually
+
+**Output:** Review result with `file:line` references for every issue
+
+> ⚠️ HIGH severity issues must be resolved before `/commit`.
+
+---
+
+### `/commit`
+
+**When to use:** After `/review` approves the code and all tests pass.
+
+**What happens:**
+1. Shows changed files and asks for confirmation to stage them
+2. Drafts a commit message based on the changes and repo style — waits for QA Engineer approval
+3. Stages files and commits with the approved message
+4. Drafts a PR title and description — waits for QA Engineer approval
+5. Pushes the branch and opens the PR
+
+**Output:** PR URL
+
+> ⚠️ Nothing is committed or pushed without explicit approval of both the commit message and PR description.
+
+---
+
+### `/ci [<pr-number>]`
+
+**When to use:** After pushing a branch or opening a PR, to monitor the pipeline and diagnose failures.
+
+**What happens:**
+1. Fetches the CI run status for the current branch or given PR
+2. If jobs failed, downloads the full log for each failing job
+3. Classifies each failure: `ENVIRONMENT` / `IMPORT` / `CONFIG` / `SELECTOR` / `TIMING` / `TEST_LOGIC` / `FLAKY`
+4. Recommends fixes based on classification
+5. Applies config-level fixes if approved; delegates test-level fixes to `implement` agent
+
+**Output:** `thoughts/debug/YYYY-MM-DD-ci-<slug>.md`
 
 ---
 
