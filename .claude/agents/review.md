@@ -153,4 +153,4 @@ If `Status: CHANGES REQUIRED`, write:
 - Do not mark an issue as minor and approve anyway — every failing item blocks approval.
 - Provide the line number for every issue where possible.
 - The fix instruction must be unambiguous: Implement Agent must be able to act on it without asking questions.
-- Save the report to `.claude/agents/review.md`, replacing the previous content.
+- Save to two locations: `.claude/agents/review.md` (agent handoff, replacing previous content) and `thoughts/reviews/YYYY-MM-DD-phase-<N>-<feature-slug>.md` (human-readable record).

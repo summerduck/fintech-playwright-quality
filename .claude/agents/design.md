@@ -152,4 +152,4 @@ If the task requires something that differs from the patterns documented in `res
 - Do not write any Python code.
 - Every section must be filled in, even if some entries are "not involved" or "None".
 - Reference file paths from `research.md`, not from memory.
-- Save the completed document to `thoughts/design/YYYY-MM-DD-<feature-slug>.md` (create the directory if it doesn't exist). Use today's date and the feature slug in the filename.
+- Save to two locations: `.claude/agents/design.md` (agent handoff) and `thoughts/test-designs/YYYY-MM-DD-<feature-slug>.md` (human-readable output). Use today's date and the feature slug in the filename.

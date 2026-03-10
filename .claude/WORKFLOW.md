@@ -229,6 +229,9 @@ Detects flaky tests, slow tests, dead code, and coverage gaps.
 | `thoughts/test-plans/` | `/test_plan` |
 | `thoughts/research/` | `/explore_codebase` |
 | `thoughts/test-designs/` | `/design_tests` |
+| `thoughts/plans/` | `plan` agent (via `/implement_tests`) |
+| `thoughts/reviews/` | `review` agent (via `/implement_tests`, `/review`) |
+| `thoughts/qa/` | `test-runner` agent (via `/implement_tests`) |
 | `thoughts/runs/` | `/run_tests` |
 | `thoughts/debug/` | `/debug` |
 | `thoughts/reports/` | `/reporting` |

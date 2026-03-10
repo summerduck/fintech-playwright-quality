@@ -32,15 +32,9 @@ If arguments are missing, ask:
 
 ---
 
-## Phase 3: Decide if Research is Needed
+## Phase 3: Research Existing Patterns
 
-Research is needed when:
-- You don't know the current structure of the affected pages/fixtures
-- The feature touches unfamiliar parts of the codebase
-- There are existing implementations that might be reusable
-- Integration points with other pages or fixtures are unclear
-
-If research is needed, spawn **2–3 parallel tasks** using the `codebase-explorer` subagent (Agent tool with `subagent_type: "codebase-explorer"`):
+If the codebase structure for this app is unfamiliar or there are unclear integration points, spawn **2–3 parallel tasks** using the `codebase-explorer` subagent (Agent tool with `subagent_type: "codebase-explorer"`):
 
 **Research Task 1: Architecture Analysis**
 - What base classes exist and what do they provide?
@@ -56,27 +50,18 @@ If research is needed, spawn **2–3 parallel tasks** using the `codebase-explor
 - Are there existing helpers, data objects, or workflows relevant to this feature?
 - Are there similar pages whose structure can be reused?
 
-Wait for all research tasks to complete before proceeding.
+If the codebase is already familiar, read directly:
+1. The base page class (e.g. `pages/base_page.py`)
+2. One existing page object for the same app
+3. The relevant `conftest.py`
+
+Note: locator definitions, page object instantiation, fixture names, and test file naming patterns.
+
+Wait for all research to complete before proceeding.
 
 ---
 
-## Phase 4: Discover Existing Patterns
-
-Read the codebase to understand conventions before designing anything:
-
-1. Find and read the base page class (e.g. `pages/base_page.py`)
-2. Read one existing page object for the same app (e.g. `the_internet/pages/`)
-3. Read the relevant `conftest.py` for fixtures
-4. Note:
-   - How locators are defined (class attributes vs methods)
-   - How page objects are instantiated in tests
-   - Fixture names and scope
-   - Test file naming pattern
-   - Parametrize usage
-
----
-
-## Phase 5: Design the Page Object
+## Phase 4: Design the Page Object
 
 Present the page object design for approval **before writing code**:
 
@@ -96,7 +81,7 @@ Ask: "Does this page object design look correct? Should I add or change anything
 
 ---
 
-## Phase 6: Design the Test Cases
+## Phase 5: Design the Test Cases
 
 Present test cases for approval **before writing code**:
 
@@ -122,7 +107,7 @@ Ask: "Do these test cases cover the right scenarios? Anything missing?"
 
 ---
 
-## Phase 7: Save Design Document
+## Phase 6: Save Design Document
 
 Save to: `thoughts/test-designs/YYYY-MM-DD-<feature-slug>.md`
 

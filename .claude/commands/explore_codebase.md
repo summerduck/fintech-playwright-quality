@@ -4,69 +4,43 @@ You are an expert software engineer conducting comprehensive codebase research.
 
 ## YOUR ONLY JOB
 
-DOCUMENT AND EXPLAIN THE CODEBASE AS IT EXISTS TODAY.
-
-## CRITICAL CONSTRAINTS
-
-- DO NOT suggest improvements
-- DO NOT critique implementation
-- DO NOT propose changes
-- ONLY describe what EXISTS
+DOCUMENT AND EXPLAIN THE CODEBASE AS IT EXISTS TODAY. Do not suggest improvements, critique, or propose changes.
 
 ## Process
 
-### 1. Initial Response
+### 1. Determine Research Question
 
-Respond: "I'm ready to research the codebase. Please provide your research question or area of interest."
+Arguments: `$ARGUMENTS`
 
-### 2. Decompose the Research Question
+- If `$ARGUMENTS` is provided, use it as the research question or area of focus.
+- If no arguments are provided, map the full codebase: page objects, fixtures, base classes, config, and test structure.
 
-After receiving the research question:
+### 2. Decompose Into Investigation Areas
 
-1. Read any directly mentioned files COMPLETELY (no limit/offset)
-2. Analyze and decompose the question into 2-4 independent investigation areas
-3. Create a task list using TodoWrite to track progress
+Analyze and decompose into 2–4 independent investigation areas.
 
 ### 3. Spawn Parallel Research Tasks
 
-Use the `codebase-explorer` subagent (Task tool with `subagent_type: "codebase-explorer"`).
+Use the `codebase-explorer` subagent (Agent tool with `subagent_type: "codebase-explorer"`).
 
-Routing rules:
-- **2-4 parallel tasks** for independent investigation areas (never more than 4 — context overflow risk)
+- **2–4 parallel tasks** for independent areas (never more than 4)
 - **Sequential** when one area depends on another's findings
 - **Background** for broad searches that don't block other work
 
-Each task prompt MUST include:
-- The specific question to answer
-- Starting files/paths if known
-- What output format to use
-- Explicit scope boundaries (what NOT to investigate)
+Each task prompt must include: the specific question, starting files/paths if known, output format, and scope boundaries (what NOT to investigate).
 
 ### 4. Synthesize Findings
 
-After all tasks complete:
+After all tasks complete: merge findings, resolve contradictions, build a coherent picture with cross-references. Spawn follow-up tasks if needed (max 1 follow-up round).
 
-1. Merge findings, resolve contradictions
-2. Build a coherent picture with cross-references
-3. Identify gaps — spawn follow-up tasks if needed (max 1 follow-up round)
-
-### 5. Gather Metadata
-
-```yaml
-date: YYYY-MM-DD
-researcher: Claude
-commit: $(git rev-parse --short HEAD)
-branch: $(git branch --show-current)
-research_question: "Original question"
-```
-
-### 6. Generate Research Document
-
-Structure:
+### 5. Generate Research Document
 
 ```markdown
 ---
-[YAML frontmatter with metadata]
+date: YYYY-MM-DD
+commit: $(git rev-parse --short HEAD)
+branch: $(git branch --show-current)
+research_question: "Original question"
 ---
 
 # Research: [Topic]
@@ -82,8 +56,6 @@ Structure:
 **Dependencies**: What it uses/imports
 **Data flow**: Input → Processing → Output
 
-### 2. [Next Component]
-
 ## Code References
 - `file.py:42` — description
 
@@ -91,23 +63,11 @@ Structure:
 [Anything that needs further investigation]
 ```
 
-### 7. Critical Rules
+Save to: `thoughts/research/YYYY-MM-DD-topic-name.md`
+
+### 6. Critical Rules
 
 1. **Always include file:line references** — no vague descriptions
 2. **Read files COMPLETELY** — no limit/offset
-3. **Use Explore subagent** for parallel investigation
-4. **Max 4 parallel tasks** — more causes context overflow
-5. **Maintain objectivity** — only facts, no opinions
-6. **Preserve exact paths** — use paths as they exist in the repo
-
-## Output
-
-Always save to: `thoughts/research/YYYY-MM-DD-topic-name.md`
-
-## Good vs Bad Research
-
-BAD: "The page object model is poorly designed."
-GOOD: "The page object model uses a `BasePage` class (`pages/base_page.py:1`). All app-specific pages inherit from it and define `URL_PATH` and `APP_NAME` as class attributes."
-
-BAD: "The config should use environment variables instead of hardcoded values."
-GOOD: "The base URL is resolved by `get_base_url()` in `config/settings.py:12`. It accepts an app name and reads the `TEST_ENV` environment variable to select between `prod` and `local` endpoints."
+3. **Max 4 parallel tasks** — more causes context overflow
+4. **Only facts** — no opinions, no suggestions

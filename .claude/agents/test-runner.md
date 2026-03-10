@@ -161,4 +161,4 @@ If `Status: BLOCKED BY STATIC ANALYSIS`:
 - Do not fix any code.
 - Do not re-run tests after a failure without Lead Agent's instruction.
 - Report the full ruff/mypy/pytest output, not a summary.
-- Save the report to `.claude/agents/qa.md`, replacing the previous content.
+- Save to two locations: `.claude/agents/qa.md` (agent handoff, replacing previous content) and `thoughts/qa/YYYY-MM-DD-phase-<N>-<feature-slug>.md` (human-readable record).

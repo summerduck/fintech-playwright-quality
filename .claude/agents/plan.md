@@ -81,46 +81,9 @@ Fill in only the files relevant to this phase.
 
 ---
 
-### Implement Agent Instructions
-
-After writing the phase table, add a section addressed directly to Implement Agent:
-
-```
-Implement Agent must:
-1. Work on one phase at a time. Do not start Phase N+1 until Phase N is approved.
-2. Read design.md before writing any code for that phase.
-3. Follow the naming conventions in design.md exactly — do not rename anything.
-4. If a constraint cannot be met as described, stop and report the conflict to Lead Agent. Do not guess.
-5. After completing each phase, confirm which files were created or changed.
-```
-
-### Review Agent Checklist
-
-Add a section with the specific checklist that Review Agent must use for this task (derived from `design.md` section 5 and 6):
-
-```
-Review Agent must verify for every file in this task:
-- [ ] Class name matches design.md specification.
-- [ ] URL_PATH and APP_NAME match design.md specification.
-- [ ] All locators are defined in locators.py (no inline strings in page methods).
-- [ ] No hardcoded URLs, credentials, or environment-specific values in page or test files.
-- [ ] Every public page method has @allure.step decorator.
-- [ ] Every public page method returns Self (actions/verifications) or the correct type (getters).
-- [ ] Test bodies contain no Python logic (no if/for/while/try/except/list comprehension).
-- [ ] Tests use fixtures from conftest.py.
-- [ ] All required pytest markers are present on each test.
-- [ ] All required Allure decorators are present on the test class and each test method.
-- [ ] page.goto() is not called directly in tests or page methods (only via navigate()).
-- [ ] No page.wait_for_timeout() calls.
-- [ ] ruff passes with zero errors.
-- [ ] mypy passes with zero errors.
-```
-
----
-
 ## Rules
 
 - Do not write Python code.
 - Do not repeat content from `design.md` — reference it, do not copy it.
 - The acceptance criteria must be specific and checkable by a Engineer or automated tool.
-- Save the completed document to `thoughts/plans/YYYY-MM-DD-<feature-slug>.md` (create the directory if it doesn't exist). Use today's date and the feature slug in the filename.
+- Save to two locations: `.claude/agents/plan.md` (agent handoff) and `thoughts/plans/YYYY-MM-DD-<feature-slug>.md` (human-readable record).

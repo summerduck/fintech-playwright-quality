@@ -11,15 +11,13 @@ You are coordinating the implementation of E2E tests from an approved design doc
 Arguments: `$ARGUMENTS`
 
 - `$ARGUMENTS[0]` — feature slug (e.g. `login`, `drag-drop`)
-- `$ARGUMENTS[1]` — (optional) path to design document. Defaults to `.claude/agents/design.md`
-
 ---
 
 ## Phase 2: Verify Prerequisites
 
 Before doing anything:
 
-1. Check that the design document exists. If not, stop and say:
+1. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/agents/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
 
 2. Read the design document completely.
