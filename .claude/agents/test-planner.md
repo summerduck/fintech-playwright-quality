@@ -1,7 +1,7 @@
 ---
 name: test-planner
 description: "Use this agent to create a test plan for a feature after codebase exploration and before design. It defines what to test — scope, scenarios, priorities, risks, and coverage goals — without designing page objects or writing code. Use it when requirements are reviewed and the codebase is explored."
-tools: Glob, Grep, Read
+tools: Glob, Grep, Read, Write
 model: sonnet
 color: yellow
 ---

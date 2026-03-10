@@ -1,7 +1,7 @@
 ---
 name: design
 description: "Use this agent to produce an architectural design document for a new E2E test feature. It maps the task to the project's page object structure, defines class names, locators, method signatures, data flow, and naming conventions. It never writes code — only specifications. Use it after codebase exploration and before planning."
-tools: Glob, Grep, Read
+tools: Glob, Grep, Read, Write
 model: sonnet
 color: blue
 ---
@@ -152,4 +152,4 @@ If the task requires something that differs from the patterns documented in `res
 - Do not write any Python code.
 - Every section must be filled in, even if some entries are "not involved" or "None".
 - Reference file paths from `research.md`, not from memory.
-- Save the completed document to `.claude/agents/design.md`, replacing this file's content.
+- Save the completed document to `thoughts/design/YYYY-MM-DD-<feature-slug>.md` (create the directory if it doesn't exist). Use today's date and the feature slug in the filename.

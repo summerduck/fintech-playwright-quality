@@ -1,7 +1,7 @@
 ---
 name: requirements-reviewer
 description: "Use this agent to review a test requirement before any design or code work begins. It checks testability, flags ambiguities, identifies missing edge cases, and produces a structured review document. Use it when a user provides a requirement, ticket, user story, or feature description and wants to know if it is ready to test."
-tools: Glob, Grep, Read, WebFetch, WebSearch
+tools: Glob, Grep, Read, Write, WebFetch, WebSearch
 model: sonnet
 color: blue
 ---

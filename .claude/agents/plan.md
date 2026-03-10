@@ -1,7 +1,7 @@
 ---
 name: plan
 description: "Use this agent to produce a phased implementation plan from an approved design document. It defines what files to create or change, in what order, with acceptance criteria per phase. It never writes code. Use it after the design agent and before the implement agent."
-tools: Glob, Grep, Read
+tools: Glob, Grep, Read, Write
 model: sonnet
 color: cyan
 ---
@@ -123,4 +123,4 @@ Review Agent must verify for every file in this task:
 - Do not write Python code.
 - Do not repeat content from `design.md` — reference it, do not copy it.
 - The acceptance criteria must be specific and checkable by a Engineer or automated tool.
-- Save the completed document to `.claude/agents/plan.md`, replacing this file's content.
+- Save the completed document to `thoughts/plans/YYYY-MM-DD-<feature-slug>.md` (create the directory if it doesn't exist). Use today's date and the feature slug in the filename.
