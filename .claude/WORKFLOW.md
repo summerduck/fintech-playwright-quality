@@ -17,11 +17,15 @@ Run commands in this order. Each command is a self-contained stage — complete 
         ↓
 /implement_tests <slug>
         ↓
-/run_and_debug <app>
+/run_tests <scope>
+        ↓
+/debug <output>
+        ↓
+/apply_fixes <scope>
         ↓
 /reporting <app>
         ↓
-/commit
+/open_pr
 ```
 
 ---
@@ -78,35 +82,57 @@ Implementation order within each phase:
 
 ---
 
-## Stage 4 — Run & Debug
+## Stage 4 — Run Tests
 
-**Command:** `/run_and_debug <scope>`
-**Agents:** `bug-tracer`, `implement`
-**Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
+**Command:** `/run_tests <scope>`
+**Agent:** `test-runner`
+**Output:** `thoughts/runs/YYYY-MM-DD-<scope-slug>.txt`
 
-Runs tests, diagnoses failures by category (SELECTOR, TIMING, LOGIC, FIXTURE, etc.), and optionally applies fixes.
+Runs tests for the given scope and produces the raw pytest output.
+If all pass → proceed to reporting. If failures → pass the output to `/debug`.
 
 ---
 
-## Stage 5 — Review
+## Stage 5 — Debug
+
+**Command:** `/debug <output>`
+**Agents:** `bug-tracer`
+**Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
+
+Accepts pytest output from `/run_tests`, diagnoses failures by category (SELECTOR, TIMING, LOGIC, FIXTURE, etc.), and produces fix instructions. Does not apply fixes.
+
+---
+
+## Stage 6 — Apply Fixes
+
+**Command:** `/apply_fixes <scope>`
+**Agents:** `implement`, `test-runner`
+**Output:** Updated files in `pages/` and/or `tests/`
+
+Prerequisite: a debug report in `thoughts/debug/` for the given scope (produced by `/debug`).
+Reads each diagnosed failure, delegates the fix to `implement`, and reruns the affected tests to confirm resolution.
+
+---
+
+## Stage 7 — Review
 
 Review is embedded inside `/implement_tests` — the `review` agent runs automatically after each phase. No separate command needed.
 
 ---
 
-## Stage 6 — Commit & PR
+## Stage 8 — Commit & PR
 
 Use the built-in `/commit` command to stage files, write a commit message, and open a PR.
 
 ---
 
-## Stage 7 — CI Execution
+## Stage 9 — CI Execution
 
-Manual — monitor the pipeline. If CI fails, run `/run_and_debug` with the failing test scope.
+Manual — monitor the pipeline. If CI fails, run `/debug` with the failing test scope.
 
 ---
 
-## Stage 8 — Reporting
+## Stage 10 — Reporting
 
 **Command:** `/reporting <scope>`
 **Agent:** `reporter`
@@ -116,7 +142,7 @@ Parses pytest output into structured pass/fail/flaky/gap report.
 
 ---
 
-## Stage 9 — Maintenance
+## Stage 11 — Maintenance
 
 **Command:** `/maintenance <app> <description of change>`
 **Agents:** `codebase-explorer`, `maintainer`
@@ -126,7 +152,7 @@ Updates selectors and page object methods when the app changes. Does not change 
 
 ---
 
-## Stage 10 — Optimization
+## Stage 12 — Optimization
 
 **Command:** `/optimization <scope>`
 **Agents:** `optimizer`, `maintainer`
@@ -152,7 +178,7 @@ Detects flaky tests, slow tests, dead code, and coverage gaps.
 | Symptom | Action |
 |---------|--------|
 | `/implement_tests` says no design found | Run `/design_tests <slug>` first |
-| Test fails after implementation | Run `/run_and_debug <app>` |
+| Test fails after implementation | Run `/run_tests <app>`, then `/debug <output>`, then `/apply_fixes <app>` |
 | Selector broke after app update | Run `/maintenance <app> <what changed>` |
 | Suite is slow or flaky | Run `/optimization <app>` |
 | `mypy`/`ruff` errors in unchanged files | Do not fix — report and skip |

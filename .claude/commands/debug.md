@@ -13,7 +13,7 @@ Arguments: `$ARGUMENTS`
 - `$ARGUMENTS[0]` — pytest output: pasted text, file path to output, or path to a saved log file
 
 If no output is provided, ask:
-> Please run the tests and paste the pytest output, or provide a path to the output file.
+> Please paste the pytest output or provide a path to the saved log file.
 
 If a file path is provided, read it completely before proceeding.
 
@@ -62,16 +62,5 @@ Fix: <plain English instruction>
 Confidence: HIGH | MEDIUM | LOW
 ```
 
-Then ask:
-> Should I proceed with fixes? (Yes = spawn implement agent with the fix instructions)
-> Or do you want to fix manually?
-
----
-
-## Phase 5: Apply Fixes (if approved)
-
-If user approves:
-1. Spawn `implement` subagent with the fix instructions from each diagnosis.
-2. After fixes are applied, ask the engineer to re-run the tests and share the new output.
-3. If all pass → show summary.
-4. If still failing → repeat from Phase 2 (max 1 retry cycle).
+Then say:
+> Run `/apply_fixes <scope>` to apply these fixes automatically, or fix manually.

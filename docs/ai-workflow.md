@@ -21,8 +21,21 @@ The QA Engineer makes every meaningful decision:
 - **Whether** a plan makes sense before implementation starts
 - **Whether** to accept a fix or override it
 - **What** gets committed and merged
+- **Which** failures are worth investigating vs. acceptable to skip
+- **When** a test suite is healthy enough to ship
+- **What** counts as a quality gate pass or fail
+- **How** to prioritize scenarios (P1 / P2 / P3)
+- **Whether** optimization suggestions are worth acting on
 
-The QA Engineer never needs to write boilerplate, hunt for selectors, or manually trace test failures.
+The QA Engineer also:
+
+- Writes the requirement or user story that starts the workflow
+- Answers clarifying questions raised by AI during requirements review
+- Describes app changes that trigger maintenance
+- Reads reports and decides the next action
+- Overrides any AI decision at any stage
+
+The QA Engineer never needs to write boilerplate, hunt for selectors, trace call stacks, or parse raw test output.
 
 ### AI — Executor
 
@@ -59,17 +72,18 @@ Move to the next stage
 | # | Stage | Engineer | AI |
 |---|-------|----------|----|
 | 0 | Requirements Review | writes the requirement, answers clarifying questions | checks testability, flags ambiguities, asks questions |
-| 1 | Explore Codebase | triggers exploration, defines scope | reads files, maps structure, finds reusable patterns |
-| 2 | Test Plan | approves or rejects scope, scenarios, and priorities | defines what to test: scope, scenarios, risks, coverage goals |
+| 1 | Test Plan | approves or rejects scope, scenarios, and priorities | defines what to test: scope, scenarios, risks, coverage goals |
+| 2 | Explore Codebase | triggers exploration, defines scope | reads files, maps structure, finds reusable patterns |
 | 3 | Design | approves or rejects page object + test case design | proposes locators, methods, test scenarios |
 | 4 | Implement | approves plan before code is written | writes page object, fixtures, test file |
-| 5 | Debug | runs tests | reads output, traces root cause, fixes |
-| 6 | Review | final approval | checks POM/AAA/FIRST compliance, flags issues |
-| 7 | Commit & PR | approves commit message and PR description | stages files, writes message, opens PR |
-| 8 | CI Execution | monitors pipeline | reads CI output, diagnoses env-specific failures |
-| 9 | Reporting | reads report, decides next action | parses output, summarizes pass/fail/flaky/gaps |
-| 10 | Maintenance | describes what changed in the app | traces broken tests, updates selectors/methods |
-| 11 | Optimization | decides what to keep or drop | detects flaky/slow tests, flags redundant coverage |
+| 5 | Debug | runs tests, decides whether to apply fixes | reads output, traces root cause, classifies failures |
+| 6 | Apply Fixes | approves which fixes to apply | applies fixes per classification, reruns tests |
+| 7 | Review | review, final approval | checks POM/AAA/FIRST compliance, flags issues |
+| 8 | Commit & PR | approves commit message and PR description | stages files, writes message, opens PR |
+| 9 | CI Execution | monitors pipeline | reads CI output, diagnoses env-specific failures |
+| 10 | Reporting | reads report, decides next action | parses output, summarizes pass/fail/flaky/gaps |
+| 11 | Maintenance | describes what changed in the app | traces broken tests, updates selectors/methods |
+| 12 | Optimization | decides what to keep or drop | detects flaky/slow tests, flags redundant coverage |
 
 **Key pattern:**
 - **Engineer owns:** intent (requirements, approvals, decisions)
@@ -84,23 +98,24 @@ For adding a new test from scratch, run commands in this order:
 
 ```
 /requirements_review <slug> <requirement>    ← Is this testable?
-/explore_codebase                            ← What already exists?
 /test_plan <slug>                            ← What to test and why?
-/design_tests <slug> <description>          ← Plan the page object + tests
-/implement_tests <slug>                     ← Write the code
-/debug <scope>                              ← Run tests, fix failures
-/review <scope>                             ← Final POM/AAA/FIRST check
-/open_pr                                    ← Stage files, write message, open PR
-/ci [<pr-number>]                           ← Monitor pipeline, diagnose failures
-/reporting <scope>                          ← Summary report
+/explore_codebase                            ← What already exists?
+/design_tests <slug> <description>           ← Plan the page object + tests
+/implement_tests <slug>                      ← Write the code
+/debug <scope>                               ← Run tests, classify failures
+/apply_fixes <scope>                         ← Apply diagnosed fixes, rerun tests
+/review <scope>                              ← Final POM/AAA/FIRST check
+/open_pr                                     ← Stage files, write message, open PR
+/ci [<pr-number>]                            ← Monitor pipeline, diagnose failures
+/reporting <scope>                           ← Summary report
 ```
 
 For ongoing work (no new tests):
 
 ```
-/maintenance <app> <what changed>           ← App changed, fix broken tests
-/optimization <scope>                       ← Suite health check
-/reporting <scope>                          ← Report results
+/maintenance <app> <what changed>            ← App changed, fix broken tests
+/optimization <scope>                        ← Suite health check
+/reporting <scope>                           ← Report results
 ```
 
 ---
@@ -127,28 +142,11 @@ Only proceed to `/test_plan` when the verdict is `READY`.
 
 ---
 
-### `/explore_codebase`
-
-**Stage:** 1 — Explore Codebase
-
-**When to use:** When the codebase structure is unfamiliar or a map of existing patterns is needed.
-
-**What happens:**
-1. Reads all page objects, base classes, fixtures, test files
-2. Maps structure: class hierarchy, method patterns, locator conventions
-3. Identifies reusable components
-
-**Output:** `thoughts/research/YYYY-MM-DD-<topic>.md`
-
-This runs automatically inside `/design_tests` too — run it separately only to explore without designing.
-
----
-
 ### `/test_plan <slug>`
 
-**Stage:** 2 — Test Plan
+**Stage:** 1 — Test Plan
 
-**When to use:** After requirements are confirmed `READY` and the codebase is explored.
+**When to use:** After requirements are confirmed `READY`.
 
 **What happens:**
 1. Defines the scope: which pages, flows, and scenarios to cover
@@ -158,7 +156,24 @@ This runs automatically inside `/design_tests` too — run it separately only to
 
 **Output:** `thoughts/test-plans/YYYY-MM-DD-<slug>.md`
 
-> ⚠️ The QA Engineer must approve the plan before moving to `/design_tests`.
+> ⚠️ The QA Engineer must approve the plan before moving to `/explore_codebase`.
+
+---
+
+### `/explore_codebase`
+
+**Stage:** 2 — Explore Codebase
+
+**When to use:** After the test plan is approved, to map existing patterns before designing.
+
+**What happens:**
+1. Reads all page objects, base classes, fixtures, test files
+2. Maps structure: class hierarchy, method patterns, locator conventions
+3. Identifies reusable components
+
+**Output:** `thoughts/research/YYYY-MM-DD-<topic>.md`
+
+This runs automatically inside `/design_tests` too — run it separately only to explore without designing.
 
 ---
 
@@ -186,15 +201,15 @@ This runs automatically inside `/design_tests` too — run it separately only to
 
 **When to use:** After the design from `/design_tests` has been approved.
 
-**Prerequisite:** `.claude/agents/design.md` must exist.
+**Prerequisite:** A design document must exist in `thoughts/test-designs/` for the given slug.
 
 **What happens:**
-1. Checks that `design.md` exists — stops if not
+1. Checks that `thoughts/test-designs/YYYY-MM-DD-<slug>.md` exists — stops if not
 2. Generates a phased plan (shows the phases, asks for confirmation)
 3. For each phase:
    - Writes code: locators → page object → fixture → test file
    - Runs automated review (naming, POM, AAA, Playwright rules)
-   - Runs tests (ruff, mypy, pytest)
+   - Runs Code Quality Checks
    - Only moves to next phase when current phase passes all checks
 
 **Output:** Code files in `pages/` and `tests/`
@@ -203,11 +218,11 @@ This runs automatically inside `/design_tests` too — run it separately only to
 
 ---
 
-### `/debug <scope>`
+### `/run_tests <scope>`
 
-**Stage:** 5 — Debug
+**Stage:** 5 — Run Tests
 
-**When to use:** When tests are failing — after implementation, after a CI failure, or anytime investigation is needed.
+**When to use:** After `/implement_tests` completes, or any time you need to run the suite manually.
 
 Scope can be:
 - App name: `the_internet`
@@ -216,20 +231,55 @@ Scope can be:
 - Node ID: `tests/the_internet/test_login.py::TestLogin::test_valid_login`
 
 **What happens:**
-1. Runs pytest with the given scope
+1. Runs pytest for the given scope
+2. Saves raw output to `thoughts/runs/`
+3. If all pass → suggests `/reporting`
+4. If failures → shows output and suggests `/debug`
+
+**Output:** `thoughts/runs/YYYY-MM-DD-<scope-slug>.txt`
+
+---
+
+### `/debug <output>`
+
+**Stage:** 6 — Debug
+
+**When to use:** After `/run_tests` produces failures. Pass the pytest output or path to the saved log file.
+
+**What happens:**
+1. Accepts pytest output (pasted text or path to a saved log file)
 2. If all pass → done
 3. If failures → spawns a `bug-tracer` for each failure
 4. Each failure is classified: `SELECTOR` / `TIMING` / `LOGIC` / `FIXTURE` / `ASSERTION` / `IMPORT` / `CONFIG` / `FLAKY` / `ENVIRONMENT`
 5. Reports exact file + line + what needs to change
-6. Asks the QA Engineer whether to apply the fixes
 
 **Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
 
 ---
 
+### `/apply_fixes <scope>`
+
+**Stage:** 7 — Apply Fixes
+
+**When to use:** After `/debug` produces a diagnosis and the QA Engineer approves applying the fixes.
+
+Scope matches what was passed to `/debug`.
+
+**What happens:**
+1. Reads the debug report from `thoughts/debug/`
+2. For each diagnosed failure, delegates the fix to the `implement` agent by classification
+3. Reruns the affected tests after each fix to confirm it passes
+4. Reports which fixes were applied and whether any failures remain
+
+**Output:** Updated files in `pages/` and/or `tests/`; rerun results confirm pass or surface remaining failures
+
+> ⚠️ The QA Engineer decides which fixes to apply — AI never applies fixes without approval.
+
+---
+
 ### `/review <scope>`
 
-**Stage:** 6 — Review
+**Stage:** 7 — Review
 
 **When to use:** After implementation passes tests, before committing — to verify code quality against project standards.
 
@@ -253,7 +303,7 @@ Scope can be:
 
 ### `/open_pr`
 
-**Stage:** 7 — Commit & PR
+**Stage:** 8 — Commit & PR
 
 **When to use:** After `/review` approves the code and all tests pass.
 
@@ -387,27 +437,30 @@ Analyzes the test suite for health issues: flaky patterns, slow tests, dead code
 
 ## How Agents Communicate
 
-Agents pass information through files in `.claude/agents/`:
+Agents share state through two locations:
 
-```
-design.md   ← written by design agent, read by plan + implement + review
-plan.md     ← written by plan agent, read by implement + review + test-runner
-review.md   ← written by review agent, read by test-runner
-qa.md       ← written by test-runner
-```
+**`.claude/agents/` — machine-readable handoffs between agents**
 
-And to `thoughts/` for human-readable outputs:
+| File | Written by | Read by |
+|------|-----------|---------|
+| `design.md` | `design` (via `/design_tests`) | `plan`, `implement`, `review` |
+| `plan.md` | `plan` (via `/implement_tests`) | `implement`, `review`, `test-runner` |
+| `review.md` | `review` | `test-runner` |
+| `qa.md` | `test-runner` | — |
 
-```
-thoughts/requirements/    ← requirements_review output
-thoughts/research/        ← explore_codebase output
-thoughts/test-plans/      ← test_plan output
-thoughts/test-designs/    ← design_tests output
-thoughts/debug/           ← debug output
-thoughts/reports/         ← reporting output
-thoughts/maintenance/     ← maintenance output
-thoughts/optimization/    ← optimization output
-```
+**`thoughts/` — human-readable outputs per command**
+
+| Directory | Written by |
+|-----------|-----------|
+| `thoughts/requirements/` | `/requirements_review` |
+| `thoughts/research/` | `/explore_codebase` |
+| `thoughts/test-plans/` | `/test_plan` |
+| `thoughts/test-designs/` | `/design_tests` |
+| `thoughts/runs/` | `/run_tests` |
+| `thoughts/debug/` | `/debug` |
+| `thoughts/reports/` | `/reporting` |
+| `thoughts/maintenance/` | `/maintenance` |
+| `thoughts/optimization/` | `/optimization` |
 
 ---
 
@@ -421,7 +474,11 @@ Each stage has a gate — a condition that must be true before moving to the nex
 | Test Plan | Engineer approves scope, scenarios, and priorities |
 | Design | Engineer approves page object + test case design |
 | Implement (per phase) | review = `APPROVED` + all tests pass |
-| Debug | all tests in scope pass |
+| Run Tests | all tests pass — if any fail, must go through Debug before proceeding |
+| Debug | every failure has a diagnosis with confidence `MEDIUM` or `HIGH` |
+| Apply Fixes | all previously failing tests now pass |
+| Commit & PR | Engineer approves commit message and PR description |
+| CI | all CI jobs pass — if any fail, re-enter Debug with the CI log |
 | Maintenance | affected tests pass after update |
 
 ---
@@ -431,8 +488,8 @@ Each stage has a gate — a condition that must be true before moving to the nex
 ### Adding a new page test from scratch
 ```
 /requirements_review checkboxes "User can check and uncheck checkboxes. State should reflect correctly."
-/explore_codebase
 /test_plan checkboxes
+/explore_codebase
 /design_tests checkboxes the-internet checkboxes page
 /implement_tests checkboxes
 /debug the_internet
