@@ -209,6 +209,9 @@ __marimo__/
 # Notes for myself
 .notes/
 
+# Claude local agent memory
+.claude/agent-memory-local/
+
 # Test logs
 test-logs/
 allure-report/

@@ -1,6 +1,5 @@
 ---
-name: pytest-test-scaffolder
-description: Scaffold pytest test files following project conventions with AAA pattern, pytest markers, Allure decorators, parametrize, and conftest fixtures. Use when creating new test files, adding test cases, generating test classes, or scaffolding tests for saucedemo, theinternet, or uiplayground apps.
+description: Scaffold pytest test files following project conventions
 ---
 
 # Pytest Test Scaffolder

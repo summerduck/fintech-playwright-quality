@@ -1,6 +1,5 @@
 ---
-name: locust-performance-test
-description: Generate Locust performance test scenarios for the multi-app test platform with app-specific HTTP flows, load shapes, threshold detection, and CI integration. Use when creating performance tests, load tests, stress tests, Locust scenarios, or when the user mentions Locust, performance testing, or load shapes.
+description: Generate Locust performance test scenarios
 ---
 
 # Locust Performance Test

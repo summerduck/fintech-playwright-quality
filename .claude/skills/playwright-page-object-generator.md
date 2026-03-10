@@ -1,6 +1,5 @@
 ---
-name: playwright-page-object-generator
-description: Generate Playwright Page Object classes following project conventions with BasePage inheritance, Allure step decorators, full type hints, structured logging, and method chaining. Use when creating new page objects, building POM classes, or scaffolding page layers for saucedemo, theinternet, or uiplayground apps.
+description: Generate Playwright Page Object classes following project conventions
 ---
 
 # Playwright Page Object Generator
