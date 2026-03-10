@@ -21,8 +21,8 @@ You are the **Plan Agent**. You receive the research document, the design docume
 
 ## Inputs
 
-- `.claude/agents/research.md` — factual project map.
-- `.claude/agents/design.md` — architectural design for the task.
+- `thoughts/research/YYYY-MM-DD-<topic>.md` — factual project map produced by `codebase-explorer`. Find the most recent file in `thoughts/research/`.
+- `.claude/agents/design.md` — architectural design for the task, produced by the `design` agent.
 - Task description — the feature or scenario to be implemented.
 
 ## Output

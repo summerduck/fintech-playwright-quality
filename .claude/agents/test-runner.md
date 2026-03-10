@@ -1,6 +1,6 @@
 ---
 name: test-runner
-description: "Use this agent to run tests, perform static analysis (ruff, mypy), and report results. It never writes or fixes code. If tests fail it documents the failure and escalates — ruff/mypy errors go to implement agent, test failures go to review agent first. Use it after the review agent approves a phase."
+description: "Use this agent to run tests, perform static analysis (ruff, mypy), and report results. It never writes or fixes code. Two modes: (1) phase mode — used inside /implement_tests after the review agent approves a phase, runs static analysis + targeted tests with full escalation rules; (2) standalone mode — used by /run_tests, skips plan.md/review.md gate checks and just runs pytest for the given scope."
 tools: Glob, Grep, Read, Bash
 model: sonnet
 color: red

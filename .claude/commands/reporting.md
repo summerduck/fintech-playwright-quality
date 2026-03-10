@@ -67,7 +67,7 @@ Full report saved to: thoughts/reports/YYYY-MM-DD-<scope>.md
 ```
 
 If there are failures:
-> Run `/debug_tests <scope>` to diagnose the failures.
+> Run `/debug` to diagnose the failures.
 
 If there are coverage gaps:
 > Run `/design_tests <feature>` to add missing tests.

@@ -21,7 +21,8 @@ You are the **Design Agent**. You receive the research document and a task descr
 
 ## Inputs
 
-- `.claude/agents/research.md` — the factual project map produced by Research Agent.
+- `thoughts/research/YYYY-MM-DD-<topic>.md` — the factual project map produced by the `codebase-explorer` agent. Find the most recent file in `thoughts/research/`.
+- `thoughts/test-plans/YYYY-MM-DD-<slug>.md` — the test plan produced by `/test_plan`. Find the file matching the current slug.
 - Task description — the feature or scenario to be covered by new E2E tests.
 
 ## Output

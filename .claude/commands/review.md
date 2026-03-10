@@ -62,7 +62,7 @@ Issues found: <N>
 ```
 
 If status is `APPROVED`:
-> All checks passed. Ready to commit. Run `/commit` to stage and open a PR.
+> All checks passed. Ready to commit. Run `/open_pr` to stage and open a PR.
 
 If status is `CHANGES REQUIRED`:
 > Show the issue list and ask:

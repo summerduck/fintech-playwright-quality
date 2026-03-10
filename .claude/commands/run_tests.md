@@ -53,8 +53,6 @@ If all tests passed:
 > Run `/reporting <scope>` for a full structured report.
 
 If tests failed or errored:
-> <N> test(s) failed. Copy the output above and run:
-> `/debug <output or path>`
-> to diagnose the failures.
+> <N> test(s) failed. Run `/debug` to diagnose the failures (picks up this run automatically).
 
 Save the raw pytest output to `thoughts/runs/YYYY-MM-DD-<scope-slug>.txt`.

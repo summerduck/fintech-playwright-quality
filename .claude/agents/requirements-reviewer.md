@@ -96,7 +96,7 @@ One paragraph: what the requirement covers and the overall readiness verdict.
 2. <specific question>
 
 ## Verdict
-READY — proceed to /design_tests
+READY — proceed to /test_plan
 OR
 NEEDS CLARIFICATION — answer the questions above before proceeding
 OR
