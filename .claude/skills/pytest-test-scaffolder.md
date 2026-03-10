@@ -71,7 +71,6 @@ Each app directory has a `conftest.py` that provides page object fixtures.
 | Test naming | `test_<scenario>` — descriptive, uses underscores |
 | Page objects | Received as **fixture parameters** from `tests/<app>/conftest.py`, never instantiated |
 | Test data | Frozen dataclasses from `config.data.*`, never hard-coded strings |
-| Structure | AAA comments: `# Arrange` / `# Act` / `# Assert` |
 | Markers | Exactly one app marker + at least one category marker per test |
 | Allure | `@allure.epic` + `@allure.feature` on class; `@allure.story` + `@allure.severity` + title on method |
 | Assertions | Prefer `expect()` for DOM elements; `assert` only for non-DOM values |

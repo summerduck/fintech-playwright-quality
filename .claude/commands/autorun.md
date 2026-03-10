@@ -24,7 +24,7 @@ If no requirement text is provided, ask once:
 
 Spawn `requirements-reviewer` subagent.
 
-Pass: the requirement text.
+Pass: the requirement text. **Do not save output to `thoughts/`** — keep results in memory only.
 
 **Autonomous gate decision:**
 - Verdict `READY` → proceed to Stage 1.
@@ -38,7 +38,7 @@ Pass: the requirement text.
 
 Spawn `test-planner` subagent.
 
-Pass: slug + requirement text + path to the requirements review output.
+Pass: slug + requirement text + requirements review findings (from memory). **Do not save output to `thoughts/`** — keep results in memory only.
 
 **Autonomous gate decision:**
 - Verdict `READY FOR DESIGN` → proceed to Stage 2.
@@ -56,7 +56,7 @@ Spawn **3 parallel** `codebase-explorer` subagents:
 
 **Task 3:** Reuse candidates — any existing page object, locator, or workflow relevant to the slug.
 
-Wait for all 3. Consolidate findings into a research summary (do not save a file — keep in memory for Stage 3).
+Wait for all 3. Consolidate findings into a research summary — keep in memory for Stage 3, do not save to `thoughts/`.
 
 ---
 
@@ -66,8 +66,10 @@ Spawn `design` subagent.
 
 Pass:
 - Feature slug and description
-- Research summary from Stage 2
-- Test plan output from Stage 1
+- Research summary from Stage 2 (from memory)
+- Test plan findings from Stage 1 (from memory)
+
+**Do not save design output to `thoughts/`** — save only to `.claude/run/design.md`.
 
 **Autonomous gate decision:**
 - Design document produced and all sections populated → proceed to Stage 4.
@@ -81,7 +83,9 @@ Pass:
 
 Spawn `plan` subagent.
 
-Pass: design document + research summary + slug.
+Pass: design document (`.claude/run/design.md`) + research summary + slug.
+
+**Do not save plan output to `thoughts/`** — save only to `.claude/run/plan.md`.
 
 Read the generated `plan.md` to know how many phases there are.
 
@@ -99,9 +103,9 @@ Pass: current phase from `plan.md` + full `plan.md` + `design.md`.
 
 Spawn `review` subagent.
 
-Pass: files changed in this phase + `plan.md` + `design.md`.
+Pass: files changed in this phase + `plan.md` + `design.md`. **Do not save review output to `thoughts/`** — save only to `.claude/run/review.md`.
 
-Read `.claude/agents/review.md`.
+Read `.claude/run/review.md`.
 
 **Autonomous gate decision:**
 - `APPROVED` → go to Step 3.
@@ -114,7 +118,7 @@ Read `.claude/agents/review.md`.
 
 Spawn `test-runner` subagent (phase mode).
 
-Pass: test files for this phase + `plan.md` + `review.md`.
+Pass: test files for this phase + `plan.md` + `review.md`. **Do not save QA output to `thoughts/`** — save only to `.claude/run/qa.md`.
 
 **Autonomous gate decision:**
 - `ALL PASSED` → phase complete. Move to next phase.
@@ -132,7 +136,7 @@ After all phases complete, run the full test suite for the app:
 pytest tests/<app>/ -v --no-header --tb=short
 ```
 
-Save raw output to `thoughts/runs/YYYY-MM-DD-<slug>.txt`.
+Keep raw output in memory — do not save to `thoughts/`.
 
 **Autonomous gate decision:**
 - All pass → proceed to Stage 6 (report only).
@@ -165,7 +169,7 @@ Rerun only the previously failing tests.
 
 Spawn `reporter` subagent.
 
-Pass: final pytest output + list of all test files for the app.
+Pass: final pytest output (from memory) + list of all test files for the app. **Do not save report to `thoughts/`** — present summary directly in the conversation.
 
 Present the summary to the QA Engineer:
 
