@@ -8,24 +8,37 @@ This document describes the end-to-end process for adding, running, and maintain
 
 Run commands in this order. Each command is a self-contained stage — complete one before starting the next.
 
+### Manual (step-by-step, full control)
+
 ```
-/requirements_review <slug> <requirement text>
-        ↓
-/explore_codebase
-        ↓
-/design_tests <slug> <description>
-        ↓
-/implement_tests <slug>
-        ↓
-/run_tests <scope>
-        ↓
-/debug <output>
-        ↓
-/apply_fixes <scope>
-        ↓
-/reporting <app>
-        ↓
-/open_pr
+/requirements_review <slug> <requirement>    ← Is this testable?
+/test_plan <slug>                            ← What to test and why?
+/explore_codebase                            ← What already exists?
+/design_tests <slug> <description>           ← Plan the page object + tests
+/implement_tests <slug>                      ← Write the code
+/run_tests <scope>                           ← Run the suite
+/debug                                       ← Classify failures
+/apply_fixes <scope>                         ← Apply diagnosed fixes
+/review <scope>                              ← Final POM/AAA/FIRST check
+/open_pr                                     ← Stage files, write message, open PR
+/ci [<pr-number>]                            ← Monitor pipeline, diagnose failures
+/reporting <scope>                           ← Summary report
+```
+
+### Autonomous (hands-off, stages 0–6 in one command)
+
+```
+/autorun <slug> <requirement>                ← Run everything end-to-end
+/review <scope>                              ← Final manual check
+/open_pr                                     ← Commit and open PR
+```
+
+For ongoing work (no new tests):
+
+```
+/maintenance <app> <what changed>            ← App changed, fix broken tests
+/optimization <scope>                        ← Suite health check
+/reporting <scope>                           ← Report results
 ```
 
 ---
@@ -37,11 +50,22 @@ Run commands in this order. Each command is a self-contained stage — complete 
 **Output:** `thoughts/requirements/YYYY-MM-DD-<slug>.md`
 
 Checks testability, flags ambiguities, identifies missing edge cases.
-Gate: verdict must be `READY` before proceeding to design.
+Gate: verdict must be `READY` before proceeding to test plan.
 
 ---
 
-## Stage 1 — Explore Codebase
+## Stage 1 — Test Plan
+
+**Command:** `/test_plan <slug>`
+**Agent:** `test-planner`
+**Output:** `thoughts/test-plans/YYYY-MM-DD-<slug>.md`
+
+Defines scope, test scenarios with priority (P1/P2/P3), risks, and coverage goals.
+Gate: QA Engineer must approve scope, scenarios, and priorities before proceeding.
+
+---
+
+## Stage 2 — Explore Codebase
 
 **Command:** `/explore_codebase`
 **Agent:** `codebase-explorer`
@@ -49,40 +73,41 @@ Gate: verdict must be `READY` before proceeding to design.
 
 Maps existing page objects, fixtures, base classes, and conventions.
 Use when the codebase structure is unfamiliar or when designing for a new app.
+Also runs automatically inside `/design_tests`.
 
 ---
 
-## Stage 2 — Design
+## Stage 3 — Design
 
 **Command:** `/design_tests <slug> <description>`
 **Agents:** `codebase-explorer`, `design`, `plan`
 **Output:** `thoughts/test-designs/YYYY-MM-DD-<slug>.md`, `.claude/agents/design.md`
 
 Proposes page object structure, locators, methods, and test cases.
-Gate: user must approve the design before implementation begins.
+Gate: QA Engineer must approve the design before implementation begins.
 
 ---
 
-## Stage 3 — Implement
+## Stage 4 — Implement
 
 **Command:** `/implement_tests <slug>`
 **Agents:** `plan`, `implement`, `review`, `test-runner`
-**Output:** code files + `.claude/agents/plan.md`
+**Output:** Code files in `pages/` and `tests/`
 
-Prerequisite: `.claude/agents/design.md` must exist (produced by `/design_tests`).
+Prerequisite: `thoughts/test-designs/YYYY-MM-DD-<slug>.md` must exist (produced by `/design_tests`).
 Works phase by phase: each phase goes through Implement → Review → Test Runner before proceeding.
 
 Implementation order within each phase:
 ```
-1. pages/<app>/locators.py     (new constants)
+1. pages/<app>/locators.py        (new constants)
 2. pages/<app>/<feature>_page.py  (page object)
-3. tests/<app>/conftest.py     (fixture)
+3. tests/<app>/conftest.py        (fixture)
 4. tests/<app>/test_<feature>.py  (test file)
 ```
 
 ---
 
-## Stage 4 — Run Tests
+## Stage 5 — Run Tests
 
 **Command:** `/run_tests <scope>`
 **Agent:** `test-runner`
@@ -91,19 +116,25 @@ Implementation order within each phase:
 Runs tests for the given scope and produces the raw pytest output.
 If all pass → proceed to reporting. If failures → pass the output to `/debug`.
 
+Scope can be: app name, test file, marker, or node ID.
+
 ---
 
-## Stage 5 — Debug
+## Stage 6 — Debug
 
-**Command:** `/debug <output>`
-**Agents:** `bug-tracer`
+**Command:** `/debug [<output>]`
+**Agent:** `bug-tracer`
 **Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
 
-Accepts pytest output from `/run_tests`, diagnoses failures by category (SELECTOR, TIMING, LOGIC, FIXTURE, etc.), and produces fix instructions. Does not apply fixes.
+If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-report/`.
+
+Diagnoses failures by category (`SELECTOR` / `TIMING` / `LOGIC` / `FIXTURE` / `ASSERTION` / `IMPORT` / `CONFIG` / `FLAKY` / `ENVIRONMENT`). Reports exact file + line + what needs to change. Does not apply fixes.
+
+Gate: every failure must have a diagnosis with confidence `MEDIUM` or `HIGH`.
 
 ---
 
-## Stage 6 — Apply Fixes
+## Stage 7 — Apply Fixes
 
 **Command:** `/apply_fixes <scope>`
 **Agents:** `implement`, `test-runner`
@@ -114,25 +145,42 @@ Reads each diagnosed failure, delegates the fix to `implement`, and reruns the a
 
 ---
 
-## Stage 7 — Review
+## Stage 8 — Review
 
-Review is embedded inside `/implement_tests` — the `review` agent runs automatically after each phase. No separate command needed.
+**Command:** `/review <scope>`
+**Agent:** `review`
+**Output:** Review result with `file:line` references for every issue
 
----
+After implementation passes tests, before committing. Checks: POM structure, AAA pattern, FIRST principles, Playwright patterns, naming conventions, Allure decorators, locator quality.
 
-## Stage 8 — Commit & PR
+Issues are grouped by severity (HIGH / MEDIUM / LOW).
+Gate: HIGH severity issues must be resolved before `/open_pr`.
 
-Use the built-in `/commit` command to stage files, write a commit message, and open a PR.
-
----
-
-## Stage 9 — CI Execution
-
-Manual — monitor the pipeline. If CI fails, run `/debug` with the failing test scope.
+Scope can be: app name, test file, feature slug, or omit to review all files changed since last commit.
 
 ---
 
-## Stage 10 — Reporting
+## Stage 9 — Commit & PR
+
+**Command:** `/open_pr`
+**Output:** PR URL
+
+Nothing is committed or pushed without explicit QA Engineer approval of both the commit message and PR description.
+
+---
+
+## Stage 10 — CI Execution
+
+**Command:** `/ci [<pr-number>]`
+**Output:** `thoughts/debug/YYYY-MM-DD-ci-<slug>.md`
+
+Monitors the pipeline and diagnoses failures. If CI jobs fail, classifies failures and recommends fixes.
+
+> Full CI automation is pending MCP integration. Current usage requires manual monitoring.
+
+---
+
+## Stage 11 — Reporting
 
 **Command:** `/reporting <scope>`
 **Agent:** `reporter`
@@ -142,7 +190,7 @@ Parses pytest output into structured pass/fail/flaky/gap report.
 
 ---
 
-## Stage 11 — Maintenance
+## Stage 12 — Maintenance
 
 **Command:** `/maintenance <app> <description of change>`
 **Agents:** `codebase-explorer`, `maintainer`
@@ -152,7 +200,7 @@ Updates selectors and page object methods when the app changes. Does not change 
 
 ---
 
-## Stage 12 — Optimization
+## Stage 13 — Optimization
 
 **Command:** `/optimization <scope>`
 **Agents:** `optimizer`, `maintainer`
@@ -164,21 +212,77 @@ Detects flaky tests, slow tests, dead code, and coverage gaps.
 
 ## Document Map
 
+**`.claude/agents/` — machine-readable handoffs between agents**
+
 | File | Written by | Read by |
 |------|-----------|---------|
-| `.claude/agents/design.md` | `design` agent (via `/design_tests`) | `/implement_tests` |
-| `.claude/agents/plan.md` | `plan` agent (via `/implement_tests`) | `implement`, `review`, `test-runner` agents |
-| `.claude/agents/review.md` | `review` agent | `test-runner` agent |
-| `.claude/agents/qa.md` | `test-runner` agent | — |
+| `design.md` | `design` (via `/design_tests`) | `plan`, `implement`, `review` |
+| `plan.md` | `plan` (via `/implement_tests`) | `implement`, `review`, `test-runner` |
+| `review.md` | `review` | `test-runner` |
+| `qa.md` | `test-runner` | — |
+
+**`thoughts/` — human-readable outputs per command**
+
+| Directory | Written by |
+|-----------|-----------|
+| `thoughts/requirements/` | `/requirements_review` |
+| `thoughts/test-plans/` | `/test_plan` |
+| `thoughts/research/` | `/explore_codebase` |
+| `thoughts/test-designs/` | `/design_tests` |
+| `thoughts/runs/` | `/run_tests` |
+| `thoughts/debug/` | `/debug` |
+| `thoughts/reports/` | `/reporting` |
+| `thoughts/maintenance/` | `/maintenance` |
+| `thoughts/optimization/` | `/optimization` |
+
+---
+
+## Common Scenarios
+
+### Adding a new page test from scratch
+```
+/requirements_review checkboxes "User can check and uncheck checkboxes. State should reflect correctly."
+/test_plan checkboxes
+/explore_codebase
+/design_tests checkboxes the-internet checkboxes page
+/implement_tests checkboxes
+/run_tests the_internet
+/debug
+/apply_fixes the_internet
+/reporting the_internet
+/open_pr
+```
+
+### Something broke after a deploy
+```
+/run_tests the_internet
+/debug
+/apply_fixes the_internet
+/reporting the_internet
+```
+
+### App UI changed
+```
+/maintenance the_internet "checkbox inputs now have id=checkbox-1 and id=checkbox-2"
+```
+
+### Monthly health check
+```
+/optimization all
+```
 
 ---
 
 ## Troubleshooting
 
-| Symptom | Action |
-|---------|--------|
+| Problem | Solution |
+|---------|----------|
 | `/implement_tests` says no design found | Run `/design_tests <slug>` first |
-| Test fails after implementation | Run `/run_tests <app>`, then `/debug <output>`, then `/apply_fixes <app>` |
-| Selector broke after app update | Run `/maintenance <app> <what changed>` |
+| Tests fail immediately after writing | Run `/run_tests <app>`, then `/debug`, then `/apply_fixes <app>` |
+| Selector stopped working | Run `/maintenance <app> <what changed>` |
 | Suite is slow or flaky | Run `/optimization <app>` |
-| `mypy`/`ruff` errors in unchanged files | Do not fix — report and skip |
+| CI fails but local passes | Run `/debug` with the exact failing node ID |
+| Not sure what already exists | Run `/explore_codebase` |
+| Requirement is vague | Run `/requirements_review` before anything else |
+| Unsure what to test | Run `/test_plan <slug>` after requirements review |
+| `ruff` errors in unchanged files | Do not fix — report and skip |
