@@ -94,7 +94,7 @@ Move to the next stage
 
 ## Full Command Sequence
 
-For adding a new test from scratch, run commands in this order:
+### Manual (step-by-step, full control)
 
 ```
 /requirements_review <slug> <requirement>    ← Is this testable?
@@ -102,12 +102,21 @@ For adding a new test from scratch, run commands in this order:
 /explore_codebase                            ← What already exists?
 /design_tests <slug> <description>           ← Plan the page object + tests
 /implement_tests <slug>                      ← Write the code
-/debug <scope>                               ← Run tests, classify failures
-/apply_fixes <scope>                         ← Apply diagnosed fixes, rerun tests
+/run_tests <scope>                           ← Run the suite
+/debug                                       ← Classify failures
+/apply_fixes <scope>                         ← Apply diagnosed fixes
 /review <scope>                              ← Final POM/AAA/FIRST check
 /open_pr                                     ← Stage files, write message, open PR
 /ci [<pr-number>]                            ← Monitor pipeline, diagnose failures
 /reporting <scope>                           ← Summary report
+```
+
+### Autonomous (hands-off, stages 0–6 in one command)
+
+```
+/autorun <slug> <requirement>                ← Run everything end-to-end
+/review <scope>                              ← Final manual check
+/open_pr                                     ← Commit and open PR
 ```
 
 For ongoing work (no new tests):
@@ -121,6 +130,34 @@ For ongoing work (no new tests):
 ---
 
 ## Commands
+
+### `/autorun <slug> <requirement>`
+
+**Stages:** 0–6 — autonomous end-to-end pipeline
+
+**When to use:** You have a requirement and want working, passing tests with minimal involvement.
+
+**What happens:**
+1. Runs requirements review — resolves ambiguities using best judgment (documents assumptions)
+2. Produces a test plan
+3. Explores the codebase (3 parallel agents)
+4. Designs the page object and test cases
+5. Implements code phase by phase — auto-retries review/fix cycles (max 3 per phase)
+6. Runs the full suite — auto-debugs and fixes failures (max 2 cycles)
+7. Reports final results
+
+**Stops automatically if:**
+- Requirement is `NOT TESTABLE`
+- Design cannot be completed after 2 attempts
+- A phase cannot be reviewed/fixed after 3 cycles
+- A failure cannot be diagnosed with `MEDIUM` or `HIGH` confidence
+- Tests still fail after 2 debug/fix cycles
+
+**Output:** Code files in `pages/` and `tests/` + `thoughts/reports/YYYY-MM-DD-<slug>.md`
+
+> After `/autorun` completes, run `/review <scope>` for a final manual check, then `/open_pr`.
+
+---
 
 ### `/requirements_review <slug> <requirement>`
 
