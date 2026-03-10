@@ -240,16 +240,16 @@ Scope can be:
 
 ---
 
-### `/debug <output>`
+### `/debug [<output>]`
 
 **Stage:** 6 — Debug
 
-**When to use:** After `/run_tests` produces failures. Pass the pytest output or path to the saved log file.
+**When to use:** After `/run_tests` produces failures. If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-report/`.
 
 **What happens:**
-1. Accepts pytest output (pasted text or path to a saved log file)
-2. If all pass → done
-3. If failures → spawns a `bug-tracer` for each failure
+1. Collects and aggregates failures from all available output sources (de-duplicated by test node ID)
+2. If no failures found → done
+3. If failures → spawns a `bug-tracer` for each unique failing test
 4. Each failure is classified: `SELECTOR` / `TIMING` / `LOGIC` / `FIXTURE` / `ASSERTION` / `IMPORT` / `CONFIG` / `FLAKY` / `ENVIRONMENT`
 5. Reports exact file + line + what needs to change
 
@@ -492,16 +492,18 @@ Each stage has a gate — a condition that must be true before moving to the nex
 /explore_codebase
 /design_tests checkboxes the-internet checkboxes page
 /implement_tests checkboxes
-/debug the_internet
+/run_tests the_internet
+/debug           # picks up latest run automatically
+/apply_fixes the_internet
 /reporting the_internet
 /open_pr
 ```
 
 ### Something broke after a deploy
 ```
-/debug the_internet
-# → shows failures with root cause
-# → apply fixes or fix manually
+/run_tests the_internet
+/debug           # picks up latest run automatically
+/apply_fixes the_internet
 /reporting the_internet
 ```
 
@@ -522,7 +524,7 @@ Each stage has a gate — a condition that must be true before moving to the nex
 | Problem | Solution |
 |---------|----------|
 | `/implement_tests` says no design found | Run `/design_tests <slug>` first |
-| Tests fail immediately after writing | Run `/debug <app>` |
+| Tests fail immediately after writing | Run `/run_tests <app>`, then `/debug` |
 | Selector stopped working | Run `/maintenance <app> <what changed>` |
 | Suite is slow or flaky | Run `/optimization <app>` |
 | CI fails but local passes | Run `/debug` with the exact failing node ID |

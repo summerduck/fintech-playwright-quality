@@ -6,16 +6,39 @@ You are coordinating the diagnosis and fixing of failing E2E tests.
 
 ---
 
-## Phase 1: Parse Arguments
+## Phase 1: Resolve Output
 
 Arguments: `$ARGUMENTS`
 
-- `$ARGUMENTS[0]` — pytest output: pasted text, file path to output, or path to a saved log file
+- `$ARGUMENTS[0]` *(optional)* — pasted pytest output, or explicit path to a specific file
 
-If no output is provided, ask:
-> Please paste the pytest output or provide a path to the saved log file.
+**If no argument is provided:** collect data from all known output locations:
 
-If a file path is provided, read it completely before proceeding.
+| Location | What it contains |
+|----------|-----------------|
+| `thoughts/runs/*.txt` | raw pytest output saved by `/run_tests` |
+| `test-logs/*.log` | per-test worker logs (pytest-xdist) |
+| `test-results/failed_tests/` | Playwright trace/screenshot for failed tests |
+| `report.html` | pytest-html report (parse for FAILED rows) |
+| `allure-report/` | Allure JSON results (parse `*-result.json` for `status: failed`) |
+
+Read every source that exists. Aggregate all failures across all sources. Tell the user what was loaded:
+
+> Found test data in:
+> - `thoughts/runs/` — N file(s)
+> - `test-logs/` — N log(s)
+> - `report.html` — N failures
+> - `allure-report/` — N failed result(s)
+> Diagnosing N unique failing tests.
+
+De-duplicate failures by test node ID — if the same test appears in multiple sources, merge the information and use the most detailed failure output available.
+
+**If a file path is provided:** read only that file.
+
+**If raw text is pasted:** use it directly.
+
+If none of the above locations contain any data, ask:
+> No test output found. Run `/run_tests <scope>` first, or paste the pytest output here.
 
 ---
 
