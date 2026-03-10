@@ -1,6 +1,6 @@
 ---
 name: bug-tracer
-description: "Use this agent when tests are failing and you need to trace the root cause. It reads test output, locates the failing code, and identifies exactly what needs to change. It does NOT fix code — it produces a precise diagnosis. Use it after running pytest and getting failures."
+description: "Use this agent when the engineer has run tests and there are failures to diagnose. It reads pytest output, locates the failing code, traces the root cause, and produces a precise fix instruction. It does NOT write or modify code — diagnosis only. The implement agent applies the fix."
 tools: Glob, Grep, Read, Bash
 model: sonnet
 color: red

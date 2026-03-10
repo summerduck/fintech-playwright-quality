@@ -54,6 +54,30 @@ Move to the next stage
 
 ---
 
+## Lifecycle Overview
+
+| # | Stage | Engineer | AI |
+|---|-------|----------|----|
+| 0 | Requirements Review | writes the requirement, answers clarifying questions | checks testability, flags ambiguities, asks questions |
+| 1 | Explore Codebase | triggers exploration, defines scope | reads files, maps structure, finds reusable patterns |
+| 2 | Test Plan | approves or rejects scope, scenarios, and priorities | defines what to test: scope, scenarios, risks, coverage goals |
+| 3 | Design | approves or rejects page object + test case design | proposes locators, methods, test scenarios |
+| 4 | Implement | approves plan before code is written | writes page object, fixtures, test file |
+| 5 | Debug | runs tests | reads output, traces root cause, fixes |
+| 6 | Review | final approval | checks POM/AAA/FIRST compliance, flags issues |
+| 7 | Commit & PR | approves commit message and PR description | stages files, writes message, opens PR |
+| 8 | CI Execution | monitors pipeline | reads CI output, diagnoses env-specific failures |
+| 9 | Reporting | reads report, decides next action | parses output, summarizes pass/fail/flaky/gaps |
+| 10 | Maintenance | describes what changed in the app | traces broken tests, updates selectors/methods |
+| 11 | Optimization | decides what to keep or drop | detects flaky/slow tests, flags redundant coverage |
+
+**Key pattern:**
+- **Engineer owns:** intent (requirements, approvals, decisions)
+- **AI owns:** execution (reading, writing, running, analyzing)
+- **Shared:** design and review — AI proposes/checks, Engineer approves/decides
+
+---
+
 ## Full Command Sequence
 
 For adding a new test from scratch, run commands in this order:
@@ -61,20 +85,21 @@ For adding a new test from scratch, run commands in this order:
 ```
 /requirements_review <slug> <requirement>    ← Is this testable?
 /explore_codebase                            ← What already exists?
+/test_plan <slug>                            ← What to test and why?
 /design_tests <slug> <description>          ← Plan the page object + tests
 /implement_tests <slug>                     ← Write the code
-/run_and_debug <app>                        ← Run tests, fix failures
-/review <app>                               ← Final POM/AAA/FIRST check
-/commit                                     ← Stage files, write message, open PR
+/debug <scope>                              ← Run tests, fix failures
+/review <scope>                             ← Final POM/AAA/FIRST check
+/open_pr                                    ← Stage files, write message, open PR
 /ci [<pr-number>]                           ← Monitor pipeline, diagnose failures
-/reporting <app>                            ← Summary report
+/reporting <scope>                          ← Summary report
 ```
 
 For ongoing work (no new tests):
 
 ```
 /maintenance <app> <what changed>           ← App changed, fix broken tests
-/optimization <app>                         ← Suite health check
+/optimization <scope>                       ← Suite health check
 /reporting <scope>                          ← Report results
 ```
 
@@ -83,6 +108,8 @@ For ongoing work (no new tests):
 ## Commands
 
 ### `/requirements_review <slug> <requirement>`
+
+**Stage:** 0 — Requirements Review
 
 **When to use:** Before writing a single test. Paste the ticket, user story, or plain description.
 
@@ -96,11 +123,13 @@ For ongoing work (no new tests):
 
 **Verdict:** `READY` / `NEEDS CLARIFICATION` / `NOT TESTABLE`
 
-Only proceed to `/design_tests` when the verdict is `READY`.
+Only proceed to `/test_plan` when the verdict is `READY`.
 
 ---
 
 ### `/explore_codebase`
+
+**Stage:** 1 — Explore Codebase
 
 **When to use:** When the codebase structure is unfamiliar or a map of existing patterns is needed.
 
@@ -115,9 +144,29 @@ This runs automatically inside `/design_tests` too — run it separately only to
 
 ---
 
+### `/test_plan <slug>`
+
+**Stage:** 2 — Test Plan
+
+**When to use:** After requirements are confirmed `READY` and the codebase is explored.
+
+**What happens:**
+1. Defines the scope: which pages, flows, and scenarios to cover
+2. Lists specific test scenarios with priority (P1 / P2 / P3)
+3. Identifies risks and coverage goals
+4. Flags missing edge cases or out-of-scope items
+
+**Output:** `thoughts/test-plans/YYYY-MM-DD-<slug>.md`
+
+> ⚠️ The QA Engineer must approve the plan before moving to `/design_tests`.
+
+---
+
 ### `/design_tests <slug> <description>`
 
-**When to use:** When the requirement is ready and the scope is clear.
+**Stage:** 3 — Design
+
+**When to use:** After the test plan is approved.
 
 **What happens:**
 1. Explores the codebase to understand existing patterns
@@ -132,6 +181,8 @@ This runs automatically inside `/design_tests` too — run it separately only to
 ---
 
 ### `/implement_tests <slug>`
+
+**Stage:** 4 — Implement
 
 **When to use:** After the design from `/design_tests` has been approved.
 
@@ -152,7 +203,9 @@ This runs automatically inside `/design_tests` too — run it separately only to
 
 ---
 
-### `/run_and_debug <scope>`
+### `/debug <scope>`
+
+**Stage:** 5 — Debug
 
 **When to use:** When tests are failing — after implementation, after a CI failure, or anytime investigation is needed.
 
@@ -174,7 +227,71 @@ Scope can be:
 
 ---
 
+### `/review <scope>`
+
+**Stage:** 6 — Review
+
+**When to use:** After implementation passes tests, before committing — to verify code quality against project standards.
+
+Scope can be:
+- App name: `the_internet`
+- Test file: `tests/the_internet/test_login.py`
+- Feature slug: `login`
+- Omit to review all files changed since last commit
+
+**What happens:**
+1. Identifies files to review (from argument or `git diff`)
+2. Spawns a `review` agent to check: POM structure, AAA pattern, FIRST principles, Playwright patterns, naming conventions, Allure decorators, locator quality
+3. Presents issues grouped by severity (HIGH / MEDIUM / LOW)
+4. Asks whether to fix automatically or manually
+
+**Output:** Review result with `file:line` references for every issue
+
+> ⚠️ HIGH severity issues must be resolved before `/open_pr`.
+
+---
+
+### `/open_pr`
+
+**Stage:** 7 — Commit & PR
+
+**When to use:** After `/review` approves the code and all tests pass.
+
+**What happens:**
+1. Shows changed files and asks for confirmation to stage them
+2. Drafts a commit message based on the changes and repo style — waits for QA Engineer approval
+3. Stages files and commits with the approved message
+4. Drafts a PR title and description — waits for QA Engineer approval
+5. Pushes the branch and opens the PR
+
+**Output:** PR URL
+
+> ⚠️ Nothing is committed or pushed without explicit approval of both the commit message and PR description.
+
+---
+
+### `/ci [<pr-number>]`
+
+**Stage:** 8 — CI Execution
+
+> ⚠️ Full CI automation is pending MCP integration. Current usage requires manual monitoring.
+
+**When to use:** After pushing a branch or opening a PR, to monitor the pipeline and diagnose failures.
+
+**What happens:**
+1. Fetches the CI run status for the current branch or given PR
+2. If jobs failed, downloads the full log for each failing job
+3. Classifies each failure: `ENVIRONMENT` / `IMPORT` / `CONFIG` / `SELECTOR` / `TIMING` / `TEST_LOGIC` / `FLAKY`
+4. Recommends fixes based on classification
+5. Applies config-level fixes if approved; delegates test-level fixes to `implement` agent
+
+**Output:** `thoughts/debug/YYYY-MM-DD-ci-<slug>.md`
+
+---
+
 ### `/reporting <scope>`
+
+**Stage:** 9 — Reporting
 
 **When to use:** After running tests when a structured summary is needed. Scope: `all`, app name, or marker.
 
@@ -188,6 +305,8 @@ Scope can be:
 ---
 
 ### `/maintenance <app> <description of what changed>`
+
+**Stage:** 10 — Maintenance
 
 **When to use:** The web app changed and tests broke or need updating.
 
@@ -208,61 +327,9 @@ Examples:
 
 ---
 
-### `/review <scope>`
-
-**When to use:** After implementation passes tests, before committing — to verify code quality against project standards.
-
-Scope can be:
-- App name: `the_internet`
-- Test file: `tests/the_internet/test_login.py`
-- Feature slug: `login`
-- Omit to review all files changed since last commit
-
-**What happens:**
-1. Identifies files to review (from argument or `git diff`)
-2. Spawns a `review` agent to check: POM structure, AAA pattern, FIRST principles, Playwright patterns, naming conventions, Allure decorators, locator quality
-3. Presents issues grouped by severity (HIGH / MEDIUM / LOW)
-4. Asks whether to fix automatically or manually
-
-**Output:** Review result with `file:line` references for every issue
-
-> ⚠️ HIGH severity issues must be resolved before `/commit`.
-
----
-
-### `/commit`
-
-**When to use:** After `/review` approves the code and all tests pass.
-
-**What happens:**
-1. Shows changed files and asks for confirmation to stage them
-2. Drafts a commit message based on the changes and repo style — waits for QA Engineer approval
-3. Stages files and commits with the approved message
-4. Drafts a PR title and description — waits for QA Engineer approval
-5. Pushes the branch and opens the PR
-
-**Output:** PR URL
-
-> ⚠️ Nothing is committed or pushed without explicit approval of both the commit message and PR description.
-
----
-
-### `/ci [<pr-number>]`
-
-**When to use:** After pushing a branch or opening a PR, to monitor the pipeline and diagnose failures.
-
-**What happens:**
-1. Fetches the CI run status for the current branch or given PR
-2. If jobs failed, downloads the full log for each failing job
-3. Classifies each failure: `ENVIRONMENT` / `IMPORT` / `CONFIG` / `SELECTOR` / `TIMING` / `TEST_LOGIC` / `FLAKY`
-4. Recommends fixes based on classification
-5. Applies config-level fixes if approved; delegates test-level fixes to `implement` agent
-
-**Output:** `thoughts/debug/YYYY-MM-DD-ci-<slug>.md`
-
----
-
 ### `/optimization <scope>`
+
+**Stage:** 11 — Optimization
 
 **When to use:** Periodically, or when the suite feels slow or unreliable. Scope: `all`, app name, or `quick` (static analysis only).
 
@@ -285,6 +352,9 @@ Checks testability of requirements. Flags ambiguous language. Asks clarifying qu
 
 ### `codebase-explorer`
 Reads files, maps structure, identifies patterns and reusable components. Every claim must cite a `file:line`. **Cannot suggest improvements or write code.**
+
+### `test-planner`
+Defines what to test: scope, scenarios, priorities, risks, and coverage goals. Works from reviewed requirements and codebase exploration. **Cannot design page objects or write code.**
 
 ### `design`
 Produces the architectural specification: file paths, class names, locators, method signatures, data flow. **Cannot write Python code — only specs.**
@@ -331,8 +401,9 @@ And to `thoughts/` for human-readable outputs:
 ```
 thoughts/requirements/    ← requirements_review output
 thoughts/research/        ← explore_codebase output
+thoughts/test-plans/      ← test_plan output
 thoughts/test-designs/    ← design_tests output
-thoughts/debug/           ← run_and_debug output
+thoughts/debug/           ← debug output
 thoughts/reports/         ← reporting output
 thoughts/maintenance/     ← maintenance output
 thoughts/optimization/    ← optimization output
@@ -347,9 +418,10 @@ Each stage has a gate — a condition that must be true before moving to the nex
 | Stage | Gate |
 |-------|------|
 | Requirements Review | verdict = `READY` |
+| Test Plan | Engineer approves scope, scenarios, and priorities |
 | Design | Engineer approves page object + test case design |
 | Implement (per phase) | review = `APPROVED` + all tests pass |
-| Run & Debug | all tests in scope pass |
+| Debug | all tests in scope pass |
 | Maintenance | affected tests pass after update |
 
 ---
@@ -359,16 +431,18 @@ Each stage has a gate — a condition that must be true before moving to the nex
 ### Adding a new page test from scratch
 ```
 /requirements_review checkboxes "User can check and uncheck checkboxes. State should reflect correctly."
+/explore_codebase
+/test_plan checkboxes
 /design_tests checkboxes the-internet checkboxes page
 /implement_tests checkboxes
-/run_and_debug the_internet
+/debug the_internet
 /reporting the_internet
-/commit
+/open_pr
 ```
 
 ### Something broke after a deploy
 ```
-/run_and_debug the_internet
+/debug the_internet
 # → shows failures with root cause
 # → apply fixes or fix manually
 /reporting the_internet
@@ -391,9 +465,10 @@ Each stage has a gate — a condition that must be true before moving to the nex
 | Problem | Solution |
 |---------|----------|
 | `/implement_tests` says no design found | Run `/design_tests <slug>` first |
-| Tests fail immediately after writing | Run `/run_and_debug <app>` |
+| Tests fail immediately after writing | Run `/debug <app>` |
 | Selector stopped working | Run `/maintenance <app> <what changed>` |
 | Suite is slow or flaky | Run `/optimization <app>` |
-| CI fails but local passes | Run `/run_and_debug` with the exact failing node ID |
+| CI fails but local passes | Run `/debug` with the exact failing node ID |
 | Not sure what already exists | Run `/explore_codebase` |
 | Requirement is vague | Run `/requirements_review` before anything else |
+| Unsure what to test | Run `/test_plan <slug>` after requirements review |
