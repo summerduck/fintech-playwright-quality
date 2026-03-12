@@ -83,7 +83,9 @@ If the commit fails due to a pre-commit hook:
 
 ## Phase 4: Propose PR Description
 
-Draft a pull request title and body based on the committed changes.
+Read `.github/pull_request_template.md` to get the required PR body structure.
+
+Draft a pull request title and body that fills in every section from the template based on the committed changes.
 
 Present to the user:
 
@@ -93,11 +95,20 @@ Proposed PR:
 Title: <short title under 70 characters>
 
 Body:
-## Summary
-- <bullet points>
+## What
+<one sentence>
 
-## Test plan
-- [ ] <what to verify>
+## Why
+<motivation>
+
+## How
+<key implementation decisions>
+
+## What's NOT included
+<explicit scope>
+
+## Testing
+<how to verify — commands, CI>
 ```
 
 Ask:
