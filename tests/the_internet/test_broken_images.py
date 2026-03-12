@@ -24,19 +24,6 @@ class TestBrokenImages:
         broken_images_page.navigate()
         broken_images_page.verify_page_loaded()
 
-    @allure.story("Page Content")
-    @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Page heading reads 'Broken Images'")
-    @pytest.mark.theinternet
-    @pytest.mark.regression
-    def test_page_heading_is_broken_images(
-        self,
-        broken_images_page: BrokenImagesPage,
-    ) -> None:
-        """Verify the page heading text reads 'Broken Images'."""
-        broken_images_page.navigate()
-        broken_images_page.verify_page_loaded()
-
     @allure.story("Image Count")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.title("Page contains exactly 3 content images")

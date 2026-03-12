@@ -164,7 +164,4 @@ class BrokenImagesPage(TheInternetBasePage):
         """Assert content image count is exactly 3, excluding the fork banner."""
         logger.info("Verifying GitHub fork banner is not included in content images")
         expect(self._content_images).to_have_count(3)
-        assert self._content_images.count() < 4, (
-            "Content image selector returned 4 or more — fork banner may be included"
-        )
         return self
