@@ -17,7 +17,7 @@ Arguments: `$ARGUMENTS`
 
 Before doing anything:
 
-1. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/agents/design.md`. If neither exists, stop and say:
+1. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
 
 2. Read the design document completely.
@@ -41,9 +41,9 @@ Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
 Pass:
 - The design document content
 - The feature slug
-- Instruction: produce `plan.md` at `.claude/agents/plan.md`
+- Instruction: produce `plan.md` at `.claude/run/plan.md`
 
-Wait for plan to complete. Read `.claude/agents/plan.md`.
+Wait for plan to complete. Read `.claude/run/plan.md`.
 
 Present the phase breakdown to the user:
 > Plan ready. Phases:

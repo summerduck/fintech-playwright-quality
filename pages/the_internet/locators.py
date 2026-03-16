@@ -21,3 +21,6 @@ DRAG_DROP_COLUMN_A_HEADER = "#column-a header"
 DRAG_DROP_COLUMN_B_HEADER = "#column-b header"
 DRAG_DROP_FIRST_COLUMN_HEADER = "#columns .column:first-child header"
 DRAG_DROP_SECOND_COLUMN_HEADER = "#columns .column:last-child header"
+
+# ── Broken Images ─────────────────────────────────────────────────────────────
+BROKEN_IMAGES_CONTENT_IMAGES = "div.example img"
