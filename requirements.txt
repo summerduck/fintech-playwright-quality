@@ -15,7 +15,7 @@ packaging==25.0
 playwright==1.58.0
 pluggy==1.5.0
 pyee==12.1.1
-pytest==7.4.0
+pytest==9.0.2
 pytest-base-url==2.1.0
 pytest-cov==6.1.1
 pytest-html==4.1.1
