@@ -36,7 +36,7 @@ urllib3==2.6.3
 pre-commit==4.5.1
 mypy==1.19.1
 ruff==0.15.0
-bandit[toml]==1.9.3
+bandit[toml]==1.9.4
 pip-audit==2.10.0
 radon==6.0.1
 hypothesis==6.151.9
