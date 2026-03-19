@@ -86,4 +86,4 @@ Fill in only the files relevant to this phase.
 - Do not write Python code.
 - Do not repeat content from `design.md` — reference it, do not copy it.
 - The acceptance criteria must be specific and checkable by a Engineer or automated tool.
-- Save to two locations: `.claude/agents/plan.md` (agent handoff) and `thoughts/plans/YYYY-MM-DD-<feature-slug>.md` (human-readable record).
+- Save to `.claude/run/plan.md` (agent handoff, replacing previous content).
