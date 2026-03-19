@@ -13,7 +13,8 @@ DOCUMENT AND EXPLAIN THE CODEBASE AS IT EXISTS TODAY. Do not suggest improvement
 Arguments: `$ARGUMENTS`
 
 - If `$ARGUMENTS` is provided, use it as the research question or area of focus.
-- If no arguments are provided, map the full codebase: page objects, fixtures, base classes, config, and test structure.
+- If no arguments are provided, ask the user what task needs to be accomplished and make an assumption about what to explore based on available context.
+- If `$ARGUMENTS` == full, map the full codebase: page objects, fixtures, base classes, config, and test structure.
 
 ### 2. Decompose Into Investigation Areas
 
