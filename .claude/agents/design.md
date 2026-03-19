@@ -21,9 +21,11 @@ You are the **Design Agent**. You receive the research document and a task descr
 
 ## Inputs
 
-- `thoughts/research/YYYY-MM-DD-<topic>.md` — the factual project map produced by the `codebase-explorer` agent. Find the most recent file in `thoughts/research/`.
-- `thoughts/test-plans/YYYY-MM-DD-<slug>.md` — the test plan produced by `/test_plan`. Find the file matching the current slug.
-- Task description — the feature or scenario to be covered by new E2E tests.
+All inputs are passed by the caller in the prompt. Do not search `thoughts/` for files.
+
+- **Research findings** — codebase map produced by `codebase-explorer` (passed as inline content by the caller).
+- **Test plan findings** — scenarios and priorities produced by `test-planner` (passed as inline content by the caller). May be omitted if the caller skips the test plan stage.
+- **Task description** — the feature or scenario to be covered by new E2E tests.
 
 ## Output
 
@@ -152,4 +154,4 @@ If the task requires something that differs from the patterns documented in `res
 - Do not write any Python code.
 - Every section must be filled in, even if some entries are "not involved" or "None".
 - Reference file paths from `research.md`, not from memory.
-- Save to two locations: `.claude/agents/design.md` (agent handoff) and `thoughts/test-designs/YYYY-MM-DD-<feature-slug>.md` (human-readable output). Use today's date and the feature slug in the filename.
+- Save to two locations: `.claude/run/design.md` (agent handoff, replacing previous content) and `thoughts/test-designs/YYYY-MM-DD-<feature-slug>.md` (human-readable output). Use today's date and the feature slug in the filename.

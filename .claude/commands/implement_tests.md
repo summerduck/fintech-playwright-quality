@@ -17,12 +17,14 @@ Arguments: `$ARGUMENTS`
 
 Before doing anything:
 
-1. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
+1. Clean the run directory: `rm -f .claude/run/*.md` — removes stale files from any previous session.
+
+2. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
 
-2. Read the design document completely.
+3. Read the design document completely. Copy it to `.claude/run/design.md` so downstream agents read from a fixed path.
 
-3. Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
+4. Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
    - Pass: the full design document content, the feature slug, and instruction to save to `.claude/run/plan.md`
    - Wait for completion, then read `.claude/run/plan.md`
 

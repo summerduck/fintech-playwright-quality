@@ -21,9 +21,10 @@ You are the **Plan Agent**. You receive the research document, the design docume
 
 ## Inputs
 
-- `thoughts/research/YYYY-MM-DD-<topic>.md` — factual project map produced by `codebase-explorer`. Find the most recent file in `thoughts/research/`.
-- `.claude/agents/design.md` — architectural design for the task, produced by the `design` agent.
-- Task description — the feature or scenario to be implemented.
+All inputs are passed by the caller in the prompt. Do not search `thoughts/` for files.
+
+- **Design document** — read from `.claude/run/design.md`. This is the only file to read; all other context is passed inline by the caller.
+- **Task description** — the feature or scenario to be implemented (passed inline by the caller).
 
 ## Output
 
