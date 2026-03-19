@@ -33,46 +33,30 @@ class TestCheckboxes:
 
     @allure.story("Initial State")
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Checkbox 1 is unchecked on initial page load")
+    @allure.title("Both checkboxes are in their correct initial state on page load")
     @pytest.mark.theinternet
     @pytest.mark.smoke
-    def test_checkbox_1_is_unchecked_on_load(
+    def test_both_checkboxes_initial_state(
         self,
         checkboxes_page: CheckboxesPage,
     ) -> None:
-        """Verify checkbox 1 (index 0) is unchecked when the page first loads."""
+        """Verify both checkboxes are in their expected initial state after page load."""
         # Arrange
         checkboxes_page.navigate()
 
         # Act & Assert
-        checkboxes_page.verify_checkbox_is_unchecked(0)
+        checkboxes_page.verify_initial_state()
 
-    @allure.story("Initial State")
+    @allure.story("Checkbox Independence")
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Checkbox 2 is checked on initial page load")
-    @pytest.mark.theinternet
-    @pytest.mark.smoke
-    def test_checkbox_2_is_checked_on_load(
-        self,
-        checkboxes_page: CheckboxesPage,
-    ) -> None:
-        """Verify checkbox 2 (index 1) is checked when the page first loads."""
-        # Arrange
-        checkboxes_page.navigate()
-
-        # Act & Assert
-        checkboxes_page.verify_checkbox_is_checked(1)
-
-    @allure.story("Check Checkbox")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.title("Checking Checkbox 1 marks it as checked")
+    @allure.title("Checking Checkbox 1 leaves Checkbox 2 unaffected")
     @pytest.mark.theinternet
     @pytest.mark.regression
-    def test_check_checkbox_1(
+    def test_checking_checkbox_1_does_not_affect_checkbox_2(
         self,
         checkboxes_page: CheckboxesPage,
     ) -> None:
-        """Verify checking checkbox 1 marks it as checked."""
+        """Verify checking checkbox 1 does not change the state of checkbox 2."""
         # Arrange
         checkboxes_page.navigate()
 
@@ -81,17 +65,18 @@ class TestCheckboxes:
 
         # Assert
         checkboxes_page.verify_checkbox_is_checked(0)
+        checkboxes_page.verify_checkbox_is_checked(1)
 
-    @allure.story("Uncheck Checkbox")
-    @allure.severity(allure.severity_level.CRITICAL)
-    @allure.title("Unchecking Checkbox 2 marks it as unchecked")
+    @allure.story("Checkbox Independence")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Unchecking Checkbox 2 leaves Checkbox 1 unaffected")
     @pytest.mark.theinternet
     @pytest.mark.regression
-    def test_uncheck_checkbox_2(
+    def test_unchecking_checkbox_2_does_not_affect_checkbox_1(
         self,
         checkboxes_page: CheckboxesPage,
     ) -> None:
-        """Verify unchecking checkbox 2 marks it as unchecked."""
+        """Verify unchecking checkbox 2 does not change the state of checkbox 1."""
         # Arrange
         checkboxes_page.navigate()
 
@@ -100,6 +85,7 @@ class TestCheckboxes:
 
         # Assert
         checkboxes_page.verify_checkbox_is_unchecked(1)
+        checkboxes_page.verify_checkbox_is_unchecked(0)
 
     @allure.story("Toggle Checkbox")
     @allure.severity(allure.severity_level.NORMAL)
@@ -153,6 +139,7 @@ class TestCheckboxes:
         """Verify both checkboxes can be in the checked state at the same time."""
         # Arrange
         checkboxes_page.navigate()
+        checkboxes_page.uncheck_checkbox(1)
 
         # Act
         checkboxes_page.check_checkbox(0)
@@ -174,6 +161,7 @@ class TestCheckboxes:
         """Verify both checkboxes can be in the unchecked state at the same time."""
         # Arrange
         checkboxes_page.navigate()
+        checkboxes_page.check_checkbox(0)
 
         # Act
         checkboxes_page.uncheck_checkbox(0)
