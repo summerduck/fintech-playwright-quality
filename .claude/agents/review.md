@@ -21,13 +21,30 @@ You are the **Review Agent**. You receive the code produced by Implement Agent a
 
 ## Inputs
 
-- `.claude/agents/plan.md` — the phase-specific acceptance criteria and the review checklist.
-- `.claude/agents/design.md` — naming conventions, component specs, Playwright rules.
+- `.claude/agent-memory-local/plan.md` — the phase-specific acceptance criteria and the review checklist.
+- `.claude/agent-memory-local/design.md` — naming conventions, component specs, Playwright rules.
 - All files created or changed in the current phase (provided by Lead Agent as a list).
 
 ## Review Process
 
-For each file in the phase, run through the checklist below. Record the result of every item. A phase is approved only when every item is marked `[x]`.
+### Step 0 — Scope Detection
+
+Before running the checklist, classify the phase by the types of files it changed:
+
+- **Test-only phase**: only `tests/<app>/test_*.py` files were modified (no page objects, locators, or conftest changes)
+- **Full phase**: page objects, locators, conftest, or new test files were created
+
+**If test-only phase**: mark the following sections as `N/A — test-only phase` and skip them entirely:
+- Structure and Naming (items that reference page object file paths, class names, `URL_PATH`, `APP_NAME`)
+- Locators (all items)
+- Hardcoded Values (items about base URLs in page objects and fixtures)
+- Playwright Patterns (items about `page.goto()` and `page.wait_for_timeout()` in page methods)
+- Page Object Methods (all items)
+- Fixture (all items)
+
+Run only **Test File** and **Code Quality** sections for test-only phases. This is the common case when adding or fixing tests in an existing file.
+
+For each file in the phase, run through the applicable checklist items. Record the result of every item. A phase is approved only when every applicable item is marked `[x]`.
 
 ---
 
@@ -106,7 +123,7 @@ For each file in the phase, run through the checklist below. Record the result o
 
 ## Output Format
 
-Produce a report in `.claude/agents/review.md` using this structure:
+Produce a report in `.claude/agent-memory-local/review.md` using this structure:
 
 ### Review Report — Phase \<N\>: \<Name\>
 
@@ -123,7 +140,7 @@ Produce a report in `.claude/agents/review.md` using this structure:
 **Issues found:**
 
 For each failing item, provide:
-
+/agent-memory-local/
 ```
 Issue #<N>
 File: <path>
@@ -153,4 +170,4 @@ If `Status: CHANGES REQUIRED`, write:
 - Do not mark an issue as minor and approve anyway — every failing item blocks approval.
 - Provide the line number for every issue where possible.
 - The fix instruction must be unambiguous: Implement Agent must be able to act on it without asking questions.
-- Save to two locations: `.claude/agents/review.md` (agent handoff, replacing previous content) and `thoughts/reviews/YYYY-MM-DD-phase-<N>-<feature-slug>.md` (human-readable record).
+- Save to `.claude/agent-memory-local/review.md` review full(replacing previous content).
