@@ -170,3 +170,82 @@ class TestCheckboxes:
         # Assert
         checkboxes_page.verify_checkbox_is_unchecked(0)
         checkboxes_page.verify_checkbox_is_unchecked(1)
+
+    @allure.story("Label Text")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Checkbox label text matches expected value")
+    @pytest.mark.theinternet
+    @pytest.mark.regression
+    @pytest.mark.parametrize("index, expected", [(0, "checkbox 1"), (1, "checkbox 2")])
+    def test_checkbox_labels_text(
+        self,
+        checkboxes_page: CheckboxesPage,
+        index: int,
+        expected: str,
+    ) -> None:
+        """Verify each checkbox label displays the expected text."""
+        # Arrange
+        checkboxes_page.navigate()
+
+        # Act & Assert
+        checkboxes_page.verify_label_text(index, expected)
+
+    @allure.story("Double Click")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Double-clicking an unchecked checkbox leaves it unchecked")
+    @pytest.mark.theinternet
+    @pytest.mark.regression
+    def test_double_click_leaves_unchecked_checkbox_unchanged(
+        self,
+        checkboxes_page: CheckboxesPage,
+    ) -> None:
+        """Verify double-clicking an unchecked checkbox leaves it unchecked."""
+        # Arrange
+        checkboxes_page.navigate()
+
+        # Act
+        checkboxes_page.double_click_checkbox(0)
+
+        # Assert
+        checkboxes_page.verify_checkbox_is_unchecked(0)
+
+    @allure.story("Double Click")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Double-clicking a checked checkbox leaves it checked")
+    @pytest.mark.theinternet
+    @pytest.mark.regression
+    def test_double_click_leaves_checked_checkbox_unchanged(
+        self,
+        checkboxes_page: CheckboxesPage,
+    ) -> None:
+        """Verify double-clicking a checked checkbox leaves it checked."""
+        # Arrange
+        checkboxes_page.navigate()
+        checkboxes_page.check_checkbox(0)
+
+        # Act
+        checkboxes_page.double_click_checkbox(0)
+
+        # Assert
+        checkboxes_page.verify_checkbox_is_checked(0)
+
+    @allure.story("Page Reload")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Checkbox state resets to default after page reload")
+    @pytest.mark.theinternet
+    @pytest.mark.regression
+    def test_state_resets_to_default_after_reload(
+        self,
+        checkboxes_page: CheckboxesPage,
+    ) -> None:
+        """Verify both checkboxes revert to their default state after a page reload."""
+        # Arrange
+        checkboxes_page.navigate()
+        checkboxes_page.check_checkbox(0)
+        checkboxes_page.uncheck_checkbox(1)
+
+        # Act
+        checkboxes_page.reload()
+
+        # Assert
+        checkboxes_page.verify_initial_state()

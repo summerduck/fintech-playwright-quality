@@ -30,6 +30,7 @@ class CheckboxesPage(TheInternetBasePage):
         super().__init__(page, base_url)
         # ── Locators ─────────────────────────────────────────────────────
         self._checkboxes: Locator = self._page.locator(loc.CHECKBOXES_CHECKBOX)
+        self._form: Locator = self._page.locator(loc.CHECKBOXES_FORM)
 
     # ── Verification ─────────────────────────────────────────────────────
 
@@ -105,4 +106,71 @@ class CheckboxesPage(TheInternetBasePage):
         """
         logger.info("Unchecking checkbox at index %s", index)
         self._checkboxes.nth(index).uncheck()
+        return self
+
+    # ── Getters (extended) ────────────────────────────────────────────────
+
+    @allure.step("Get label text for checkbox at index {index}")
+    def get_label_text(self, index: int) -> str:
+        """Return the adjacent text-node label for the checkbox at index.
+
+        Args:
+            index: Zero-based index of the checkbox whose label to read.
+        """
+        logger.info("Getting label text for checkbox at index %s", index)
+        return str(
+            self._form.evaluate(
+                "(form, i) => { const input = form.querySelectorAll('input')[i];"
+                " let n = input.nextSibling;"
+                " while (n && n.nodeType !== 3) n = n.nextSibling;"
+                " return n ? n.textContent.trim() : ''; }",
+                index,
+            )
+        )
+
+    # ── Verification (extended) ───────────────────────────────────────────
+
+    @allure.step("Verify label text for checkbox at index {index} is '{expected}'")
+    def verify_label_text(self, index: int, expected: str) -> Self:
+        """Assert the label text for the checkbox at index equals expected.
+
+        Args:
+            index: Zero-based index of the checkbox to check.
+            expected: Expected label string.
+        """
+        logger.info(
+            "Verifying label text for checkbox at index %s is '%s'", index, expected
+        )
+        assert self.get_label_text(index) == expected
+        return self
+
+    # ── Actions (extended) ────────────────────────────────────────────────
+
+    @allure.step("Toggle checkbox at index {index} with Space key")
+    def toggle_with_space(self, index: int) -> Self:
+        """Press Space on the checkbox at index to toggle its state.
+
+        Args:
+            index: Zero-based index of the checkbox to toggle.
+        """
+        logger.info("Toggling checkbox at index %s with Space key", index)
+        self._checkboxes.nth(index).press("Space")
+        return self
+
+    @allure.step("Double-click checkbox at index {index}")
+    def double_click_checkbox(self, index: int) -> Self:
+        """Double-click the checkbox at index.
+
+        Args:
+            index: Zero-based index of the checkbox to double-click.
+        """
+        logger.info("Double-clicking checkbox at index %s", index)
+        self._checkboxes.nth(index).dblclick()
+        return self
+
+    @allure.step("Reload the page")
+    def reload(self) -> Self:
+        """Reload the current page."""
+        logger.info("Reloading the page")
+        self._page.reload()
         return self
