@@ -21,8 +21,8 @@ You are the **Review Agent**. You receive the code produced by Implement Agent a
 
 ## Inputs
 
-- `.claude/agents/plan.md` — the phase-specific acceptance criteria and the review checklist.
-- `.claude/agents/design.md` — naming conventions, component specs, Playwright rules.
+- `.claude/agent-memory-local/ts/plan.md` — the phase-specific acceptance criteria and the review checklist.
+- `.claude/agent-memory-local/ts/design.md` — naming conventions, component specs, Playwright rules.
 - All files created or changed in the current phase (provided by Lead Agent as a list).
 
 ## Review Process
@@ -123,7 +123,7 @@ Produce a report in `.claude/agents/review.md` using this structure:
 **Issues found:**
 
 For each failing item, provide:
-
+/agent-memory-local/
 ```
 Issue #<N>
 File: <path>
@@ -154,3 +154,4 @@ If `Status: CHANGES REQUIRED`, write:
 - Provide the line number for every issue where possible.
 - The fix instruction must be unambiguous: Implement Agent must be able to act on it without asking questions.
 - Save to two locations: `.claude/agents/review.md` (agent handoff, replacing previous content) and `thoughts/reviews/YYYY-MM-DD-phase-<N>-<feature-slug>.md` (human-readable record).
+/agent-memory-local/

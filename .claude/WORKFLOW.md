@@ -81,7 +81,7 @@ Also runs automatically inside `/design_tests`.
 
 **Command:** `/design_tests <slug> <description>`
 **Agents:** `codebase-explorer`, `design`, `plan`
-**Output:** `thoughts/test-designs/YYYY-MM-DD-<slug>.md`, `.claude/run/design.md`
+**Output:** `thoughts/test-designs/YYYY-MM-DD-<slug>.md`, `.claude/agent-memory-local/design.md`
 
 Proposes page object structure, locators, methods, and test cases.
 Gate: QA Engineer must approve the design before implementation begins.
@@ -214,7 +214,7 @@ Detects flaky tests, slow tests, dead code, and coverage gaps.
 
 **`.claude/agents/` — agent definition files (never written to during runs)
 
-**`.claude/run/` — machine-readable pipeline handoffs (overwritten each run)****
+**`.claude/agent-memory-local/` — machine-readable pipeline handoffs (overwritten each run)****
 
 | File | Written by | Read by |
 |------|-----------|---------|

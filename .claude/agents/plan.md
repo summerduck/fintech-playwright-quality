@@ -23,7 +23,7 @@ You are the **Plan Agent**. You receive the research document, the design docume
 
 - `thoughts/research/YYYY-MM-DD-<topic>.md` — factual project map produced by `codebase-explorer`. Find the most recent file in `thoughts/research/`.
 - `.claude/agents/design.md` — architectural design for the task, produced by the `design` agent.
-- Task description — the feature or scenario to be implemented.
+- Task description — the feature or scenar/agent-memory-local/ be implemented.
 
 ## Output
 
@@ -87,3 +87,4 @@ Fill in only the files relevant to this phase.
 - Do not repeat content from `design.md` — reference it, do not copy it.
 - The acceptance criteria must be specific and checkable by a Engineer or automated tool.
 - Save to two locations: `.claude/agents/plan.md` (agent handoff) and `thoughts/plans/YYYY-MM-DD-<feature-slug>.md` (human-readable record).
+/agent-memory-local/

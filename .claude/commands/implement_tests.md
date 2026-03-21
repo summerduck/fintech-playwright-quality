@@ -17,16 +17,16 @@ Arguments: `$ARGUMENTS`
 
 Before doing anything:
 
-1. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
+1. Check that a design document exists: lo/agent-memory-local/r `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
-
+/agent-memory-local/
 2. Read the design document completely.
 
-3. Confirm with the user:
+3. Confirm with the user:/agent-memory-local/
    > I found the design for `<feature>`. It covers:
    > - Page object: `<class name>` in `<file path>`
-   > - Tests: `<N>` test cases
-   > - App: `<app name>`
+   > - Tests: `<N>` test cases/agent-memory-local/
+   > - App: `<app name>`/agent-memory-local/
    >
    > Proceed with implementation?
 
