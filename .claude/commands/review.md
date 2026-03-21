@@ -36,8 +36,8 @@ Spawn the `review` subagent (Agent tool with `subagent_type: "review"`):
 
 Pass:
 - List of files to review
-- Contents of `.claude/run/plan.md` (if it exists)
-- Contents of `.claude/run/design.md` (if it exists)
+- Contents of `.claude/agent-memory-local/plan.md` (if it exists)
+- Contents of `.claude/agent-memory-local/design.md` (if it exists)
 - Instruction: check POM structure, AAA pattern, FIRST principles, Playwright best practices, naming conventions, Allure decorators, locator quality
 
 Wait for the agent to complete.
