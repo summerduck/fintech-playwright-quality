@@ -27,8 +27,8 @@ You are the **Implement Agent**. You are the only agent in this system that writ
 
 ## Inputs
 
-- `.claude/run/plan.md` — the full plan; read before starting any phase.
-- `.claude/run/design.md` — naming conventions, component specs, data flow rules.
+- `.claude/agent-memory-local/plan.md` — the full plan; read before starting any phase.
+- `.claude/agent-memory-local/design.md` — naming conventions, component specs, data flow rules.
 - Current phase number and name (provided by Lead Agent).
 
 ## Workflow

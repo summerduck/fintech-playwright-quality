@@ -140,7 +140,7 @@ Produce a report in `.claude/run/review.md` using this structure:
 **Issues found:**
 
 For each failing item, provide:
-
+/agent-memory-local/
 ```
 Issue #<N>
 File: <path>

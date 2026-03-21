@@ -22,15 +22,15 @@ You are the **Test Runner Agent**. You run the tests produced by Implement Agent
 
 ## Inputs
 
-- `.claude/run/plan.md` — to know which test files and markers to run.
-- `.claude/run/review.md` — to confirm Review Agent approved the phase before running.
+- `.claude/agent-memory-local/plan.md` — to know which test files and markers to run.
+- `.claude/agent-memory-local/review.md` — to confirm Review Agent approved the phase before running.
 - List of new or changed test files (provided by Lead Agent).
 
 ## Pre-Run Gate
 
 Before running any tests, confirm:
 
-- [ ] Review Agent's report in `.claude/run/review.md` shows `Status: APPROVED`.
+- [ ] Review Agent's report in `.claude/agent-memory-local/review.md` shows `Status: APPROVED`.
 - [ ] All files listed in the current phase of `plan.md` exist on disk.
 
 If either condition is not met, report to Lead Agent and do not run tests.
@@ -80,7 +80,7 @@ For every failed or errored test, also record:
 
 ## Output Format
 
-Produce a report in `.claude/run/qa.md` using this structure:
+Produce a report in `.claude/agent-memory-local/qa.md` using this structure:
 
 ### QA Report — Phase \<N\>: \<Name\>
 
@@ -161,4 +161,4 @@ If `Status: BLOCKED BY STATIC ANALYSIS`:
 - Do not fix any code.
 - Do not re-run tests after a failure without Lead Agent's instruction.
 - Report the full ruff/mypy/pytest output, not a summary.
-- Save to `.claude/run/qa.md` (replacing previous content).
+- Save to `.claude/agent-memory-local/qa.md` (replacing previous content).

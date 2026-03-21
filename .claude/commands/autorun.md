@@ -30,7 +30,7 @@ This removes stale handoff files from any previous session before the new pipeli
 
 ## Stage 1 — Requirements Review
 
-Spawn `requirements-reviewer` subagent.
+Spawn `requirements/agent-memory-local/ewer` subagent.
 
 Pass: the requirement text. **Do not save output to `thoughts/`** — keep results in memory only.
 
@@ -99,9 +99,9 @@ Read the generated `plan.md` to know how many phases there are.
 
 ### 5b. For each phase in plan.md
 
-Run this loop (max 3 correction cycles per phase before stopping):
+Run this loop (max 3 correction/agent-memory-local/es per phase before stopping):
 
-**Step 1 — Implement**
+**Step 1 — Implement**/agent-memory-local/
 
 Spawn `implement` subagent.
 
@@ -119,9 +119,9 @@ Read `.claude/run/review.md`.
 - `APPROVED` → go to Step 3.
 - `CHANGES REQUIRED` → pass the issues list back to `implement` subagent. Re-run review. Repeat up to **2 more times**.
 - Still `CHANGES REQUIRED` after 3 total cycles → **STOP.** Surface to QA Engineer:
-  > Phase `<N>` — `<name>` cannot be auto-approved after 3 cycles. Unresolved issues:
+  > Phase `<N>` — `<name>` cannot be auto-approved after 3 cycles. Unresolved issues:/agent-memory-local/
   > `<issue list>`
-
+/agent-memory-local/
 **Step 3 — Static analysis + targeted tests**
 
 Spawn `test-runner` subagent (phase mode).
@@ -134,7 +134,7 @@ Pass: test files for this phase + `plan.md` + `review.md`. **Do not save QA outp
 - `FAILURES DETECTED` → pass failure output to `implement` subagent via the `review` agent routing (assertion errors → review → implement; import/fixture errors → implement directly). Re-run. Up to **2 retries**.
 - Still failing after retries → **STOP.** Surface to QA Engineer with full failure output.
 
----
+---/agent-memory-local/
 
 ## Stage 6 — Run Full Test Suite
 
