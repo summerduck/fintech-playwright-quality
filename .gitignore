@@ -209,8 +209,9 @@ __marimo__/
 # Notes for myself
 .notes/
 
-# Claude local agent memory
+# Claude local agent memory and worktrees
 .claude/agent-memory-local/
+.claude/worktrees/
 
 # Test logs
 test-logs/
