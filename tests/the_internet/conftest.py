@@ -14,6 +14,7 @@ from pages.the_internet.add_remove_elements_page import AddRemoveElementsPage
 from pages.the_internet.basic_auth_page import BasicAuthPage
 from pages.the_internet.broken_images_page import BrokenImagesPage
 from pages.the_internet.checkboxes_page import CheckboxesPage
+from pages.the_internet.context_menu_page import ContextMenuPage
 from pages.the_internet.drag_and_drop_page import DragAndDropPage
 
 
@@ -29,6 +30,13 @@ def basic_auth_page(page: Page, env: str) -> BasicAuthPage:
     """Provide a BasicAuthPage instance for the current test."""
     base_url = get_base_url(BasicAuthPage.APP_NAME, env)
     return BasicAuthPage(page, base_url)
+
+
+@pytest.fixture
+def context_menu_page(page: Page, env: str) -> ContextMenuPage:
+    """Provide a ContextMenuPage instance for the current test."""
+    base_url = get_base_url(ContextMenuPage.APP_NAME, env)
+    return ContextMenuPage(page, base_url)
 
 
 @pytest.fixture

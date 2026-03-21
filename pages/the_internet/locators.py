@@ -28,3 +28,6 @@ BROKEN_IMAGES_CONTENT_IMAGES = "div.example img"
 # ── Checkboxes ────────────────────────────────────────────────────────────────
 CHECKBOXES_CHECKBOX = "input[type='checkbox']"
 CHECKBOXES_FORM = "form#checkboxes"
+
+# ── Context Menu ──────────────────────────────────────────────────────────────
+CONTEXT_MENU_HOT_SPOT = "#hot-spot"
