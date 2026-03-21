@@ -13,50 +13,34 @@ Arguments: `$ARGUMENTS`
 - `$ARGUMENTS[0]` — feature slug (e.g. `login`, `drag-drop`)
 ---
 
-## Phase 2: Verify Prerequisites
+## Phase 2: Verify Prerequisites + Plan
 
 Before doing anything:
 
-1. Check that a design document exists: lo/agent-memory-local/r `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
+1. Clean the run directory: `rm -f .claude/agent-memory-local/*.md` — removes stale files from any previous session.
+
+2. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/agent-memory-local/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
-/agent-memory-local/
-2. Read the design document completely.
 
-3. Confirm with the user:/agent-memory-local/
-   > I found the design for `<feature>`. It covers:
-   > - Page object: `<class name>` in `<file path>`
-   > - Tests: `<N>` test cases/agent-memory-local/
-   > - App: `<app name>`/agent-memory-local/
-   >
-   > Proceed with implementation?
+3. Read the design document completely. Copy it to `.claude/agent-memory-local/design.md` so downstream agents read from a fixed path.
 
-Wait for confirmation before continuing.
+4. Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
+   - Pass: the full design document content, the feature slug, and instruction to save to `.claude/agent-memory-local/plan.md`
+   - Wait for completion, then read `.claude/agent-memory-local/plan.md`
 
----
+4. Present design summary + plan to the user in a **single confirmation**:
+   > Design: `<feature>` — `<N files to create/modify>`, `<N test cases>`
+   > Plan: `<N>` phases:
+   > - Phase 1: <name>
+   > - Phase 2: <name>
+   > ...
+   > Proceed?
 
-## Phase 3: Plan
-
-Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
-
-Pass:
-- The design document content
-- The feature slug
-- Instruction: produce `plan.md` at `.claude/run/plan.md`
-
-Wait for plan to complete. Read `.claude/run/plan.md`.
-
-Present the phase breakdown to the user:
-> Plan ready. Phases:
-> - Phase 1: <name>
-> - Phase 2: <name>
-> ...
-> Proceed?
-
-Wait for approval.
+Wait for one confirmation before continuing.
 
 ---
 
-## Phase 4: Implement Phase by Phase
+## Phase 3: Implement Phase by Phase
 
 For each phase in `plan.md`:
 
@@ -75,12 +59,19 @@ For each phase in `plan.md`:
    - Re-run review
    - Repeat until `APPROVED` (max 2 cycles — escalate to user if still failing)
 
-4. If review status is `APPROVED`:
-   - Spawn `qa` subagent (Agent tool with `subagent_type: "test-runner"`):
-     - Pass: list of test files for this phase
-     - Wait for completion
-   - If QA fails: show failure output and ask user how to proceed
-   - If QA passes: confirm phase complete and move to next
+4. If review status is `APPROVED`: confirm phase complete and move to next.
+
+**Do NOT run tests after each phase.** Collect all changed/created files across all phases. Run tests once after all phases are approved (see Phase 4).
+
+---
+
+## Phase 4: Run Tests Once
+
+After all phases are approved, spawn ONE `test-runner` subagent:
+- Pass: the full list of test files touched across all phases
+- Wait for completion
+- If QA fails: show failure output and ask user how to proceed
+- If QA passes: proceed to final summary
 
 ---
 

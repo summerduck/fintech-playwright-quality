@@ -13,6 +13,7 @@ from config import get_base_url
 from pages.the_internet.add_remove_elements_page import AddRemoveElementsPage
 from pages.the_internet.basic_auth_page import BasicAuthPage
 from pages.the_internet.broken_images_page import BrokenImagesPage
+from pages.the_internet.checkboxes_page import CheckboxesPage
 from pages.the_internet.drag_and_drop_page import DragAndDropPage
 
 
@@ -42,3 +43,10 @@ def broken_images_page(page: Page, env: str) -> BrokenImagesPage:
     """Provide a BrokenImagesPage instance for the current test."""
     base_url = get_base_url(BrokenImagesPage.APP_NAME, env)
     return BrokenImagesPage(page, base_url)
+
+
+@pytest.fixture
+def checkboxes_page(page: Page, env: str) -> CheckboxesPage:
+    """Provide a CheckboxesPage instance for the current test."""
+    base_url = get_base_url(CheckboxesPage.APP_NAME, env)
+    return CheckboxesPage(page, base_url)
