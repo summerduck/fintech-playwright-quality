@@ -22,7 +22,7 @@ If no requirement text is provided, ask once:
 
 ## Stage 0 — Clean Run Directory
 
-Run: `rm -f .claude/run/*.md`
+Run: `rm -f .claude/agent-memory-local/*.md`
 
 This removes stale handoff files from any previous session before the new pipeline starts.
 
@@ -77,7 +77,7 @@ Pass:
 - Research summary from Stage 3 (from memory)
 - Test plan findings from Stage 2 (from memory)
 
-**Do not save design output to `thoughts/`** — save only to `.claude/run/design.md`.
+**Do not save design output to `thoughts/`** — save only to `.claude/agent-memory-local/design.md`.
 
 **Autonomous gate decision:**
 - Design document produced and all sections populated → proceed to Stage 5.
@@ -91,9 +91,9 @@ Pass:
 
 Spawn `plan` subagent.
 
-Pass: design document (`.claude/run/design.md`) + research summary + slug.
+Pass: design document (`.claude/agent-memory-local/design.md`) + research summary + slug.
 
-**Do not save plan output to `thoughts/`** — save only to `.claude/run/plan.md`.
+**Do not save plan output to `thoughts/`** — save only to `.claude/agent-memory-local/plan.md`.
 
 Read the generated `plan.md` to know how many phases there are.
 
@@ -111,9 +111,9 @@ Pass: current phase from `plan.md` + full `plan.md` + `design.md`.
 
 Spawn `review` subagent.
 
-Pass: files changed in this phase + `plan.md` + `design.md`. **Do not save review output to `thoughts/`** — save only to `.claude/run/review.md`.
+Pass: files changed in this phase + `plan.md` + `design.md`. **Do not save review output to `thoughts/`** — save only to `.claude/agent-memory-local/review.md`.
 
-Read `.claude/run/review.md`.
+Read `.claude/agent-memory-local/review.md`.
 
 **Autonomous gate decision:**
 - `APPROVED` → go to Step 3.
@@ -126,7 +126,7 @@ Read `.claude/run/review.md`.
 
 Spawn `test-runner` subagent (phase mode).
 
-Pass: test files for this phase + `plan.md` + `review.md`. **Do not save QA output to `thoughts/`** — save only to `.claude/run/qa.md`.
+Pass: test files for this phase + `plan.md` + `review.md`. **Do not save QA output to `thoughts/`** — save only to `.claude/agent-memory-local/qa.md`.
 
 **Autonomous gate decision:**
 - `ALL PASSED` → phase complete. Move to next phase.

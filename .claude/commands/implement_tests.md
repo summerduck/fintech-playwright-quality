@@ -17,16 +17,16 @@ Arguments: `$ARGUMENTS`
 
 Before doing anything:
 
-1. Clean the run directory: `rm -f .claude/run/*.md` — removes stale files from any previous session.
+1. Clean the run directory: `rm -f .claude/agent-memory-local/*.md` — removes stale files from any previous session.
 
-2. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/run/design.md`. If neither exists, stop and say:
+2. Check that a design document exists: look for `thoughts/test-designs/YYYY-MM-DD-<slug>.md` (most recent matching the slug), or fall back to `.claude/agent-memory-local/design.md`. If neither exists, stop and say:
    > No design document found. Run `/design_tests <slug>` first.
 
-3. Read the design document completely. Copy it to `.claude/run/design.md` so downstream agents read from a fixed path.
+3. Read the design document completely. Copy it to `.claude/agent-memory-local/design.md` so downstream agents read from a fixed path.
 
 4. Spawn the `plan` subagent (Agent tool with `subagent_type: "plan"`):
-   - Pass: the full design document content, the feature slug, and instruction to save to `.claude/run/plan.md`
-   - Wait for completion, then read `.claude/run/plan.md`
+   - Pass: the full design document content, the feature slug, and instruction to save to `.claude/agent-memory-local/plan.md`
+   - Wait for completion, then read `.claude/agent-memory-local/plan.md`
 
 4. Present design summary + plan to the user in a **single confirmation**:
    > Design: `<feature>` — `<N files to create/modify>`, `<N test cases>`

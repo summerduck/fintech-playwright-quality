@@ -23,7 +23,7 @@ You are the **Plan Agent**. You receive the research document, the design docume
 
 All inputs are passed by the caller in the prompt. Do not search `thoughts/` for files.
 
-- **Design document** — read from `.claude/run/design.md`. This is the only file to read; all other context is passed inline by the caller.
+- **Design document** — read from `.claude/agent-memory-local/design.md`. This is the only file to read; all other context is passed inline by the caller.
 - **Task description** — the feature or scenario to be implemented (passed inline by the caller).
 
 ## Output
@@ -87,4 +87,4 @@ Fill in only the files relevant to this phase.
 - Do not write Python code.
 - Do not repeat content from `design.md` — reference it, do not copy it.
 - The acceptance criteria must be specific and checkable by a Engineer or automated tool.
-- Save to `.claude/run/plan.md` (agent handoff, replacing previous content).
+- Save to `.claude/agent-memory-local/plan.md` (agent handoff, replacing previous content).
