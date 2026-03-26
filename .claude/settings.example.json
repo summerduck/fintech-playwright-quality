@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright",
+      "WebFetch(domain:the-internet.herokuapp.com)",
+      "Bash(ruff check:*)",
+      "Bash(git fetch:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(python:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh auth:*)",
+      "Bash(pytest:*)",
+      "Bash(git push:*)",
+      "Bash(gh api:*)",
+      "Skill(update-config)",
+      "Bash(jq:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $PWD/hooks/read_hook.py"
+          }
+        ]
+      }
+    ]
+  }
+}
