@@ -7,13 +7,11 @@ def main() -> None:
     """Read hook for Claude."""
     tool_args = json.load(sys.stdin)
 
-    read_path = (
-        tool_args.get("tool_input", {}).get("file_path")
-        or tool_args.get("tool_input", {}).get("path")
-        or ""
-    )
+    tool_input = tool_args.get("tool_input", {})
+    read_path = tool_input.get("file_path") or tool_input.get("path") or ""
+    bash_command = tool_input.get("command", "")
 
-    if ".env" in read_path:
+    if ".env" in read_path or ".env" in bash_command:
         print("You cannot read the .env file", file=sys.stderr)
         sys.exit(2)
 
