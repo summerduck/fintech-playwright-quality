@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__playwright",
+      "WebFetch(domain:the-internet.herokuapp.com)",
+      "Bash(ruff check:*)",
+      "Bash(git fetch:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(python:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh auth:*)",
+      "Bash(pytest:*)",
+      "Bash(git push:*)",
+      "Bash(gh api:*)",
+      "Skill(update-config)",
+      "Bash(jq:*)"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $PWD/hooks/vague_prompt_hook.py",
+            "statusMessage": "Checking prompt clarity..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $PWD/hooks/block_env_access_hook.py "
+          }
+        ]
+      }
+    ]
+  }
+}

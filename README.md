@@ -59,6 +59,10 @@ pip install -r requirements.txt && playwright install chromium
 # Install pre-commit hooks
 task pre-commit-install
 # or: pre-commit install
+
+# Set up Claude Code local settings
+task init-claude
+# or: python scripts/init_claude.py
 ```
 
 ### Running Tests
