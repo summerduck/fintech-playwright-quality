@@ -17,13 +17,24 @@
     ]
   },
   "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 $PWD/hooks/vague_prompt_hook.py",
+            "statusMessage": "Checking prompt clarity..."
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Read|Grep|Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "python3 $PWD/hooks/read_hook.py"
+            "command": "python3 $PWD/hooks/block_env_access_hook.py "
           }
         ]
       }
