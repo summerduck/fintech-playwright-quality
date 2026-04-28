@@ -4,7 +4,7 @@ description: Scaffold pytest test files following project conventions
 
 # Pytest Test Scaffolder
 
-Generate test files that match the project's exact conventions across 3 apps.
+Generate test files that match the project's exact conventions.
 
 ## Why Use This Test Structure?
 
@@ -31,7 +31,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `saucedemo`, `the_internet`, or `ui_playground`
+1. Identify the target app: `the_internet`
 2. Check which Page Objects exist in `pages/<app>/`
 3. Review existing tests in `tests/<app>/` for patterns already in use
 4. Read `conftest.py` to confirm available fixtures and hooks
@@ -40,21 +40,11 @@ This skill complements:
 
 ```
 tests/
-├── saucedemo/
-│   ├── conftest.py              # Page object fixtures for saucedemo
-│   ├── test_login.py
-│   ├── test_inventory.py
-│   ├── test_cart.py
-│   └── test_checkout.py
 ├── the_internet/
 │   ├── conftest.py              # Page object fixtures for the_internet
 │   ├── test_dynamic_loading.py
 │   ├── test_file_upload.py
 │   └── test_tables.py
-├── ui_playground/
-│   ├── conftest.py              # Page object fixtures for ui_playground
-│   ├── test_dynamic_id.py
-│   └── test_class_attribute.py
 └── framework/
     └── test_log_helpers.py
 ```
@@ -83,9 +73,7 @@ Each app directory has a `conftest.py` that provides page object fixtures.
 Every test **must** have an app marker plus at least one category marker.
 
 **App markers** (exactly one per test):
-- `@pytest.mark.saucedemo` — tests in `tests/saucedemo/`
 - `@pytest.mark.theinternet` — tests in `tests/the_internet/`
-- `@pytest.mark.uiplayground` — tests in `tests/ui_playground/`
 
 **Category markers** (one or more):
 - `smoke` — quick smoke tests (used in PR fast-feedback workflow)
@@ -122,13 +110,8 @@ Each app directory has its own `conftest.py` that provides **page object fixture
 
 | Fixture | Returns | Source |
 |---------|---------|--------|
-| `login_page` | `LoginPage(page, base_url)` | `tests/saucedemo/conftest.py` |
-| `inventory_page` | `InventoryPage(page, base_url)` | `tests/saucedemo/conftest.py` |
-| `cart_page` | `CartPage(page, base_url)` | `tests/saucedemo/conftest.py` |
-| `checkout_page` | `CheckoutPage(page, base_url)` | `tests/saucedemo/conftest.py` |
 | `dynamic_loading_page` | `DynamicLoadingPage(page, base_url)` | `tests/the_internet/conftest.py` |
 | `file_upload_page` | `FileUploadPage(page, base_url)` | `tests/the_internet/conftest.py` |
-| `dynamic_id_page` | `DynamicIdPage(page, base_url)` | `tests/ui_playground/conftest.py` |
 
 Note: page objects are always received as **fixtures**. Methods that transition the user to another page still return `Self` — the next page object comes from a separate fixture parameter, not from the return value of a POM method.
 
@@ -139,7 +122,7 @@ Each app directory defines its own `base_url` fixture in `tests/<app>/conftest.p
 ```python
 @pytest.fixture
 def base_url() -> str:
-    return "https://www.saucedemo.com"
+    return "https://the-internet.herokuapp.com"
 ```
 
 This overrides Playwright's built-in `base_url` fixture at directory scope. No global enum or marker introspection needed — each app directory owns its URL. The `--base-url` CLI option still works as a manual override.
@@ -194,37 +177,18 @@ These run automatically — do not duplicate in test code or commands:
 
 ## Test Data Models
 
-Tests **must not** contain hardcoded credentials, product names, or form data. Use the frozen dataclasses from `config/data/`:
+Tests **must not** contain hardcoded credentials or form data. Use the frozen dataclasses from `config/data/`:
 
 ```
 config/data/
-├── models.py         # User, Product, CheckoutInfo, CreditCard
-└── saucedemo.py      # SauceDemoUser, SauceDemoProduct, SauceDemoCheckout, SortOption
+└── models.py         # User, Product, CheckoutInfo, CreditCard
 ```
-
-Import pattern:
-
-```python
-from config.data.saucedemo import SauceDemoUser, SauceDemoProduct, SauceDemoCheckout, SortOption
-```
-
-Available predefined data:
-
-| Namespace | Constants | Type |
-|-----------|-----------|------|
-| `SauceDemoUser` | `STANDARD`, `LOCKED_OUT`, `PROBLEM`, `PERFORMANCE_GLITCH`, `ERROR`, `VISUAL` | `User` |
-| `SauceDemoProduct` | `BACKPACK`, `BIKE_LIGHT`, `BOLT_TSHIRT`, `FLEECE_JACKET`, `ONESIE`, `RED_TSHIRT` | `Product` |
-| `SauceDemoCheckout` | `VALID`, `EMPTY`, `MISSING_FIRST_NAME`, `MISSING_LAST_NAME`, `MISSING_POSTAL_CODE` | `CheckoutInfo` |
-| `SortOption` | `NAME_ASC`, `NAME_DESC`, `PRICE_ASC`, `PRICE_DESC` | `StrEnum` |
 
 Page object methods accept the dataclass, not raw strings. All POM methods return `Self`:
 
 ```python
 # Page object signatures
 def login_as(self, user: User) -> Self: ...
-def add_to_cart(self, product: Product) -> Self: ...
-def fill_info(self, info: CheckoutInfo) -> Self: ...
-def sort_by(self, option: SortOption) -> Self: ...
 ```
 
 ## Test File Template
@@ -240,8 +204,7 @@ import allure
 import pytest
 from playwright.sync_api import expect  # import Page only if used directly in this test file
 
-from config.data.saucedemo import SauceDemoUser
-from pages.<app>.login_page import LoginPage
+from pages.<app>.<page_name>_page import <PageName>Page
 
 logger = logging.getLogger(__name__)
 
@@ -256,17 +219,17 @@ class Test<Feature>:
     @allure.title("<Human-readable test title>")
     @pytest.mark.<app>
     @pytest.mark.smoke
-    def test_<scenario>(self, login_page: LoginPage, inventory: InventoryPage) -> None:
+    def test_<scenario>(self, <page_name>_page: <PageName>Page) -> None:
         """<What this test verifies>."""
 
         # Arrange
-        login_page.navigate()
+        <page_name>_page.navigate()
 
         # Act
-        login_page.login_as(SauceDemoUser.STANDARD)
+        <page_name>_page.some_action()
 
         # Assert
-        inventory.verify_page_loaded()
+        <page_name>_page.verify_result()
 ```
 
 Prefer verification methods on the page object (`verify_page_loaded`, `get_error_message`) over raw `page`/`expect()` in tests.
@@ -274,43 +237,34 @@ Prefer verification methods on the page object (`verify_page_loaded`, `get_error
 ## Parametrized Test Template
 
 ```python
-    @allure.story("Login error messages")
-    @pytest.mark.saucedemo
+    @allure.story("Dynamic loading examples")
+    @pytest.mark.theinternet
     @pytest.mark.regression
     @pytest.mark.parametrize(
-        ("user", "expected_error"),
+        ("example", "expected_text"),
         [
-            pytest.param(SauceDemoUser.LOCKED_OUT, "locked out", id="locked-user"),
-            pytest.param(
-                User(username="", password="secret_sauce"),
-                "Username is required",
-                id="empty-username",
-            ),
-            pytest.param(
-                User(username="invalid_user", password="secret_sauce"),
-                "do not match",
-                id="invalid-user",
-            ),
+            pytest.param(1, "Hello World!", id="example-1"),
+            pytest.param(2, "Hello World!", id="example-2"),
         ],
     )
-    def test_login_error_messages(
+    def test_dynamic_loading(
         self,
-        login_page: LoginPage,
-        user: User,
-        expected_error: str,
+        dynamic_loading_page: DynamicLoadingPage,
+        example: int,
+        expected_text: str,
     ) -> None:
-        """Verify error messages for invalid login attempts."""
-        allure.dynamic.title(f"Login with '{user}' shows '{expected_error}'")
+        """Verify text appears after dynamic loading completes."""
+        allure.dynamic.title(f"Example {example} shows '{expected_text}' after load")
         allure.dynamic.severity(allure.severity_level.CRITICAL)
 
         # Arrange
-        login_page.navigate()
+        dynamic_loading_page.navigate_to_example(example)
 
         # Act
-        login_page.login_as(user)
+        dynamic_loading_page.click_start()
 
         # Assert
-        login_page.get_error_message(expected_error)
+        dynamic_loading_page.verify_loaded_text(expected_text)
 ```
 
 ## Standalone Function Template
@@ -397,65 +351,65 @@ Apply all rules from the **code-quality-standards** skill.
 **1. Instantiate Page Objects in Tests**
 ```python
 # Bad: Test creates page objects directly
-def test_login(page: Page) -> None:
-    login_page = LoginPage(page, "https://www.saucedemo.com")
-    login_page.navigate()
+def test_load(page: Page) -> None:
+    dynamic_loading_page = DynamicLoadingPage(page, "https://the-internet.herokuapp.com")
+    dynamic_loading_page.navigate()
 ```
 
 **2. Hard-Code Test Data**
 ```python
 # Bad: Raw strings instead of data models
-def test_login(self, login_page: LoginPage) -> None:
-    login_page.enter_username("standard_user")
-    login_page.enter_password("secret_sauce")
+def test_dynamic_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
+    dynamic_loading_page.navigate_to_example(1)
 
-# Good: Use frozen dataclasses
-def test_login(self, login_page: LoginPage) -> None:
-    login_page.login_as(SauceDemoUser.STANDARD)
+# Good: Use parametrize with named IDs for data-driven tests
+@pytest.mark.parametrize("example", [pytest.param(1, id="example-1")])
+def test_dynamic_loading(self, dynamic_loading_page: DynamicLoadingPage, example: int) -> None:
+    dynamic_loading_page.navigate_to_example(example)
 ```
 
 **3. Use `with allure.step()` in Tests**
 ```python
 # Bad: Manual step blocks in tests
-def test_login(self, login_page: LoginPage) -> None:
-    with allure.step("Navigate to login"):
-        login_page.navigate()
-    with allure.step("Log in"):
-        login_page.login_as(SauceDemoUser.STANDARD)
+def test_dynamic_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
+    with allure.step("Navigate"):
+        dynamic_loading_page.navigate()
+    with allure.step("Click start"):
+        dynamic_loading_page.click_start()
 
 # Good: POM methods are already @allure.step() decorated
-def test_login(self, login_page: LoginPage) -> None:
-    login_page.navigate()
-    login_page.login_as(SauceDemoUser.STANDARD)
+def test_dynamic_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
+    dynamic_loading_page.navigate()
+    dynamic_loading_page.click_start()
 ```
 
 **4. Add Assertions in Wrong Layer**
 ```python
 # Bad: Using page internals for assertions
-def test_login(self, login_page: LoginPage, page: Page) -> None:
-    login_page.navigate()
-    login_page.login_as(SauceDemoUser.STANDARD)
-    assert page.locator(".inventory_list").is_visible()  # Leaks page structure
+def test_loading(self, dynamic_loading_page: DynamicLoadingPage, page: Page) -> None:
+    dynamic_loading_page.navigate()
+    dynamic_loading_page.click_start()
+    assert page.locator("#finish").is_visible()  # Leaks page structure
 
 # Good: Use page object verification methods
-def test_login(self, login_page: LoginPage, inventory_page: InventoryPage) -> None:
-    login_page.navigate()
-    login_page.login_as(SauceDemoUser.STANDARD)
-    inventory_page.verify_page_loaded()
+def test_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
+    dynamic_loading_page.navigate()
+    dynamic_loading_page.click_start()
+    dynamic_loading_page.verify_element_visible()
 ```
 
 **5. Missing Markers**
 ```python
 # Bad: No app marker or category marker
-@allure.story("Login")
-def test_login(self, login_page: LoginPage) -> None:
+@allure.story("Dynamic Loading")
+def test_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
     ...
 
 # Good: Both app and category markers
-@allure.story("Login")
-@pytest.mark.saucedemo
+@allure.story("Dynamic Loading")
+@pytest.mark.theinternet
 @pytest.mark.smoke
-def test_login(self, login_page: LoginPage) -> None:
+def test_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
     ...
 ```
 
@@ -513,19 +467,19 @@ class TestCart:
 
 ```python
 # Bad: No test IDs — report shows [0], [1], [2]
-@pytest.mark.parametrize("user,error", [
-    (SauceDemoUser.LOCKED_OUT, "locked out"),
-    (User(username="", password="x"), "Username is required"),
+@pytest.mark.parametrize("example,expected", [
+    (1, "Hello World!"),
+    (2, "Hello World!"),
 ])
-def test_errors(self, login_page, user, error): ...
+def test_dynamic_loading(self, dynamic_loading_page, example, expected): ...
 
 # Good: Named test IDs for readable reports
 @pytest.mark.parametrize(
-    ("user", "expected_error"),
+    ("example", "expected_text"),
     [
-        pytest.param(SauceDemoUser.LOCKED_OUT, "locked out", id="locked-user"),
-        pytest.param(User(username="", password="x"), "Username is required", id="empty-username"),
+        pytest.param(1, "Hello World!", id="example-1"),
+        pytest.param(2, "Hello World!", id="example-2"),
     ],
 )
-def test_errors(self, login_page, user, expected_error): ...
+def test_dynamic_loading(self, dynamic_loading_page, example, expected_text): ...
 ```

@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The project spans multiple test suites (SauceDemo, The Internet, UI Playground). Manual code reviews alone cannot enforce consistent formatting, type safety, and security standards across the codebase. Quality issues need to be caught before code reaches the CI/CD pipeline.
+The project's test suite targets The Internet application. Manual code reviews alone cannot enforce consistent formatting, type safety, and security standards across the codebase. Quality issues need to be caught before code reaches the CI/CD pipeline.
 
 Alternatives considered: manual code review only, Flake8 + Black + isort (separate tools), GitHub Super-Linter (all-in-one CI action), SonarQube (hosted quality platform).
 

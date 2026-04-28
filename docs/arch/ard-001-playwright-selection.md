@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-The project needs a browser automation framework for E2E testing across three web applications (SauceDemo, The Internet, UI Testing Playground). Requirements include multi-browser support (Chromium, Firefox, WebKit), reliable handling of dynamic elements, and Python ecosystem compatibility.
+The project needs a browser automation framework for E2E testing of The Internet web application. Requirements include multi-browser support (Chromium, Firefox, WebKit), reliable handling of dynamic elements, and Python ecosystem compatibility.
 
 Alternatives considered: Selenium, Cypress, Puppeteer.
 
