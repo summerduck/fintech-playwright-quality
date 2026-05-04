@@ -37,9 +37,8 @@ from playwright.sync_api import Locator, Page, expect
 
 # 3. First-party — alphabetical: config < pages < tests < utils
 from config.data.models import User
-from config.data.saucedemo import SauceDemoUser
-from pages.saucedemo.inventory_page import InventoryPage
-from pages.saucedemo.login_page import LoginPage
+from pages.the_internet.dynamic_loading_page import DynamicLoadingPage
+from pages.the_internet.tables_page import TablesPage
 ```
 
 **Rules:**
@@ -59,7 +58,7 @@ Every function and method must be fully annotated — no exceptions outside of t
 # Functions
 def check_thresholds(
     stats: dict[str, dict[str, float]],
-    thresholds: dict[str, dict[str, float]] = SAUCEDEMO_THRESHOLDS,
+    thresholds: dict[str, dict[str, float]],
 ) -> list[str]: ...
 
 # Methods — chaining

@@ -400,7 +400,6 @@ Scope can be:
 Examples:
 ```
 /maintenance the_internet "login button text changed from Login to Sign In"
-/maintenance saucedemo "product items now have data-test attributes"
 ```
 
 **What happens:**

@@ -75,7 +75,7 @@ Reasons:
 
 ### Context Section
 - Open with a project-level problem: "The framework needs...", "The 3-app test platform requires..."
-- Name specific project constraints: Python 3.12 ecosystem, Playwright 1.51.0, pytest-xdist parallelism, 3 target apps (SauceDemo, The Internet, UI Playground), GitHub Actions CI
+- Name specific project constraints: Python 3.12 ecosystem, Playwright 1.51.0, pytest-xdist parallelism, target app (The Internet), GitHub Actions CI
 - Always list alternatives considered in a single line at the end
 - Reference the roadmap (`/.notes/roadmap.md`) when the decision relates to a planned milestone
 

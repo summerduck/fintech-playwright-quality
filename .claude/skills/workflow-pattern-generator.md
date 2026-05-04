@@ -13,7 +13,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `saucedemo`, `the_internet`, or `ui_playground`
+1. Identify the target app: `the_internet`
 2. Check existing page objects in `pages/<app>/` — workflows can only orchestrate pages that exist
 3. Check existing workflows in `workflow/` to avoid duplication
 4. Read `config/data/` for relevant data models (`User`, `Product`, `CheckoutInfo`)
@@ -24,9 +24,7 @@ This skill complements:
 ```
 workflow/
 ├── __init__.py
-├── saucedemo_workflow.py
-├── the_internet_workflow.py
-└── ui_playground_workflow.py
+└── the_internet_workflow.py
 ```
 
 File naming: `<app>_workflow.py` — one workflow class per app.
@@ -164,16 +162,12 @@ Add this fixture alongside the existing page object fixtures in the same `confte
 ### With Workflow (concise, intent-focused)
 
 ```python
-    def test_purchase_backpack(
-        self, saucedemo_workflow: SauceDemoWorkflow
+    def test_navigate_and_load(
+        self, the_internet_workflow: TheInternetWorkflow
     ) -> None:
-        """Verify a standard user can complete a purchase."""
+        """Verify dynamic loading completes successfully."""
         # Arrange + Act
-        saucedemo_workflow.purchase_items(
-            user=SauceDemoUser.STANDARD,
-            products=[SauceDemoProduct.BACKPACK],
-            checkout_info=SauceDemoCheckout.VALID,
-        )
+        the_internet_workflow.load_dynamic_example(example=1)
 
         # Assert
         # (same assertions)
@@ -182,24 +176,16 @@ Add this fixture alongside the existing page object fixtures in the same `confte
 ### Without Workflow (verbose, same flow inlined)
 
 ```python
-    def test_purchase_backpack(
+    def test_navigate_and_load(
         self,
-        login_page: LoginPage,
-        inventory: InventoryPage,
-        cart: CartPage,
-        checkout: CheckoutPage,
-
+        dynamic_loading_page: DynamicLoadingPage,
     ) -> None:
         """Same test without workflow — more verbose."""
         # Arrange
-        login_page.navigate()
-        login_page.login_as(SauceDemoUser.STANDARD)
+        dynamic_loading_page.navigate_to_example(1)
 
         # Act
-        inventory.add_to_cart(SauceDemoProduct.BACKPACK)
-        inventory.go_to_cart()
-        cart.proceed_to_checkout()
-        checkout.fill_info(SauceDemoCheckout.VALID).finish()
+        dynamic_loading_page.click_start()
 
         # Assert
         # (same assertions)
@@ -214,22 +200,18 @@ that carry their own `@allure.step()` decorators.
 A test can use a workflow for setup and a page object for the action under test:
 
 ```python
-    def test_cart_shows_added_items(
+    def test_tables_after_navigation(
         self,
-        saucedemo_workflow: SauceDemoWorkflow,
-        cart: CartPage,
+        the_internet_workflow: TheInternetWorkflow,
+        tables_page: TablesPage,
     ) -> None:
-        """Verify cart displays items added via workflow."""
-        products = [SauceDemoProduct.BACKPACK, SauceDemoProduct.BIKE_LIGHT]
+        """Verify tables page is accessible after homepage navigation."""
+        # Arrange — workflow handles initial navigation
+        the_internet_workflow.navigate_to_homepage()
 
-        # Arrange — workflow handles login + add-to-cart
-        saucedemo_workflow.add_items_to_cart(
-            user=SauceDemoUser.STANDARD,
-            products=products,
-        )
-
-        # Assert — interact with cart page object directly
-        cart.verify_cart_contents(expected_products=products)
+        # Assert — interact with tables page object directly
+        tables_page.navigate()
+        tables_page.verify_page_loaded()
 ```
 
 ## Code Quality

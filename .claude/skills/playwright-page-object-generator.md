@@ -4,7 +4,7 @@ description: Generate Playwright Page Object classes following project conventio
 
 # Playwright Page Object Generator
 
-Generate page object classes that match the project's exact conventions across 3 apps.
+Generate page object classes that match the project's exact conventions.
 
 ## Why Use Page Object Model?
 
@@ -31,7 +31,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `saucedemo`, `the_internet`, or `ui_playground`
+1. Identify the target app: `the_internet`
 2. Check existing page objects in `pages/<app>/`
 3. Read `pages/base_page.py` for available Tier 1 base methods
 4. Read `pages/<app>/<app>_base_page.py` for available Tier 2 domain methods
@@ -43,24 +43,12 @@ This skill complements:
 ```
 pages/
 ├── base_page.py                          # Tier 1: Universal base
-├── saucedemo/
-│   ├── __init__.py
-│   ├── saucedemo_base_page.py            # Tier 2: Domain base
-│   ├── login_page.py                     # Tier 3: Concrete page
-│   ├── inventory_page.py
-│   ├── cart_page.py
-│   └── checkout_page.py
-├── the_internet/
-│   ├── __init__.py
-│   ├── the_internet_base_page.py         # Tier 2: Domain base
-│   ├── dynamic_loading_page.py
-│   ├── file_upload_page.py
-│   └── tables_page.py
-└── ui_playground/
+└── the_internet/
     ├── __init__.py
-    ├── ui_playground_base_page.py         # Tier 2: Domain base
-    ├── dynamic_id_page.py
-    └── class_attribute_page.py
+    ├── the_internet_base_page.py         # Tier 2: Domain base
+    ├── dynamic_loading_page.py
+    ├── file_upload_page.py
+    └── tables_page.py
 ```
 
 File naming: `<feature>_page.py` for concrete pages, `<app>_base_page.py` for domain bases, `locators.py` for selector constants.
@@ -94,26 +82,12 @@ Convention: module-level `UPPER_SNAKE_CASE` string constants, grouped by page wi
 Tier 1: BasePage (pages/base_page.py)
   │     navigate(), take_screenshot()
   │
-  ├── Tier 2: SauceDemoBasePage (pages/saucedemo/saucedemo_base_page.py)
-  │     │     open_sidebar(), logout(), go_to_cart(), get_cart_badge_count(), reset_app_state()
-  │     │
-  │     ├── Tier 3: LoginPage
-  │     ├── Tier 3: InventoryPage
-  │     ├── Tier 3: CartPage
-  │     └── Tier 3: CheckoutPage
-  │
-  ├── Tier 2: TheInternetBasePage (pages/the_internet/the_internet_base_page.py)
-  │     │     get_page_heading(), get_footer_text()
-  │     │
-  │     ├── Tier 3: DynamicLoadingPage
-  │     ├── Tier 3: FileUploadPage
-  │     └── Tier 3: TablesPage
-  │
-  └── Tier 2: UIPlaygroundBasePage (pages/ui_playground/ui_playground_base_page.py)
-        │     go_home(), get_navbar_brand()
+  └── Tier 2: TheInternetBasePage (pages/the_internet/the_internet_base_page.py)
+        │     get_page_heading(), get_footer_text()
         │
-        ├── Tier 3: DynamicIdPage
-        └── Tier 3: ClassAttributePage
+        ├── Tier 3: DynamicLoadingPage
+        ├── Tier 3: FileUploadPage
+        └── Tier 3: TablesPage
 ```
 
 | Tier | Scope | Contains |
@@ -193,8 +167,7 @@ shared across all (or most) pages within that app. Concrete pages inherit these
 for free without re-defining them.
 
 Playwright locators are lazy — they only query the DOM on interaction. A concrete
-page that doesn't use an inherited locator (e.g. LoginPage inheriting burger menu
-locators from SauceDemoBasePage) incurs no runtime cost or errors.
+page that doesn't use an inherited locator incurs no runtime cost or errors.
 
 ```python
 """<App> domain base page — shared components across <App> pages."""
