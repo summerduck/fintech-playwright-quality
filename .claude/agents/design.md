@@ -36,7 +36,7 @@ Produce a single Markdown document saved to `.claude/agents/design.md`. Use the 
 ### 1. Context
 
 Describe what the task involves at a high level:
-- Which web application is targeted (`saucedemo`, `theinternet`, or `uiplayground`).
+- Which web application is targeted (`theinternet`).
 - What user scenario will be tested.
 - Which existing modules this task touches (reference file paths from `research.md`).
 

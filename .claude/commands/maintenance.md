@@ -10,7 +10,7 @@ You are coordinating test suite updates after changes to the web application und
 
 Arguments: `$ARGUMENTS`
 
-- `$ARGUMENTS[0]` — app name (`the_internet`, `saucedemo`, `uiplayground`)
+- `$ARGUMENTS[0]` — app name (`the_internet`)
 - `$ARGUMENTS[1+]` — description of what changed in the application
 
 If no description provided, ask:

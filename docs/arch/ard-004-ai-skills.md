@@ -20,14 +20,14 @@ Each skill references the actual project files (`conftest.py`, `pyproject.toml`,
 
 Skills created (9 total):
 
-- **playwright-page-object-generator** — BasePage inheritance, Locator objects in `__init__`, Allure steps, method chaining; examples use actual SauceDemo/The Internet/UI Playground pages; documents per-app `base_url` fixture convention
+- **playwright-page-object-generator** — BasePage inheritance, Locator objects in `__init__`, Allure steps, method chaining; examples use actual The Internet pages; documents the `base_url` fixture convention
 - **pytest-test-scaffolder** — AAA pattern, all 17 pytest markers, conftest fixture documentation including per-app `base_url` fixtures, `pyproject.toml` addopts awareness (`--reruns=1`, `--strict-markers`, `--cov`)
-- **allure-report-enhancer** — report hierarchy mapped to the 3-app structure (epic per app), severity mapping per app, decorator order convention, references existing `conftest.py` failure artifact hooks
+- **allure-report-enhancer** — report hierarchy mapped to the single-app structure (epic per app), severity mapping, decorator order convention, references existing `conftest.py` failure artifact hooks
 - **adr-writer** — Cognitect ADR format matching existing `docs/arch/` convention with `ard-` prefix, references existing ADRs and planned ADRs from roadmap
 - **dockerfile-test-automation** — multi-stage builds, artifact directories matching `conftest.py` log layout, `.dockerignore` covering project-specific directories (`.notes/`, `.cursor/`, `docs/`)
-- **github-actions-test-pipeline** — matrix strategy (3 apps × 3 browsers), documents relationship to existing `code-quality.yml` (no duplication of quality checks), `pyproject.toml` addopts apply automatically
+- **github-actions-test-pipeline** — matrix strategy (3 browsers), documents relationship to existing `code-quality.yml` (no duplication of quality checks), `pyproject.toml` addopts apply automatically
 - **workflow-pattern-generator** — orchestrates multiple page objects into reusable e2e business flows; Workflow Layer sits between test and POM layers; Allure step decorators on every public method, `Self` return for chaining, `config.data.models` dataclasses for parameters; cross-references playwright-page-object-generator, pytest-test-scaffolder, and allure-report-enhancer skills
-- **locust-performance-test** — app-specific HTTP scenarios (SauceDemo checkout flow, The Internet page loads), conservative user counts for third-party public apps, Taskfile integration
+- **locust-performance-test** — HTTP scenarios for The Internet page loads, conservative user counts for third-party public apps, Taskfile integration
 - **code-quality-standards** — single source of truth for all Python code quality requirements derived from `pyproject.toml`: import order (isort groups), type annotation rules (mypy strict, Python 3.12 syntax), ruff rule reference (`B006`, `PTH`, `ERA`, `RET`, `ARG`, `SIM`), bandit constraints, and per-file exemptions (`tests/*`, `conftest.py`); all other skills reference this skill instead of duplicating quality rules
 
 After initial creation, the skills were audited for cross-skill contradictions. Issues resolved included: POM methods returning other page object types instead of `Self` (visible in examples across three skills), `verify_*` methods lacking a specified assertion mechanism (`expect()` vs `assert`), inconsistent `assert` prohibition in tests, scenario file naming for Locust (`theinternet` vs `the_internet`), and a mutable default argument in a workflow example.

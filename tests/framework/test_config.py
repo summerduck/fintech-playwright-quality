@@ -37,12 +37,6 @@ class TestGetBaseUrl:
         with pytest.raises(ValueError, match="Unknown app 'nonexistent'"):
             get_base_url("nonexistent", env)
 
-    def test_raises_when_env_not_configured_for_app(self) -> None:
-        with pytest.raises(
-            ValueError, match="No 'local' URL configured for 'saucedemo'"
-        ):
-            get_base_url("saucedemo", "local")
-
     def test_invalid_env_error_lists_valid_options(self) -> None:
         with pytest.raises(ValueError, match="Valid options: local, prod"):
             get_base_url("theinternet", "unknown")
@@ -50,7 +44,3 @@ class TestGetBaseUrl:
     def test_unknown_app_error_lists_registered_apps(self) -> None:
         with pytest.raises(ValueError, match="Registered apps:"):
             get_base_url("fake", "prod")
-
-    def test_missing_env_error_lists_available_envs(self) -> None:
-        with pytest.raises(ValueError, match="Available: prod"):
-            get_base_url("saucedemo", "local")
