@@ -160,6 +160,7 @@ markers = [
     "accessibility: Accessibility tests",
     "acceptance: Acceptance tests",
     "integration: Integration tests",
+    "acceptapayment: Accept a Payment application tests",
 ]
 
 [tool.hypothesis]
