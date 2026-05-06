@@ -127,7 +127,7 @@ python_files = "test_*.py"
 python_classes = "Test*"
 python_functions = "test_*"
 log_cli = true
-log_cli_level = "WARNING"
+log_cli_level = "INFO"
 log_level = "INFO"
 log_format = "%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
 log_cli_format = "%(asctime)s [%(levelname)s] %(message)s"
@@ -142,7 +142,7 @@ addopts = [
     "--html=report.html",
     "--self-contained-html",
     "--alluredir=allure-report",
-    "--reruns=1",
+    "--reruns=0",
 ]
 markers = [
     "smoke: Quick smoke tests",
