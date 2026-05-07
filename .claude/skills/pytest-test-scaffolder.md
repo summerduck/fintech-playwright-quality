@@ -221,14 +221,8 @@ class Test<Feature>:
     @pytest.mark.smoke
     def test_<scenario>(self, <page_name>_page: <PageName>Page) -> None:
         """<What this test verifies>."""
-
-        # Arrange
         <page_name>_page.navigate()
-
-        # Act
         <page_name>_page.some_action()
-
-        # Assert
         <page_name>_page.verify_result()
 ```
 
@@ -256,14 +250,8 @@ Prefer verification methods on the page object (`verify_page_loaded`, `get_error
         """Verify text appears after dynamic loading completes."""
         allure.dynamic.title(f"Example {example} shows '{expected_text}' after load")
         allure.dynamic.severity(allure.severity_level.CRITICAL)
-
-        # Arrange
         dynamic_loading_page.navigate_to_example(example)
-
-        # Act
         dynamic_loading_page.click_start()
-
-        # Assert
         dynamic_loading_page.verify_loaded_text(expected_text)
 ```
 
