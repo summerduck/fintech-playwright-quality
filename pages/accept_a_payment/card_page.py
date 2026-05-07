@@ -14,6 +14,8 @@ from pages.accept_a_payment.accept_a_payment_base_page import AcceptAPaymentBase
 
 logger = logging.getLogger(__name__)
 
+PAYMENT_TIMEOUT = 30_000
+
 
 class CardPage(AcceptAPaymentBasePage):
     """Represents the Card page on Accept a Payment."""
@@ -36,6 +38,7 @@ class CardPage(AcceptAPaymentBasePage):
             loc.EXPIRATION_DATE_INPUT
         )
         self._zip_input: Locator = _stripe_frame.locator(loc.ZIP_INPUT)
+        self._dashboard_link: Locator = page.locator(loc.DASHBOARD_LINK)
 
     # ── Actions ──────────────────────────────────────────────────────────
 
@@ -97,39 +100,58 @@ class CardPage(AcceptAPaymentBasePage):
     def get_messages(self) -> Locator:
         """Get the messages element."""
         logger.info("Getting messages element")
-        expect(self._messages).to_be_visible(timeout=10_000)
+        self._wait_for_messages_to_be_visible()
         messages = self._messages.inner_text()
         logger.info(messages)
         return messages
 
+    def get_dashboard_link(self) -> str:
+        """Get the dashboard link URL from the href attribute."""
+        logger.info("Getting dashboard link element")
+        return self._dashboard_link.get_attribute("href")
+
+    def get_payment_id(self) -> str:
+        """Get the payment ID from the dashboard link element."""
+        logger.info("Getting payment ID from dashboard link element")
+        return self._dashboard_link.text_content()
+
     # ── Verification ─────────────────────────────────────────────────────
+
+    @allure.step("Verify the dashboard link is visible")
+    def verify_dashboard_link_is_visible(self) -> Self:
+        """Verify the dashboard link is visible."""
+        logger.info("Verifying dashboard link is visible")
+        self._wait_for_messages_to_be_visible()
+        expect(self._dashboard_link).to_be_visible()
+        expect(self._dashboard_link).to_have_attribute("target", "_blank")
+        return self
 
     @allure.step("Verify the card errors are visible")
     def verify_card_errors_are_visible(self) -> Self:
         """Verify the card errors are visible."""
         logger.info("Verifying card errors are visible")
-        expect(self._card_errors).to_be_visible(timeout=30_000)
+        expect(self._card_errors).to_be_visible(timeout=PAYMENT_TIMEOUT)
         return self
 
     @allure.step("Verify the card errors are not visible")
     def verify_card_errors_are_not_visible(self) -> Self:
         """Verify the card errors are not visible."""
         logger.info("Verifying card errors are not visible")
-        expect(self._card_errors).to_be_hidden(timeout=30_000)
+        expect(self._card_errors).to_be_hidden(timeout=PAYMENT_TIMEOUT)
         return self
 
     @allure.step("Verify the pay button is enabled")
     def verify_pay_button_is_enabled(self) -> Self:
         """Verify the pay button is enabled."""
         logger.info("Verifying pay button is enabled")
-        expect(self._pay_button).to_be_enabled(timeout=30_000)
+        expect(self._pay_button).to_be_enabled(timeout=PAYMENT_TIMEOUT)
         return self
 
     @allure.step("Verify the pay button is disabled")
     def verify_pay_button_is_disabled(self) -> Self:
         """Verify the pay button is disabled."""
         logger.info("Verifying pay button is disabled")
-        expect(self._pay_button).to_be_disabled(timeout=30_000)
+        expect(self._pay_button).to_be_disabled(timeout=PAYMENT_TIMEOUT)
         return self
 
     @allure.step("Verify the messages contain the given text")
@@ -137,4 +159,12 @@ class CardPage(AcceptAPaymentBasePage):
         """Verify the messages contain the given text."""
         logger.info("Verifying messages contain text: %s", messages)
         expect(self._messages).to_contain_text(messages)
+        return self
+
+    # ── Wait for ─────────────────────────────────────────────────────
+
+    def _wait_for_messages_to_be_visible(self) -> Self:
+        """Wait for the messages element to be visible."""
+        logger.debug("Waiting for messages to be visible")
+        expect(self._messages).to_be_visible(timeout=10_000)
         return self

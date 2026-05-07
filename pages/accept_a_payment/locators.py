@@ -17,6 +17,7 @@ EXPIRATION_DATE_INPUT = "[name='exp-date']"
 ZIP_INPUT = "[name='postal']"
 
 MESSAGES = "[id='messages']"
+DASHBOARD_LINK = "[href*='dashboard.stripe.com']"
 
 # ── 3DS Page ────────────────────────────────────────────────────────────
 

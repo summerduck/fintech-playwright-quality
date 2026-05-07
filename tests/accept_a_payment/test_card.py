@@ -1,21 +1,21 @@
 """
- Test Plan: card.html — Stripe Card Payment Flow
+Test Plan: card.html — Stripe Card Payment Flow
 
- AUT: custom-payment-flow/client/html/card.html
+AUT: custom-payment-flow/client/html/card.html
 
- Coverage areas:
-  1. Page Load & Initial State
-  2. Static Content & UI Structure
-  3. Accessibility
-  4. Navigation
-  5. Happy Path — Successful Payment (Visa & Mastercard)
-  6. 3D Secure Authentication Flow
-  7. Card Decline Error Handling
-  8. Client-Side Form Validation
-  9. Double Submission Prevention
- 10. Backend API Failure Handling
- 11. Visual Regression (snapshot)
- """
+Coverage areas:
+ 1. Page Load & Initial State
+ 2. Static Content & UI Structure
+ 3. Accessibility
+ 4. Navigation
+ 5. Happy Path — Successful Payment (Visa & Mastercard)
+ 6. 3D Secure Authentication Flow
+ 7. Card Decline Error Handling
+ 8. Client-Side Form Validation
+ 9. Double Submission Prevention
+10. Backend API Failure Handling
+11. Visual Regression (snapshot)
+"""
 
 import logging
 
@@ -36,33 +36,58 @@ logger = logging.getLogger(__name__)
 @allure.epic("Accept a Payment")
 @allure.feature("Card")
 @pytest.mark.acceptapayment
-class TestCardFlow:
+class TestSuccessfulPayment:
     """Card test suite for Accept a Payment."""
 
     @allure.story("Actions")
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Fill the name input with the given name")
+    @allure.title("Happy Path — Successful Payment")
     @pytest.mark.smoke
+    @pytest.mark.parametrize(
+        "card",
+        [
+            pytest.param(
+                TestCard.three_ds_authenticate_unless_setup(),
+                id="3ds",
+            ),
+            pytest.param(
+                TestCard.visa(),
+                id="visa",
+            ),
+            pytest.param(
+                TestCard.mastercard(),
+                id="mastercard",
+            ),
+        ],
+    )
     def test_fill_card_form_and_complete_payment(
-        self,
-        card_page: CardPage,
-        three_ds_page: ThreeDSPage,
+        self, card_page: CardPage, three_ds_page: ThreeDSPage, card: Card
     ) -> None:
         """Fill the card form and complete payment for the given card."""
         # Act & Assert
-        card: Card = TestCard.three_ds_authenticate_unless_setup()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number(card.number)
-        card_page.fill_cvc(card.cvc)
-        card_page.fill_expiration_date(card.expiration_date)
-        card_page.fill_zip(card.zip_code)
+        card_page.fill_card_form(card)
         card_page.click_pay_button()
-        if card.requires_3ds:
-            three_ds_page.wait_for_three_ds_frame()
-            three_ds_page.click_three_ds_fail_button()
-            three_ds_page.wait_for_three_ds_frame_to_be_hidden()
+        three_ds_page.handle_three_ds(card.requires_3ds)
         card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Payment Intent ID appears as a dashboard link in #messages")
+    def test_payment_succeeded_and_dashboard_link_is_visible(
+        self,
+        card_page: CardPage,
+        card: Card = TestCard.visa(),
+    ) -> None:
+        """
+        After successful payment, payment intent ID appears as a link to the Stripe dashboard.
+        """
+        card_page.navigate()
+        card_page.fill_card_form(card)
+        card_page.click_pay_button()
+        card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
+        card_page.verify_dashboard_link_is_visible()
+        card_page.get_dashboard_link()
+        card_page.get_payment_id()
 
 
 @allure.epic("Accept a Payment")

@@ -11,6 +11,8 @@ from pages.accept_a_payment.accept_a_payment_base_page import AcceptAPaymentBase
 
 logger = logging.getLogger(__name__)
 
+PAYMENT_TIMEOUT = 30_000
+
 
 class ThreeDSPage(AcceptAPaymentBasePage):
     """Represents the Card page on Accept a Payment."""
@@ -44,8 +46,8 @@ class ThreeDSPage(AcceptAPaymentBasePage):
     def click_three_ds_fail_button(self) -> Self:
         """Click the three ds fail button."""
         logger.info("Clicking three ds fail button")
-        expect(self._three_ds_fail_button).to_be_visible(timeout=30_000)
-        expect(self._three_ds_fail_button).to_be_enabled(timeout=30_000)
+        expect(self._three_ds_fail_button).to_be_visible(timeout=PAYMENT_TIMEOUT)
+        expect(self._three_ds_fail_button).to_be_enabled(timeout=PAYMENT_TIMEOUT)
         self._three_ds_fail_button.click()
         return self
 
@@ -53,9 +55,31 @@ class ThreeDSPage(AcceptAPaymentBasePage):
     def click_three_ds_complete_button(self) -> Self:
         """Click the three ds complete button."""
         logger.info("Clicking three ds complete button")
-        expect(self._three_ds_complete_button).to_be_visible(timeout=30_000)
-        expect(self._three_ds_complete_button).to_be_enabled(timeout=30_000)
+        expect(self._three_ds_complete_button).to_be_visible(timeout=PAYMENT_TIMEOUT)
+        expect(self._three_ds_complete_button).to_be_enabled(timeout=PAYMENT_TIMEOUT)
         self._three_ds_complete_button.click()
+        return self
+
+    @allure.step("Accept the three ds")
+    def handle_three_ds(
+        self,
+        requires_3ds: bool = True,
+        fail: bool = False,
+    ) -> Self:
+        """Accept the three ds."""
+        # Use Python 3.10+ match-case for switch-like logic
+        match requires_3ds:
+            case True:
+                self.wait_for_three_ds_frame()
+                match fail:
+                    case True:
+                        self.click_three_ds_fail_button()
+                    case False:
+                        self.click_three_ds_complete_button()
+                self.wait_for_three_ds_frame_to_be_hidden()
+            case False:
+                logger.info("Three ds is not required")
+
         return self
 
     # ── Wait for ──────────────────────────────────────────────────────────
@@ -64,13 +88,12 @@ class ThreeDSPage(AcceptAPaymentBasePage):
     def wait_for_three_ds_frame(self) -> Self:
         """Wait for the three ds frame to be visible."""
         logger.info("Waiting for three ds frame to be visible")
-        expect(self._three_ds_frame_element).to_be_visible(timeout=30_000)
-        self._page.wait_for_load_state("networkidle", timeout=30_000)
+        expect(self._three_ds_frame_element).to_be_visible(timeout=PAYMENT_TIMEOUT)
         return self
 
     @allure.step("Wait for the three ds frame to be hidden")
     def wait_for_three_ds_frame_to_be_hidden(self) -> Self:
         """Wait for the three ds frame to be hidden."""
         logger.info("Waiting for three ds frame to be hidden")
-        expect(self._three_ds_frame_element).to_be_hidden(timeout=30_000)
+        expect(self._three_ds_frame_element).to_be_hidden(timeout=PAYMENT_TIMEOUT)
         return self
