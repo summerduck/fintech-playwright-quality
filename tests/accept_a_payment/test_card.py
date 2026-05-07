@@ -1,20 +1,5 @@
 """
-Test Plan: card.html — Stripe Card Payment Flow
-
 AUT: custom-payment-flow/client/html/card.html
-
-Coverage areas:
- 1. Page Load & Initial State
- 2. Static Content & UI Structure
- 3. Accessibility
- 4. Navigation
- 5. Happy Path — Successful Payment (Visa & Mastercard)
- 6. 3D Secure Authentication Flow
- 7. Card Decline Error Handling
- 8. Client-Side Form Validation
- 9. Double Submission Prevention
-10. Backend API Failure Handling
-11. Visual Regression (snapshot)
 """
 
 import logging
@@ -33,15 +18,29 @@ from pages.accept_a_payment.three_ds_page import ThreeDSPage
 logger = logging.getLogger(__name__)
 
 
-@allure.epic("Accept a Payment")
 @allure.feature("Card")
+@allure.epic("Page Load & Initial State")
+@pytest.mark.acceptapayment
+class TestPageLoadAndInitialState:
+    """Card test suite for Card Page Load & Initial State."""
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Card page loads successfully")
+    @pytest.mark.smoke
+    def test_page_load_and_initial_state(self, card_page: CardPage) -> None:
+        """Test card page loads successfully."""
+        pass
+
+
+@allure.feature("Card")
+@allure.epic("Happy Path — Successful Payment")
 @pytest.mark.acceptapayment
 class TestSuccessfulPayment:
-    """Card test suite for Accept a Payment."""
+    """Card test suite for Card Happy Path — Successful Payment."""
 
     @allure.story("Actions")
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Happy Path — Successful Payment")
+    @allure.title("Fill the card form and complete payment for the given card")
     @pytest.mark.smoke
     @pytest.mark.parametrize(
         "card",
@@ -72,7 +71,9 @@ class TestSuccessfulPayment:
         card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
 
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Payment Intent ID appears as a dashboard link in #messages")
+    @allure.title(
+        "Payment Intent ID appears as a dashboard link in #messages after successful payment"
+    )
     def test_payment_succeeded_and_dashboard_link_is_visible(
         self,
         card_page: CardPage,
