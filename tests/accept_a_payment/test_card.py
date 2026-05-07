@@ -25,11 +25,53 @@ class TestPageLoadAndInitialState:
     """Card test suite for Card Page Load & Initial State."""
 
     @allure.severity(allure.severity_level.NORMAL)
-    @allure.title("Card page loads successfully")
-    @pytest.mark.smoke
-    def test_page_load_and_initial_state(self, card_page: CardPage) -> None:
-        """Test card page loads successfully."""
-        pass
+    @allure.title("Navigates directly to card.html and returns 200")
+    def test_card_page_direct_navigation_status_200(self, card_page: CardPage) -> None:
+        """Goto card.html and assert status 200."""
+        card_page.navigate()
+        card_page.verify_response_status()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title('Page title is "Card"')
+    def test_page_title_is_card(self, card_page: CardPage) -> None:
+        """Goto card.html and assert page title is 'Card'."""
+        card_page.navigate()
+        card_page.verify_page_title_is_card()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Stripe card element iframe is mounted within #card-element")
+    def test_stripe_card_element_iframe_visible(self, card_page: CardPage) -> None:
+        """Goto card.html and assert Stripe iframe in #card-element."""
+        card_page.navigate()
+        card_page.verify_stripe_card_element_iframe_visible()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("#messages panel is hidden on load")
+    def test_messages_panel_hidden_on_load(self, card_page: CardPage) -> None:
+        """Goto card.html and assert #messages is hidden on load."""
+        card_page.navigate()
+        card_page.verify_messages_panel_is_hidden()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("#card-errors is empty on load")
+    def test_card_errors_empty_on_load(self, card_page: CardPage) -> None:
+        """Goto card.html and assert #card-errors is empty."""
+        card_page.navigate()
+        card_page.verify_card_errors_are_empty_on_load()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title("Pay button is enabled on load")
+    def test_pay_button_enabled_on_load(self, card_page: CardPage) -> None:
+        """Goto card.html and assert #submit/pay button is enabled."""
+        card_page.navigate()
+        card_page.verify_pay_button_is_enabled_on_load()
+
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title('Name input is pre-filled with "Jenny Rosen"')
+    def test_name_input_prefilled_jenny_rosen(self, card_page: CardPage) -> None:
+        """Goto card.html and assert #name input value is 'Jenny Rosen'."""
+        card_page.navigate()
+        card_page.verify_name_input_prefilled_jenny_rosen()
 
 
 @allure.feature("Card")
@@ -63,7 +105,6 @@ class TestSuccessfulPayment:
         self, card_page: CardPage, three_ds_page: ThreeDSPage, card: Card
     ) -> None:
         """Fill the card form and complete payment for the given card."""
-        # Act & Assert
         card_page.navigate()
         card_page.fill_card_form(card)
         card_page.click_pay_button()
@@ -77,11 +118,11 @@ class TestSuccessfulPayment:
     def test_payment_succeeded_and_dashboard_link_is_visible(
         self,
         card_page: CardPage,
-        card: Card = TestCard.visa(),
     ) -> None:
         """
         After successful payment, payment intent ID appears as a link to the Stripe dashboard.
         """
+        card: Card = TestCard.visa()
         card_page.navigate()
         card_page.fill_card_form(card)
         card_page.click_pay_button()
@@ -105,7 +146,6 @@ class TestCardFormValidation:
         card_page: CardPage,
     ) -> None:
         """Test form validation: empty fields, invalid card number, expired date."""
-
         card_page.navigate()
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.CARD_NUMBER_INCOMPLETE)
@@ -142,6 +182,8 @@ class TestCardFormValidation:
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.EXPIRY_INCOMPLETE)
 
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.title("Form validation - invalid expiration date month")
     def test_form_validation_expiration_date_in_past(
         self,
         card_page: CardPage,

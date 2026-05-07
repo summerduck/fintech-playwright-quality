@@ -97,7 +97,7 @@ class CardPage(AcceptAPaymentBasePage):
     # ── Getters ──────────────────────────────────────────────────────────
 
     @allure.step("Get the messages element")
-    def get_messages(self) -> Locator:
+    def get_messages(self) -> str:
         """Get the messages element."""
         logger.info("Getting messages element")
         self._wait_for_messages_to_be_visible()
@@ -167,4 +167,46 @@ class CardPage(AcceptAPaymentBasePage):
         """Wait for the messages element to be visible."""
         logger.debug("Waiting for messages to be visible")
         expect(self._messages).to_be_visible(timeout=10_000)
+        return self
+
+    @allure.step("Assert page title is 'Card'")
+    def verify_page_title_is_card(self) -> Self:
+        """Assert that the page title is 'Card'."""
+        logger.info("Verifying page title equals 'Card'")
+        expect(self._page).to_have_title("Card")
+        return self
+
+    @allure.step("Verify Stripe card element iframe is visible in #card-element")
+    def verify_stripe_card_element_iframe_visible(self) -> Self:
+        """Assert Stripe iframe is mounted and visible within #card-element."""
+        logger.info("Verifying Stripe card element iframe is visible in #card-element")
+        expect(self._card_element).to_be_visible()
+        return self
+
+    @allure.step("Verify #messages panel is hidden on load")
+    def verify_messages_panel_is_hidden(self) -> Self:
+        """Assert #messages panel is hidden on page load."""
+        logger.info("Verifying #messages panel is hidden on load")
+        expect(self._messages).to_be_hidden()
+        return self
+
+    @allure.step("Verify #card-errors is empty on load")
+    def verify_card_errors_are_empty_on_load(self) -> Self:
+        """Assert #card-errors element is empty at page load."""
+        logger.info("Verifying #card-errors is empty on load")
+        expect(self._card_errors).to_have_text("")
+        return self
+
+    @allure.step("Verify pay button is enabled on load")
+    def verify_pay_button_is_enabled_on_load(self) -> Self:
+        """Assert the pay button is enabled at page load."""
+        logger.info("Verifying pay button is enabled on load")
+        expect(self._pay_button).to_be_enabled()
+        return self
+
+    @allure.step("Verify name input is pre-filled with 'Jenny Rosen'")
+    def verify_name_input_prefilled_jenny_rosen(self) -> Self:
+        """Assert #name input is pre-filled with 'Jenny Rosen'."""
+        logger.info("Verifying #name input is pre-filled with 'Jenny Rosen'")
+        expect(self._name_input).to_have_value("Jenny Rosen")
         return self

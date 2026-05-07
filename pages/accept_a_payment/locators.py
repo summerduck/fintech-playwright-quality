@@ -15,8 +15,6 @@ CARD_INPUT = "[name='cardnumber']"
 CVC_INPUT = "[name='cvc']"
 EXPIRATION_DATE_INPUT = "[name='exp-date']"
 ZIP_INPUT = "[name='postal']"
-
-MESSAGES = "[id='messages']"
 DASHBOARD_LINK = "[href*='dashboard.stripe.com']"
 
 # ── 3DS Page ────────────────────────────────────────────────────────────
