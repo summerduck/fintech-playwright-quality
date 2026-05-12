@@ -6,11 +6,9 @@ import logging
 
 import allure
 import pytest
-from hypothesis import HealthCheck, assume, given, settings
-from hypothesis import strategies as st
 
-from config.data.models import Card
 from config.data.card_messages import CardMessages
+from config.data.models import Card
 from config.data.test_cards import (
     EMPTY_EXPIRY,
     INCOMPLETE_CVC,

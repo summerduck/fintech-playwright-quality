@@ -8,7 +8,6 @@ APP_URLS: dict[str, dict[str, str]] = {
         "local": "http://localhost:4567",
     },
     "acceptapayment": {
-        # "prod": "https://acceptapayment.com",
         "local": "http://localhost:4242",
     },
 }

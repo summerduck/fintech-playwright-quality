@@ -73,7 +73,7 @@ repos:
       - id: pip-audit
         name: Dependency vulnerability audit with pip-audit
         args: ["-r", "requirements.txt"]
-        stages: [push]
+        stages: [pre-push]
 
   # # Complexity & maintainability metrics
   # - repo: local

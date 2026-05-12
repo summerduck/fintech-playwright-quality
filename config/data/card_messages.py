@@ -1,6 +1,9 @@
-class CardMessages:
-    """
-    Messages that appear in #messages div on card.html.
+from enum import StrEnum
+
+
+class CardMessages(StrEnum):
+    """Messages that appear in #messages div on card.html.
+
     Sources:
       - card.js: hardcoded strings from the app
       - Stripe.js: card element validation errors (before submit)
@@ -11,7 +14,7 @@ class CardMessages:
     NO_PUBLISHABLE_KEY = (
         "No publishable key returned from the server. Please check `.env` and try again"
     )
-    CLIENT_SECRET_RETURNED = "Client secret returned."
+    CLIENT_SECRET_RETURNED = "Client secret returned."  # nosec B105
     # Payment success — pi_ ID is dynamic, use startswith / contains in assertions
     PAYMENT_SUCCEEDED_PREFIX = "Payment succeeded: pi_"
 

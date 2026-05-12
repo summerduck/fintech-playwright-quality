@@ -1,13 +1,12 @@
 """Accept a Payment domain base page — shared components across Accept a Payment pages."""
 
 import logging
-from typing import Self
 
 import allure
-from playwright.sync_api import Locator, Page, expect
+from playwright.sync_api import Locator, Page
 
-from pages.base_page import BasePage
 from pages.accept_a_payment import locators as loc
+from pages.base_page import BasePage
 
 logger = logging.getLogger(__name__)
 

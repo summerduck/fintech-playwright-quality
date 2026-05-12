@@ -4,8 +4,9 @@ import logging
 from typing import Self
 
 import allure
+from playwright.sync_api import Page, Response
+
 from pages.exceptions import NavigationError
-from playwright.sync_api import Page, Response, expect
 
 logger = logging.getLogger(__name__)
 
@@ -45,15 +46,16 @@ class BasePage:
         self,
     ) -> Self:
         """Verify the HTTP response status is 200. Raises NavigationError if the response is None or non-200."""
-        match self.response:
-            case None:
-                message = f"No response from {self.URL_PATH}"
-                logger.error(message)
-                raise NavigationError(message)
-            case resp if self.response.status != 200:
+        if self.response is None:
+            message = f"No response from {self.URL_PATH}"
+            logger.warning(message)
+            raise NavigationError(message)
+
+        match self.response.status:
+            case 200:
+                logger.info("200 response from %s", self.URL_PATH)
+                return self
+            case _:
                 message = f"{self.response.status} response from {self.URL_PATH}"
                 logger.error(message)
                 raise NavigationError(message)
-
-        logger.info("%s response from %s", self.response.status, self.URL_PATH)
-        return self

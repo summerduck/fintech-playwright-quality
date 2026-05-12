@@ -6,8 +6,8 @@ from typing import Self
 import allure
 from playwright.sync_api import Locator, Page, expect
 
-from config.data.models import Card
 from config.data.card_messages import CardMessages
+from config.data.models import Card
 from pages.accept_a_payment import locators as loc
 from pages.accept_a_payment.accept_a_payment_base_page import AcceptAPaymentBasePage
 
@@ -106,13 +106,13 @@ class CardPage(AcceptAPaymentBasePage):
         return messages
 
     @allure.step("Get the dashboard link URL")
-    def get_dashboard_link(self) -> str:
+    def get_dashboard_link(self) -> str | None:
         """Get the dashboard link URL from the href attribute."""
         logger.info("Getting dashboard link element")
         return self._dashboard_link.get_attribute("href")
 
     @allure.step("Get the payment intent ID from the dashboard link")
-    def get_payment_id(self) -> str:
+    def get_payment_id(self) -> str | None:
         """Get the payment ID from the dashboard link element."""
         logger.info("Getting payment ID from dashboard link element")
         return self._dashboard_link.text_content()
