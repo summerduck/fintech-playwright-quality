@@ -11,7 +11,13 @@ from hypothesis import strategies as st
 
 from config.data.models import Card
 from config.data.card_messages import CardMessages
-from config.data.test_cards import TestCard
+from config.data.test_cards import (
+    EMPTY_EXPIRY,
+    INCOMPLETE_CVC,
+    INVALID_CARD_NUMBER,
+    PAST_EXPIRY,
+    TestCard,
+)
 from pages.accept_a_payment.card_page import CardPage
 from pages.accept_a_payment.three_ds_page import ThreeDSPage
 
@@ -21,6 +27,7 @@ logger = logging.getLogger(__name__)
 @allure.feature("Card")
 @allure.epic("Page Load & Initial State")
 @pytest.mark.acceptapayment
+@pytest.mark.regression
 class TestPageLoadAndInitialState:
     """Card test suite for Card Page Load & Initial State."""
 
@@ -88,10 +95,6 @@ class TestSuccessfulPayment:
         "card",
         [
             pytest.param(
-                TestCard.three_ds_authenticate_unless_setup(),
-                id="3ds",
-            ),
-            pytest.param(
                 TestCard.visa(),
                 id="visa",
             ),
@@ -102,19 +105,23 @@ class TestSuccessfulPayment:
         ],
     )
     def test_fill_card_form_and_complete_payment(
-        self, card_page: CardPage, three_ds_page: ThreeDSPage, card: Card
+        self,
+        card_page: CardPage,
+        three_ds_page: ThreeDSPage,
+        card: Card,
     ) -> None:
         """Fill the card form and complete payment for the given card."""
         card_page.navigate()
         card_page.fill_card_form(card)
         card_page.click_pay_button()
-        three_ds_page.handle_three_ds(card.requires_3ds)
         card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
 
+    @allure.story("Actions")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.title(
         "Payment Intent ID appears as a dashboard link in #messages after successful payment"
     )
+    @pytest.mark.regression
     def test_payment_succeeded_and_dashboard_link_is_visible(
         self,
         card_page: CardPage,
@@ -122,7 +129,7 @@ class TestSuccessfulPayment:
         """
         After successful payment, payment intent ID appears as a link to the Stripe dashboard.
         """
-        card: Card = TestCard.visa()
+        card = TestCard.visa()
         card_page.navigate()
         card_page.fill_card_form(card)
         card_page.click_pay_button()
@@ -132,10 +139,46 @@ class TestSuccessfulPayment:
         card_page.get_payment_id()
 
 
+@allure.feature("Card")
+@allure.epic("3D Secure Authentication Flow")
+@pytest.mark.acceptapayment
+class Test3DSecureAuthenticationFlow:
+    """Card test suite for Card 3D Secure Authentication Flow."""
+
+    @allure.story("Actions")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.title(
+        "Fill the card form and complete payment for the given card with 3DS authentication"
+    )
+    @pytest.mark.smoke
+    @pytest.mark.parametrize(
+        "card",
+        [
+            pytest.param(
+                TestCard.mastercard(),
+                id="mastercard",
+            ),
+        ],
+    )
+    def test_fill_card_form_and_complete_payment_with_3ds_authentication(
+        self,
+        card_page: CardPage,
+        three_ds_page: ThreeDSPage,
+        card: Card,
+    ) -> None:
+        """Fill the card form and complete payment for the given card."""
+        card_page.navigate()
+        card_page.fill_card_form(card)
+        card_page.click_pay_button()
+        three_ds_page.handle_three_ds(card.requires_3ds)
+        card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
+
+
 @allure.epic("Accept a Payment")
 @allure.feature("Card")
 @allure.story("Form Validation")
 @pytest.mark.acceptapayment
+@pytest.mark.regression
 class TestCardFormValidation:
     """Card test suite for Accept a Payment."""
 
@@ -157,28 +200,28 @@ class TestCardFormValidation:
         card_page: CardPage,
     ) -> None:
         """Test form validation: invalid card number."""
-        card: Card = TestCard.visa()
+        visa_card = TestCard.visa()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number("1234567890123456")
-        card_page.fill_cvc(card.cvc)
-        card_page.fill_expiration_date(card.expiration_date)
+        card_page.fill_name(visa_card.name)
+        card_page.fill_card_number(INVALID_CARD_NUMBER)
+        card_page.fill_cvc(visa_card.cvc)
+        card_page.fill_expiration_date(visa_card.expiration_date)
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.CARD_NUMBER_INVALID)
 
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.title("Form validation - invalid card format")
+    @allure.title("Form validation - incomplete expiration date")
     def test_form_validation_expiration_date_incomplete(
         self,
         card_page: CardPage,
     ) -> None:
-        """Test form validation: invalid card number."""
-        card: Card = TestCard.visa()
+        """Test form validation: expiration date field left empty."""
+        visa_card = TestCard.visa()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number(card.number)
-        card_page.fill_cvc(card.cvc)
-        card_page.fill_expiration_date("")
+        card_page.fill_name(visa_card.name)
+        card_page.fill_card_number(visa_card.number)
+        card_page.fill_cvc(visa_card.cvc)
+        card_page.fill_expiration_date(EMPTY_EXPIRY)
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.EXPIRY_INCOMPLETE)
 
@@ -189,12 +232,12 @@ class TestCardFormValidation:
         card_page: CardPage,
     ) -> None:
         """Test form validation: invalid expiration date month."""
-        card: Card = TestCard.visa()
+        visa_card = TestCard.visa()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number(card.number)
-        card_page.fill_cvc(card.cvc)
-        card_page.fill_expiration_date("01/20")
+        card_page.fill_name(visa_card.name)
+        card_page.fill_card_number(visa_card.number)
+        card_page.fill_cvc(visa_card.cvc)
+        card_page.fill_expiration_date(PAST_EXPIRY)
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.EXPIRY_IN_PAST)
 
@@ -205,13 +248,13 @@ class TestCardFormValidation:
         card_page: CardPage,
     ) -> None:
         """Test form validation: CVC field left empty."""
-        card: Card = TestCard.visa()
+        visa_card = TestCard.visa()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number(card.number)
-        card_page.fill_cvc("12")
-        card_page.fill_expiration_date(card.expiration_date)
-        card_page.fill_zip(card.zip_code)
+        card_page.fill_name(visa_card.name)
+        card_page.fill_card_number(visa_card.number)
+        card_page.fill_cvc(INCOMPLETE_CVC)
+        card_page.fill_expiration_date(visa_card.expiration_date)
+        card_page.fill_zip(visa_card.zip_code)
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.CVC_INCOMPLETE)
 
@@ -222,11 +265,11 @@ class TestCardFormValidation:
         card_page: CardPage,
     ) -> None:
         """Test form validation: ZIP/postal code field left empty."""
-        card: Card = TestCard.visa()
+        visa_card = TestCard.visa()
         card_page.navigate()
-        card_page.fill_name(card.name)
-        card_page.fill_card_number(card.number)
-        card_page.fill_cvc(card.cvc)
-        card_page.fill_expiration_date(card.expiration_date)
+        card_page.fill_name(visa_card.name)
+        card_page.fill_card_number(visa_card.number)
+        card_page.fill_cvc(visa_card.cvc)
+        card_page.fill_expiration_date(visa_card.expiration_date)
         card_page.click_pay_button()
         card_page.verify_messages_contain_text(CardMessages.ZIP_INCOMPLETE)

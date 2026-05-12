@@ -1,11 +1,9 @@
-import base64
 import logging
 from typing import Self
 
 import allure
 from playwright.sync_api import FrameLocator, Locator, Page, expect
 
-from config.data.models import User
 from pages.accept_a_payment import locators as loc
 from pages.accept_a_payment.accept_a_payment_base_page import AcceptAPaymentBasePage
 
@@ -15,7 +13,7 @@ PAYMENT_TIMEOUT = 30_000
 
 
 class ThreeDSPage(AcceptAPaymentBasePage):
-    """Represents the Card page on Accept a Payment."""
+    """Represents the 3D Secure authentication overlay for the Accept a Payment flow."""
 
     URL_PATH = "/card.html"
 

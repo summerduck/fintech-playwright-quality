@@ -44,11 +44,7 @@ class BasePage:
     def verify_response_status(
         self,
     ) -> Self:
-        """
-        Verify the HTTP response status of the old booking form page.
-
-        Raises an ValueError if the status is not 200.
-        """
+        """Verify the HTTP response status is 200. Raises NavigationError if the response is None or non-200."""
         match self.response:
             case None:
                 message = f"No response from {self.URL_PATH}"

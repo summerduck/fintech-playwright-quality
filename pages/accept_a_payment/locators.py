@@ -11,6 +11,7 @@ CARD_ELEMENT = "#card-element"
 CARD_ERRORS = "#card-errors"
 PAY_BUTTON = "#submit"
 MESSAGES = "#messages"
+# Stripe injects these iframe inputs with [name] attributes only — no accessible roles exposed.
 CARD_INPUT = "[name='cardnumber']"
 CVC_INPUT = "[name='cvc']"
 EXPIRATION_DATE_INPUT = "[name='exp-date']"

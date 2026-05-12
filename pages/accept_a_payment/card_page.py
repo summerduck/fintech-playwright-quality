@@ -1,6 +1,5 @@
-"""The Internet Basic Auth page object."""
+"""Card payment page object for the Accept a Payment demo app."""
 
-import base64
 import logging
 from typing import Self
 
@@ -80,6 +79,7 @@ class CardPage(AcceptAPaymentBasePage):
     @allure.step("Fill the card form with the given card")
     def fill_card_form(self, card: Card) -> Self:
         """Fill the card form with the given card."""
+        logger.info("Filling card form with card: %s", card)
         self.fill_name(card.name)
         self.fill_card_number(card.number)
         self.fill_cvc(card.cvc)
@@ -105,11 +105,13 @@ class CardPage(AcceptAPaymentBasePage):
         logger.info(messages)
         return messages
 
+    @allure.step("Get the dashboard link URL")
     def get_dashboard_link(self) -> str:
         """Get the dashboard link URL from the href attribute."""
         logger.info("Getting dashboard link element")
         return self._dashboard_link.get_attribute("href")
 
+    @allure.step("Get the payment intent ID from the dashboard link")
     def get_payment_id(self) -> str:
         """Get the payment ID from the dashboard link element."""
         logger.info("Getting payment ID from dashboard link element")

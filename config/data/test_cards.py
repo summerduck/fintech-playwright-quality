@@ -121,3 +121,11 @@ class TestCard:
     def three_ds_required() -> "Card":
         """3DS required; payment succeeds after authentication."""
         return TestCard._make("4000 0000 0000 3220", requires_3ds=True)
+
+
+# ── Invalid field constants for form validation tests ────────────────────
+
+INVALID_CARD_NUMBER = "1234567890123456"  # fails Luhn check
+EMPTY_EXPIRY = ""
+PAST_EXPIRY = "01/20"  # January 2020
+INCOMPLETE_CVC = "12"

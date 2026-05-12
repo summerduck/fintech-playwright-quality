@@ -1,4 +1,4 @@
-"""The Internet domain base page — shared components across The Internet pages."""
+"""Accept a Payment domain base page — shared components across Accept a Payment pages."""
 
 import logging
 from typing import Self
