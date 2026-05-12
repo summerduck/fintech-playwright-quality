@@ -105,7 +105,6 @@ class TestSuccessfulPayment:
     def test_fill_card_form_and_complete_payment(
         self,
         card_page: CardPage,
-        three_ds_page: ThreeDSPage,
         card: Card,
     ) -> None:
         """Fill the card form and complete payment for the given card."""
