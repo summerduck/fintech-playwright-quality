@@ -163,13 +163,8 @@ class Test<Feature>:
         <feature>_page: <Feature>Page,
     ) -> None:
         """<Docstring.>"""
-        # Arrange
         <feature>_page.navigate()
-
-        # Act
         <feature>_page.<action_method>()
-
-        # Assert
         <feature>_page.verify_<something>()
 ```
 

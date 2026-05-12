@@ -166,10 +166,7 @@ Add this fixture alongside the existing page object fixtures in the same `confte
         self, the_internet_workflow: TheInternetWorkflow
     ) -> None:
         """Verify dynamic loading completes successfully."""
-        # Arrange + Act
         the_internet_workflow.load_dynamic_example(example=1)
-
-        # Assert
         # (same assertions)
 ```
 
@@ -181,13 +178,8 @@ Add this fixture alongside the existing page object fixtures in the same `confte
         dynamic_loading_page: DynamicLoadingPage,
     ) -> None:
         """Same test without workflow — more verbose."""
-        # Arrange
         dynamic_loading_page.navigate_to_example(1)
-
-        # Act
         dynamic_loading_page.click_start()
-
-        # Assert
         # (same assertions)
 ```
 

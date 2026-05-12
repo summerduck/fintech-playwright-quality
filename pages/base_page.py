@@ -4,7 +4,9 @@ import logging
 from typing import Self
 
 import allure
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Response
+
+from pages.exceptions import NavigationError
 
 logger = logging.getLogger(__name__)
 
@@ -22,13 +24,16 @@ class BasePage:
         self._page = page
         self._base_url = base_url
 
-    def navigate(self) -> Self:
+        self.response: Response | None = None
+
+    def navigate(self) -> Response | None:
         """Open the page by navigating to base_url + URL_PATH."""
         url = f"{self._base_url}{self.URL_PATH}"
         with allure.step(f"Navigate to {self.URL_PATH}"):
             logger.info("Navigating to: %s", url)
-            self._page.goto(url)
-        return self
+            self.response = self._page.goto(url)
+
+        return self.response
 
     @allure.step("Take screenshot '{name}'")
     def take_screenshot(self, name: str = "screenshot") -> bytes:
@@ -36,3 +41,21 @@ class BasePage:
         screenshot = self._page.screenshot()
         allure.attach(screenshot, name=name, attachment_type=allure.attachment_type.PNG)
         return screenshot
+
+    def verify_response_status(
+        self,
+    ) -> Self:
+        """Verify the HTTP response status is 200. Raises NavigationError if the response is None or non-200."""
+        if self.response is None:
+            message = f"No response from {self.URL_PATH}"
+            logger.warning(message)
+            raise NavigationError(message)
+
+        match self.response.status:
+            case 200:
+                logger.info("200 response from %s", self.URL_PATH)
+                return self
+            case _:
+                message = f"{self.response.status} response from {self.URL_PATH}"
+                logger.error(message)
+                raise NavigationError(message)
