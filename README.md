@@ -17,10 +17,10 @@ Production-grade test automation platform with integrated AI agents that demonst
 | Layer | Technologies |
 |-------|-------------|
 | **E2E Testing** | Playwright, pytest, pytest-xdist |
-| **API Testing** | httpx |
-| **AI Layer** | Claude API (claude-sonnet-4-7), multi-agent workflows, LLM-as-Judge |
+| **API Testing** | _planned_ — httpx |
+| **AI Layer** | Claude Code subagents + Playwright MCP · _planned_ — Claude API agents, LLM-as-Judge |
 | **Code Quality** | Ruff, mypy (strict), Bandit, pip-audit, Radon |
-| **Infrastructure** | Docker, GitHub Actions, Allure |
+| **Infrastructure** | GitHub Actions, Allure · _planned_ — Docker |
 | **App Under Test** | stripe-samples/accept-a-payment (payments domain) |
 
 ---
@@ -29,7 +29,7 @@ Production-grade test automation platform with integrated AI agents that demonst
 
 - **Code quality infrastructure** — pre-commit hooks, strict mypy, CI enforcement
 - **Page Object Model** — reusable abstractions across applications
-- **Multi-agent setup** — Claude API + Playwright MCP pipeline
+- **Multi-agent setup** — Claude Code subagents + Playwright MCP pipeline
 - **CI/CD** — GitHub Actions: code quality + test workflows
 - **ADRs** — architectural decisions documented (001–004)
 
@@ -40,7 +40,7 @@ Production-grade test automation platform with integrated AI agents that demonst
 | Phase | Status | Goal |
 |-------|--------|------|
 | Foundation & Code Quality | ✅ Done | Repo, CI, pre-commit, pyproject |
-| AI Setup | ✅ Done | Claude API, multi-agent, Playwright MCP |
+| AI Setup | ✅ Done | Claude Code subagents, multi-agent workflows, Playwright MCP |
 | Framework Foundation | ✅ Done | POM patterns, The Internet app |
 | Docker + CI | ⏳ In Progress | Dockerized test runner, CI matrix, Allure on GitHub Pages |
 | Payments App | Planned | Stripe E2E + API tests (15+ scenarios) |
@@ -86,8 +86,8 @@ task quality                   # Run all quality checks
 |-----|----------|
 | [ADR-001](docs/arch/ard-001-playwright-selection.md) | Playwright as the E2E framework |
 | [ADR-002](docs/arch/ard-002-code-quality-infrastructure.md) | Code quality toolchain |
-| [ADR-003](docs/arch/ard-003-pre-commit.md) | Pre-commit over custom git hooks |
-| [ADR-004](docs/arch/ard-004-git-strategy.md) | GitHub Flow branching strategy |
+| [ADR-003](docs/arch/ard-003-git-strategy.md) | Git branching strategy |
+| [ADR-004](docs/arch/ard-004-ai-skills.md) | AI skills for codified project standards |
 
 ---
 
