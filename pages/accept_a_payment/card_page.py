@@ -44,7 +44,7 @@ class CardPage(AcceptAPaymentBasePage):
     @allure.step("Fill the card number input with the given card number")
     def fill_card_number(self, card_number: str) -> Self:
         """Fill the card number input with the given card number."""
-        logger.info("Filling card number: %s", card_number)
+        logger.info("Filling card number")
         self._card_input.fill(card_number)
         return self
 
@@ -58,7 +58,7 @@ class CardPage(AcceptAPaymentBasePage):
     @allure.step("Fill the cvc input with the given cvc")
     def fill_cvc(self, cvc: str) -> Self:
         """Fill the cvc input with the given cvc."""
-        logger.info("Filling cvc: %s", cvc)
+        logger.info("Filling cvc")
         self._cvc_input.fill(cvc)
         return self
 
