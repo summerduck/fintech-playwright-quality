@@ -1,0 +1,111 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Accept a Payment has no "prod" URL, so the suite must target the
+  # locally-booted app. With TEST_ENV=local the `env` fixture resolves
+  # acceptapayment -> http://localhost:4242 (see config/__init__.py).
+  TEST_ENV: local
+  APP_PORT: "4242"
+
+jobs:
+  tests:
+    name: pytest (framework + Accept a Payment E2E)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tests
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browser
+        run: python -m playwright install --with-deps chromium
+
+      # Fail early with an actionable message instead of letting every
+      # payment test fail cryptically when the app boots without keys.
+      - name: Verify Stripe test keys are configured
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+        run: |
+          if [ -z "$STRIPE_SECRET_KEY" ] || [ -z "$STRIPE_PUBLISHABLE_KEY" ]; then
+            echo "::error::STRIPE_SECRET_KEY and STRIPE_PUBLISHABLE_KEY repo secrets are required to boot the app on :$APP_PORT. Add them under Settings -> Secrets and variables -> Actions (use Stripe TEST-mode keys)."
+            exit 1
+          fi
+
+      - name: Clone Accept a Payment sample app
+        run: git clone --depth 1 https://github.com/stripe-samples/accept-a-payment.git app-under-test
+
+      - name: Install app server dependencies
+        run: pip install -r app-under-test/custom-payment-flow/server/python/requirements.txt
+
+      - name: Start app on :4242
+        working-directory: app-under-test/custom-payment-flow/server/python
+        env:
+          FLASK_APP: server.py
+          # server.py resolves STATIC_DIR relative to its own file and has no
+          # default (the sample expects it from a .env we don't create), so set
+          # it explicitly: ../../client/html serves card.html.
+          STATIC_DIR: ../../client/html
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+        run: |
+          python -m flask run --port "$APP_PORT" > "$GITHUB_WORKSPACE/app-server.log" 2>&1 &
+          echo "APP_PID=$!" >> "$GITHUB_ENV"
+
+      - name: Wait for app to be ready on :4242
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sSf "http://localhost:$APP_PORT/card.html" > /dev/null; then
+              echo "App is up on :$APP_PORT"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::App did not become ready on :$APP_PORT within 30s"
+          cat app-server.log || true
+          exit 1
+
+      # Non-zero pytest exit fails this step, which fails the job and turns
+      # the PR/push check red. Scope is framework unit tests + the Accept a
+      # Payment E2E suite (the_internet is excluded: it needs a different
+      # env and is being retired).
+      - name: Run pytest
+        run: pytest tests/framework tests/accept_a_payment
+
+      - name: Dump app server log on failure
+        if: failure()
+        run: cat app-server.log || true
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            report.html
+            allure-report/
+            test-results/
+            test-logs/
+            app-server.log
+          if-no-files-found: ignore
+          retention-days: 14
