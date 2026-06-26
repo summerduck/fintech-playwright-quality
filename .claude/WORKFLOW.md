@@ -246,29 +246,29 @@ Detects flaky tests, slow tests, dead code, and coverage gaps.
 
 ### Adding a new page test from scratch
 ```
-/requirements_review checkboxes "User can check and uncheck checkboxes. State should reflect correctly."
-/test_plan checkboxes
+/requirements_review card "User can pay with a valid card. Payment succeeds and a confirmation is shown."
+/test_plan card
 /explore_codebase
-/design_tests checkboxes the-internet checkboxes page
-/implement_tests checkboxes
-/run_tests the_internet
+/design_tests card accept-a-payment card page
+/implement_tests card
+/run_tests acceptapayment
 /debug
-/apply_fixes the_internet
-/reporting the_internet
+/apply_fixes acceptapayment
+/reporting acceptapayment
 /open_pr
 ```
 
 ### Something broke after a deploy
 ```
-/run_tests the_internet
+/run_tests acceptapayment
 /debug
-/apply_fixes the_internet
-/reporting the_internet
+/apply_fixes acceptapayment
+/reporting acceptapayment
 ```
 
 ### App UI changed
 ```
-/maintenance the_internet "checkbox inputs now have id=checkbox-1 and id=checkbox-2"
+/maintenance acceptapayment "card number input moved into a nested Stripe iframe"
 ```
 
 ### Monthly health check

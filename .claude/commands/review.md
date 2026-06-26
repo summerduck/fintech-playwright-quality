@@ -11,7 +11,7 @@ You are coordinating the final quality review of implemented E2E tests before co
 Arguments: `$ARGUMENTS`
 
 - `$ARGUMENTS[0]` — scope: app name, test file path, or feature slug
-  - Examples: `the_internet`, `tests/the_internet/test_login.py`, `login`
+  - Examples: `acceptapayment`, `tests/accept_a_payment/test_card.py`, `card`
 - If omitted, review all recently changed test files (use `git diff --name-only` to find them)
 
 ---

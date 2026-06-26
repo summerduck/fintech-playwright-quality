@@ -36,7 +36,7 @@ Produce a single Markdown document saved to `.claude/agents/design.md`. Use the 
 ### 1. Context
 
 Describe what the task involves at a high level:
-- Which web application is targeted (`theinternet`).
+- Which web application is targeted (`acceptapayment`).
 - What user scenario will be tested.
 - Which existing modules this task touches (reference file paths from `research.md`).
 
@@ -63,7 +63,7 @@ For each new page object file:
 - Class name: `<Feature>Page` (PascalCase)
 - Parent class: `<App>BasePage` or `BasePage`
 - `URL_PATH`: value (e.g., `"/feature-name"`)
-- `APP_NAME`: value (e.g., `"theinternet"`)
+- `APP_NAME`: value (e.g., `"acceptapayment"`)
 - Locators to add in `pages/<app>/locators.py` (CSS selectors, role-based, or data-testid — prefer role-based and `get_by_*` over raw CSS)
 - Methods required (name + description, no code)
 
@@ -130,7 +130,7 @@ State the naming rules that apply to this task:
 
 **Pytest markers:**
 - Use only markers defined in `pyproject.toml`
-- Every test must have at least one app marker (`@pytest.mark.theinternet`, etc.) and one type marker (`@pytest.mark.smoke` or `@pytest.mark.regression`)
+- Every test must have at least one app marker (`@pytest.mark.acceptapayment`, etc.) and one type marker (`@pytest.mark.smoke` or `@pytest.mark.regression`)
 
 ### 6. Playwright Usage Rules
 

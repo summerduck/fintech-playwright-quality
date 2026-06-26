@@ -2,7 +2,6 @@
   "permissions": {
     "allow": [
       "mcp__playwright",
-      "WebFetch(domain:the-internet.herokuapp.com)",
       "Bash(ruff check:*)",
       "Bash(git fetch:*)",
       "Bash(git ls-tree:*)",

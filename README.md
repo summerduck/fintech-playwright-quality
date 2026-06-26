@@ -41,7 +41,7 @@ Production-grade test automation platform with integrated AI agents that demonst
 |-------|--------|------|
 | Foundation & Code Quality | ✅ Done | Repo, CI, pre-commit, pyproject |
 | AI Setup | ✅ Done | Claude Code subagents, multi-agent workflows, Playwright MCP |
-| Framework Foundation | ✅ Done | POM patterns, The Internet app |
+| Framework Foundation | ✅ Done | POM patterns, fixtures, multi-app config |
 | Docker + CI | ⏳ In Progress | Dockerized test runner, CI matrix, Allure on GitHub Pages |
 | Payments App | Planned | Stripe E2E + API tests (15+ scenarios) |
 | AI Integration | Planned | Test Generator, Failure Triage, LLM-as-Judge — all with accuracy metrics |
@@ -73,7 +73,8 @@ pre-commit install
 ```
 
 ```bash
-pytest tests/the_internet/     # Run The Internet tests
+pytest tests/framework/        # Run framework unit tests (no app needed)
+pytest tests/accept_a_payment/ # Run Accept a Payment E2E tests
 pytest -m smoke                # Smoke suite only
 task quality                   # Run all quality checks
 ```

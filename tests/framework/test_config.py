@@ -39,7 +39,7 @@ class TestGetBaseUrl:
 
     def test_invalid_env_error_lists_valid_options(self) -> None:
         with pytest.raises(ValueError, match="Valid options: local, prod"):
-            get_base_url("theinternet", "unknown")
+            get_base_url("acceptapayment", "unknown")
 
     def test_unknown_app_error_lists_registered_apps(self) -> None:
         with pytest.raises(ValueError, match="Registered apps:"):

@@ -13,7 +13,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `the_internet`
+1. Identify the target app: `acceptapayment`
 2. Check existing page objects in `pages/<app>/` — workflows can only orchestrate pages that exist
 3. Check existing workflows in `workflow/` to avoid duplication
 4. Read `config/data/` for relevant data models (`User`, `Product`, `CheckoutInfo`)
@@ -24,7 +24,7 @@ This skill complements:
 ```
 workflow/
 ├── __init__.py
-└── the_internet_workflow.py
+└── accept_a_payment_workflow.py
 ```
 
 File naming: `<app>_workflow.py` — one workflow class per app.
@@ -162,24 +162,24 @@ Add this fixture alongside the existing page object fixtures in the same `confte
 ### With Workflow (concise, intent-focused)
 
 ```python
-    def test_navigate_and_load(
-        self, the_internet_workflow: TheInternetWorkflow
+    def test_card_payment_succeeds(
+        self, accept_a_payment_workflow: AcceptAPaymentWorkflow
     ) -> None:
-        """Verify dynamic loading completes successfully."""
-        the_internet_workflow.load_dynamic_example(example=1)
+        """Verify a card payment completes successfully."""
+        accept_a_payment_workflow.complete_card_payment()
         # (same assertions)
 ```
 
 ### Without Workflow (verbose, same flow inlined)
 
 ```python
-    def test_navigate_and_load(
+    def test_card_payment_succeeds(
         self,
-        dynamic_loading_page: DynamicLoadingPage,
+        card_page: CardPage,
     ) -> None:
         """Same test without workflow — more verbose."""
-        dynamic_loading_page.navigate_to_example(1)
-        dynamic_loading_page.click_start()
+        card_page.fill_card_details()
+        card_page.click_pay()
         # (same assertions)
 ```
 
@@ -192,18 +192,18 @@ that carry their own `@allure.step()` decorators.
 A test can use a workflow for setup and a page object for the action under test:
 
 ```python
-    def test_tables_after_navigation(
+    def test_three_ds_after_navigation(
         self,
-        the_internet_workflow: TheInternetWorkflow,
-        tables_page: TablesPage,
+        accept_a_payment_workflow: AcceptAPaymentWorkflow,
+        three_ds_page: ThreeDSPage,
     ) -> None:
-        """Verify tables page is accessible after homepage navigation."""
+        """Verify the 3DS page is reachable after card-form navigation."""
         # Arrange — workflow handles initial navigation
-        the_internet_workflow.navigate_to_homepage()
+        accept_a_payment_workflow.navigate_to_card_form()
 
-        # Assert — interact with tables page object directly
-        tables_page.navigate()
-        tables_page.verify_page_loaded()
+        # Assert — interact with the 3DS page object directly
+        three_ds_page.navigate()
+        three_ds_page.verify_page_loaded()
 ```
 
 ## Code Quality

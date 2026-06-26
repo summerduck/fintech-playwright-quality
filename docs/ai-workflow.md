@@ -262,10 +262,10 @@ This runs automatically inside `/design_tests` too — run it separately only to
 **When to use:** After `/implement_tests` completes, or any time you need to run the suite manually.
 
 Scope can be:
-- App name: `the_internet`
-- Test file: `tests/the_internet/test_login.py`
+- App name: `acceptapayment`
+- Test file: `tests/accept_a_payment/test_card.py`
 - Marker: `smoke`
-- Node ID: `tests/the_internet/test_login.py::TestLogin::test_valid_login`
+- Node ID: `tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card`
 
 **What happens:**
 1. Runs pytest for the given scope
@@ -321,9 +321,9 @@ Scope matches what was passed to `/debug`.
 **When to use:** After implementation passes tests, before committing — to verify code quality against project standards.
 
 Scope can be:
-- App name: `the_internet`
-- Test file: `tests/the_internet/test_login.py`
-- Feature slug: `login`
+- App name: `acceptapayment`
+- Test file: `tests/accept_a_payment/test_card.py`
+- Feature slug: `card`
 - Omit to review all files changed since last commit
 
 **What happens:**
@@ -399,7 +399,7 @@ Scope can be:
 
 Examples:
 ```
-/maintenance the_internet "login button text changed from Login to Sign In"
+/maintenance acceptapayment "pay button text changed from Pay now to Submit payment"
 ```
 
 **What happens:**
@@ -523,29 +523,29 @@ Each stage has a gate — a condition that must be true before moving to the nex
 
 ### Adding a new page test from scratch
 ```
-/requirements_review checkboxes "User can check and uncheck checkboxes. State should reflect correctly."
-/test_plan checkboxes
+/requirements_review card "User can pay with a valid card. Payment succeeds and a confirmation is shown."
+/test_plan card
 /explore_codebase
-/design_tests checkboxes the-internet checkboxes page
-/implement_tests checkboxes
-/run_tests the_internet
+/design_tests card accept-a-payment card page
+/implement_tests card
+/run_tests acceptapayment
 /debug           # picks up latest run automatically
-/apply_fixes the_internet
-/reporting the_internet
+/apply_fixes acceptapayment
+/reporting acceptapayment
 /open_pr
 ```
 
 ### Something broke after a deploy
 ```
-/run_tests the_internet
+/run_tests acceptapayment
 /debug           # picks up latest run automatically
-/apply_fixes the_internet
-/reporting the_internet
+/apply_fixes acceptapayment
+/reporting acceptapayment
 ```
 
 ### App UI changed
 ```
-/maintenance the_internet "checkbox inputs now have id=checkbox-1 and id=checkbox-2"
+/maintenance acceptapayment "card number input moved into a nested Stripe iframe"
 ```
 
 ### Monthly health check

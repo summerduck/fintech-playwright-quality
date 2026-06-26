@@ -3,10 +3,6 @@
 VALID_ENVS = frozenset(("prod", "local"))
 
 APP_URLS: dict[str, dict[str, str]] = {
-    "theinternet": {
-        "prod": "https://the-internet.herokuapp.com",
-        "local": "http://localhost:4567",
-    },
     "acceptapayment": {
         "local": "http://localhost:4242",
     },

@@ -73,7 +73,7 @@ Fill in only the files relevant to this phase.
 **Acceptance criteria:**
 - Bullet list of verifiable conditions that confirm the phase is done correctly.
 - Examples:
-  - "The page class inherits from `TheInternetBasePage`."
+  - "The page class inherits from `AcceptAPaymentBasePage`."
   - "All locators use `get_by_role` or CSS constants from `locators.py`; no inline strings in page methods."
   - "Every public method is decorated with `@allure.step`."
   - "The test file has no Python logic (no `if`, `for`, `while`, `try`) in test bodies."

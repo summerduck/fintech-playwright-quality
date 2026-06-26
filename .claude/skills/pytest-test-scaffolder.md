@@ -31,7 +31,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `the_internet`
+1. Identify the target app: `acceptapayment`
 2. Check which Page Objects exist in `pages/<app>/`
 3. Review existing tests in `tests/<app>/` for patterns already in use
 4. Read `conftest.py` to confirm available fixtures and hooks
@@ -40,11 +40,9 @@ This skill complements:
 
 ```
 tests/
-├── the_internet/
-│   ├── conftest.py              # Page object fixtures for the_internet
-│   ├── test_dynamic_loading.py
-│   ├── test_file_upload.py
-│   └── test_tables.py
+├── accept_a_payment/
+│   ├── conftest.py              # Page object fixtures for accept_a_payment
+│   └── test_card.py
 └── framework/
     └── test_log_helpers.py
 ```
@@ -73,7 +71,7 @@ Each app directory has a `conftest.py` that provides page object fixtures.
 Every test **must** have an app marker plus at least one category marker.
 
 **App markers** (exactly one per test):
-- `@pytest.mark.theinternet` — tests in `tests/the_internet/`
+- `@pytest.mark.acceptapayment` — tests in `tests/accept_a_payment/`
 
 **Category markers** (one or more):
 - `smoke` — quick smoke tests (used in PR fast-feedback workflow)
@@ -110,8 +108,8 @@ Each app directory has its own `conftest.py` that provides **page object fixture
 
 | Fixture | Returns | Source |
 |---------|---------|--------|
-| `dynamic_loading_page` | `DynamicLoadingPage(page, base_url)` | `tests/the_internet/conftest.py` |
-| `file_upload_page` | `FileUploadPage(page, base_url)` | `tests/the_internet/conftest.py` |
+| `card_page` | `CardPage(page, base_url)` | `tests/accept_a_payment/conftest.py` |
+| `three_ds_page` | `ThreeDSPage(page, base_url)` | `tests/accept_a_payment/conftest.py` |
 
 Note: page objects are always received as **fixtures**. Methods that transition the user to another page still return `Self` — the next page object comes from a separate fixture parameter, not from the return value of a POM method.
 
@@ -122,7 +120,7 @@ Each app directory defines its own `base_url` fixture in `tests/<app>/conftest.p
 ```python
 @pytest.fixture
 def base_url() -> str:
-    return "https://the-internet.herokuapp.com"
+    return "http://localhost:4242"
 ```
 
 This overrides Playwright's built-in `base_url` fixture at directory scope. No global enum or marker introspection needed — each app directory owns its URL. The `--base-url` CLI option still works as a manual override.
@@ -232,7 +230,7 @@ Prefer verification methods on the page object (`verify_page_loaded`, `get_error
 
 ```python
     @allure.story("Dynamic loading examples")
-    @pytest.mark.theinternet
+    @pytest.mark.acceptapayment
     @pytest.mark.regression
     @pytest.mark.parametrize(
         ("example", "expected_text"),
@@ -340,7 +338,7 @@ Apply all rules from the **code-quality-standards** skill.
 ```python
 # Bad: Test creates page objects directly
 def test_load(page: Page) -> None:
-    dynamic_loading_page = DynamicLoadingPage(page, "https://the-internet.herokuapp.com")
+    dynamic_loading_page = DynamicLoadingPage(page, "http://localhost:4242")
     dynamic_loading_page.navigate()
 ```
 
@@ -395,7 +393,7 @@ def test_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
 
 # Good: Both app and category markers
 @allure.story("Dynamic Loading")
-@pytest.mark.theinternet
+@pytest.mark.acceptapayment
 @pytest.mark.smoke
 def test_loading(self, dynamic_loading_page: DynamicLoadingPage) -> None:
     ...
