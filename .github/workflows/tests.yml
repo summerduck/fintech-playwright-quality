@@ -62,6 +62,10 @@ jobs:
         working-directory: app-under-test/custom-payment-flow/server/python
         env:
           FLASK_APP: server.py
+          # server.py resolves STATIC_DIR relative to its own file and has no
+          # default (the sample expects it from a .env we don't create), so set
+          # it explicitly: ../../client/html serves card.html.
+          STATIC_DIR: ../../client/html
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
         run: |
