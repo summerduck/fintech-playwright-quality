@@ -4,6 +4,8 @@
 
 Superseded
 
+> **Superseded note (2026-06-26):** The Internet (`the-internet.herokuapp.com`) was removed as a test target — all its page objects (`pages/the_internet/`) and tests (`tests/the_internet/`) have been deleted. Skill examples below that reference "actual The Internet pages" (`playwright-page-object-generator`) and "The Internet page loads" (`locust-performance-test`) describe a target that no longer exists; the suite now targets the Accept a Payment flow.
+
 ## Context
 
 The project requires consistent code generation across multiple contributors (Engineer and AI) for page objects, tests, workflows, Dockerfiles, CI workflows, performance tests, and documentation. Without codified standards, each generation produces inconsistent patterns — different locator strategies, missing Allure annotations, inconsistent logging, or non-standard file placement.

@@ -4,6 +4,8 @@
 
 Accepted
 
+> **Superseded note (2026-06-26):** The Internet (`the-internet.herokuapp.com`) was removed as a test target — all its page objects (`pages/the_internet/`) and tests (`tests/the_internet/`) have been deleted. The code-quality toolchain decision recorded here still stands; only the application referenced below as the suite's target no longer exists in the codebase. The suite now targets the Accept a Payment flow.
+
 ## Context
 
 The project's test suite targets The Internet application. Manual code reviews alone cannot enforce consistent formatting, type safety, and security standards across the codebase. Quality issues need to be caught before code reaches the CI/CD pipeline.

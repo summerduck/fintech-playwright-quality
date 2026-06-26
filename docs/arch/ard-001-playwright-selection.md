@@ -4,6 +4,8 @@
 
 Accepted
 
+> **Superseded note (2026-06-26):** The Internet (`the-internet.herokuapp.com`) was removed as a test target — all its page objects (`pages/the_internet/`) and tests (`tests/the_internet/`) have been deleted. The Playwright framework decision recorded here still stands; only the original application referenced below no longer exists in the codebase. The suite now targets the Accept a Payment flow.
+
 ## Context
 
 The project needs a browser automation framework for E2E testing of The Internet web application. Requirements include multi-browser support (Chromium, Firefox, WebKit), reliable handling of dynamic elements, and Python ecosystem compatibility.
