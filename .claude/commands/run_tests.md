@@ -14,10 +14,10 @@ Arguments: `$ARGUMENTS`
 
 If no scope provided, ask:
 > What scope should I run? Examples:
-> - App: `the_internet`
-> - File: `tests/the_internet/test_login.py`
+> - App: `acceptapayment`
+> - File: `tests/accept_a_payment/test_card.py`
 > - Marker: `smoke`
-> - Node ID: `tests/the_internet/test_login.py::TestLogin::test_valid_login`
+> - Node ID: `tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card`
 
 ---
 

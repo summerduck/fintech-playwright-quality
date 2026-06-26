@@ -14,8 +14,8 @@ Arguments: `$ARGUMENTS`
 - `$ARGUMENTS[1+]` — description of what to test (user flows, acceptance criteria, or URL path)
 
 If arguments are missing, ask:
-1. What page or feature are you testing? (e.g. `login`, `file-upload`)
-2. What is the URL path or app? (e.g. `/login` on `the-internet`)
+1. What page or feature are you testing? (e.g. `card`, `3ds-authentication`)
+2. What is the URL path or app? (e.g. `/card.html` on `accept-a-payment`)
 3. What user flows should be covered?
 
 ---

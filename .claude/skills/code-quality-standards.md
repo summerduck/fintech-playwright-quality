@@ -37,8 +37,8 @@ from playwright.sync_api import Locator, Page, expect
 
 # 3. First-party — alphabetical: config < pages < tests < utils
 from config.data.models import User
-from pages.the_internet.dynamic_loading_page import DynamicLoadingPage
-from pages.the_internet.tables_page import TablesPage
+from pages.accept_a_payment.card_page import CardPage
+from pages.accept_a_payment.three_ds_page import ThreeDSPage
 ```
 
 **Rules:**

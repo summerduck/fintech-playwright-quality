@@ -70,7 +70,7 @@ Do not run the full test suite unless Lead Agent explicitly requests it.
 ### Step 3 — Record Results
 
 For every test that ran, record:
-- Node ID (e.g., `tests/the_internet/test_feature.py::TestFeature::test_scenario`)
+- Node ID (e.g., `tests/accept_a_payment/test_feature.py::TestFeature::test_scenario`)
 - Result: `PASSED` | `FAILED` | `ERROR` | `SKIPPED`
 - Duration (seconds)
 

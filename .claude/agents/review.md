@@ -97,7 +97,7 @@ For each file in the phase, run through the applicable checklist items. Record t
 - [ ] No Python logic in test bodies: no `if`, `for`, `while`, `try/except`, list comprehensions, inline arithmetic.
 - [ ] Each test follows AAA structure (Arrange / Act / Assert) with comments.
 - [ ] Each test method has `@allure.epic`, `@allure.feature`, `@allure.story`, `@allure.severity`, `@allure.title`.
-- [ ] Each test method has at least one app marker (`@pytest.mark.theinternet`) and at least one type marker (`@pytest.mark.smoke` or `@pytest.mark.regression`).
+- [ ] Each test method has at least one app marker (`@pytest.mark.acceptapayment`) and at least one type marker (`@pytest.mark.smoke` or `@pytest.mark.regression`).
 - [ ] All markers used are defined in `pyproject.toml` — check the markers list from `research.md`.
 - [ ] Tests use the fixture from `conftest.py` — no direct class instantiation inside the test.
 - [ ] Test methods have type-annotated parameters.

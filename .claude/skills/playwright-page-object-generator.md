@@ -31,7 +31,7 @@ This skill complements:
 
 ## Before Generating
 
-1. Identify the target app: `the_internet`
+1. Identify the target app: `acceptapayment`
 2. Check existing page objects in `pages/<app>/`
 3. Read `pages/base_page.py` for available Tier 1 base methods
 4. Read `pages/<app>/<app>_base_page.py` for available Tier 2 domain methods
@@ -43,12 +43,11 @@ This skill complements:
 ```
 pages/
 ├── base_page.py                          # Tier 1: Universal base
-└── the_internet/
+└── accept_a_payment/
     ├── __init__.py
-    ├── the_internet_base_page.py         # Tier 2: Domain base
-    ├── dynamic_loading_page.py
-    ├── file_upload_page.py
-    └── tables_page.py
+    ├── accept_a_payment_base_page.py     # Tier 2: Domain base
+    ├── card_page.py
+    └── three_ds_page.py
 ```
 
 File naming: `<feature>_page.py` for concrete pages, `<app>_base_page.py` for domain bases, `locators.py` for selector constants.
@@ -82,12 +81,11 @@ Convention: module-level `UPPER_SNAKE_CASE` string constants, grouped by page wi
 Tier 1: BasePage (pages/base_page.py)
   │     navigate(), take_screenshot()
   │
-  └── Tier 2: TheInternetBasePage (pages/the_internet/the_internet_base_page.py)
-        │     get_page_heading(), get_footer_text()
+  └── Tier 2: AcceptAPaymentBasePage (pages/accept_a_payment/accept_a_payment_base_page.py)
+        │     get_page_heading(), get_status_message()
         │
-        ├── Tier 3: DynamicLoadingPage
-        ├── Tier 3: FileUploadPage
-        └── Tier 3: TablesPage
+        ├── Tier 3: CardPage
+        └── Tier 3: ThreeDSPage
 ```
 
 | Tier | Scope | Contains |

@@ -10,7 +10,7 @@ You are coordinating the generation of a test suite report.
 
 Arguments: `$ARGUMENTS`
 
-- `$ARGUMENTS[0]` — scope: `all`, app name (`the_internet`), or marker (`smoke`, `regression`)
+- `$ARGUMENTS[0]` — scope: `all`, app name (`acceptapayment`), or marker (`smoke`, `regression`)
 - Default scope if omitted: `all`
 
 ---

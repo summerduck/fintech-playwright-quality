@@ -10,7 +10,7 @@ You are coordinating a health check of the test suite.
 
 Arguments: `$ARGUMENTS`
 
-- `$ARGUMENTS[0]` — scope: `all`, app name (`the_internet`), or `quick` (static analysis only, no test run)
+- `$ARGUMENTS[0]` — scope: `all`, app name (`acceptapayment`), or `quick` (static analysis only, no test run)
 - Default scope if omitted: `all`
 
 ---

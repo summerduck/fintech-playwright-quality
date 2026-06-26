@@ -87,8 +87,7 @@ jobs:
 
       # Non-zero pytest exit fails this step, which fails the job and turns
       # the PR/push check red. Scope is framework unit tests + the Accept a
-      # Payment E2E suite (the_internet is excluded: it needs a different
-      # env and is being retired).
+      # Payment E2E suite.
       - name: Run pytest
         run: pytest tests/framework tests/accept_a_payment
 

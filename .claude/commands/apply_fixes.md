@@ -13,7 +13,7 @@ Arguments: `$ARGUMENTS`
 - `$ARGUMENTS[0]` — scope that was passed to `/debug` (app name, file path, marker, or test node ID)
 
 If no scope provided, ask:
-> What scope was passed to `/debug`? (e.g. `the_internet`, `tests/the_internet/test_login.py`, `smoke`)
+> What scope was passed to `/debug`? (e.g. `acceptapayment`, `tests/accept_a_payment/test_card.py`, `smoke`)
 
 ---
 

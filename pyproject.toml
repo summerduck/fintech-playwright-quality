@@ -148,7 +148,6 @@ markers = [
     "smoke: Quick smoke tests",
     "regression: Full regression tests",
     "slow: Slow running tests",
-    "theinternet: Tests for The Internet application",
     "unit: Unit tests for framework code",
     "property: Property-based tests (Hypothesis)",
     "network: Network monitoring tests",
