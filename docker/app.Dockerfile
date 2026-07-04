@@ -6,6 +6,8 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends git ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
+# Bust the clone layer whenever upstream HEAD moves (we intentionally test live HEAD).
+ADD https://api.github.com/repos/stripe-samples/accept-a-payment/git/refs/heads/main /tmp/upstream-ref
 RUN git clone --depth 1 https://github.com/stripe-samples/accept-a-payment.git /app
 
 WORKDIR /app/custom-payment-flow/server/python

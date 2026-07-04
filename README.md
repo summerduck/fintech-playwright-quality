@@ -8,7 +8,7 @@
 
 > **Work in progress**
 
-Production-grade test automation platform with integrated AI agents that demonstrating how AI changes quality engineering, not just speeds up test writing.
+Production-grade test automation platform with integrated AI agents demonstrating how AI changes quality engineering, not just speeds up test writing.
 
 📊 **Live Allure report:** https://summerduck.github.io/fintech-playwright-quality/ (updated on every push to `main`, with cross-run trend history)
 
