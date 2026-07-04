@@ -11,6 +11,7 @@ import logging
 import os
 from typing import Any
 
+import allure
 import pytest
 from dotenv import load_dotenv
 
@@ -82,6 +83,16 @@ def env(request: pytest.FixtureRequest) -> str:
         pytest.fail("No environment specified. Set TEST_ENV in .env or pass --env.")
 
     return resolved
+
+
+@pytest.fixture(autouse=True)
+def _allure_browser_parameter(browser_name: str) -> None:
+    """Attach the browser name as an Allure parameter to every test.
+
+    Without it, identical test names from different browsers collapse
+    into "retries" when multi-browser results are merged into one report.
+    """
+    allure.dynamic.parameter("browser", browser_name)
 
 
 # ── Per-Test Logging ─────────────────────────────────────────────────────────
