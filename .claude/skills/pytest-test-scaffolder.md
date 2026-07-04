@@ -168,7 +168,7 @@ Each app directory owns its `base_url` and page object fixtures. Tests never ins
 These run automatically — do not duplicate in test code or commands:
 - `--reruns=1` — failed tests are retried once
 - `--cov=pages --cov=utils --cov=config` — coverage collected on page objects and utilities
-- `--alluredir=allure-report` — Allure results directory
+- `--alluredir=allure-results` — Allure results directory
 - `--html=report.html` — HTML report generated
 - `-v --tb=short` — verbose output, short tracebacks
 - `--strict-markers` — undefined markers cause errors

@@ -126,7 +126,7 @@ Scope can be: app name, test file, marker, or node ID.
 **Agent:** `bug-tracer`
 **Output:** `thoughts/debug/YYYY-MM-DD-<slug>.md`
 
-If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-report/`.
+If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-results/`.
 
 Diagnoses failures by category (`SELECTOR` / `TIMING` / `LOGIC` / `FIXTURE` / `ASSERTION` / `IMPORT` / `CONFIG` / `FLAKY` / `ENVIRONMENT`). Reports exact file + line + what needs to change. Does not apply fixes.
 

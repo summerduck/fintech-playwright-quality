@@ -10,6 +10,10 @@
 
 Production-grade test automation platform with integrated AI agents that demonstrating how AI changes quality engineering, not just speeds up test writing.
 
+📊 **Live Allure report:** https://summerduck.github.io/fintech-playwright-quality/ (updated on every push to `main`, with cross-run trend history)
+
+> One-time repo setup for the report: Settings → Pages → Deploy from branch → `gh-pages` / root.
+
 ---
 
 ## Stack
@@ -20,7 +24,7 @@ Production-grade test automation platform with integrated AI agents that demonst
 | **API Testing** | _planned_ — httpx |
 | **AI Layer** | Claude Code subagents + Playwright MCP · _planned_ — Claude API agents, LLM-as-Judge |
 | **Code Quality** | Ruff, mypy (strict), Bandit, pip-audit, Radon |
-| **Infrastructure** | GitHub Actions, Allure · _planned_ — Docker |
+| **Infrastructure** | GitHub Actions, Allure, Docker Compose |
 | **App Under Test** | stripe-samples/accept-a-payment (payments domain) |
 
 ---
@@ -42,7 +46,7 @@ Production-grade test automation platform with integrated AI agents that demonst
 | Foundation & Code Quality | ✅ Done | Repo, CI, pre-commit, pyproject |
 | AI Setup | ✅ Done | Claude Code subagents, multi-agent workflows, Playwright MCP |
 | Framework Foundation | ✅ Done | POM patterns, fixtures, multi-app config |
-| Docker + CI | ⏳ In Progress | Dockerized test runner, CI matrix, Allure on GitHub Pages |
+| Docker + CI | ✅ Done | Dockerized test runner, CI matrix, Allure on GitHub Pages |
 | Payments App | Planned | Stripe E2E + API tests (15+ scenarios) |
 | AI Integration | Planned | Test Generator, Failure Triage, LLM-as-Judge — all with accuracy metrics |
 | Performance Testing | Planned | Locust load scenarios, CI threshold gate |
@@ -78,6 +82,17 @@ pytest tests/accept_a_payment/ # Run Accept a Payment E2E tests
 pytest -m smoke                # Smoke suite only
 task quality                   # Run all quality checks
 ```
+
+### Docker (no local setup needed)
+
+```bash
+# Stripe TEST-mode keys in .env: STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY
+task docker-test                          # full suite, chromium
+task docker-test -- --browser=firefox     # any Playwright browser
+```
+
+The compose stack boots the app under test and the Playwright runner;
+artifacts land in `allure-results/`, `test-results/`, `test-logs/`.
 
 ---
 
