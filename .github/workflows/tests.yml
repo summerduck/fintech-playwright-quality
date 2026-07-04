@@ -108,7 +108,7 @@ jobs:
           path: gh-pages
 
       - name: Generate report with history
-        uses: simple-elf/allure-report-action@f841fec0e421b5d7d8e807dedfb03efb8cf30303 # v1.12
+        uses: simple-elf/allure-report-action@e463a472d3b1d750f9544369d60589ff1964c820 # v1.14
         with:
           allure_results: allure-results
           gh_pages: gh-pages
