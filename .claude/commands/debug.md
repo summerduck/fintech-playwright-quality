@@ -20,7 +20,7 @@ Arguments: `$ARGUMENTS`
 | `test-logs/*.log` | per-test worker logs (pytest-xdist) |
 | `test-results/failed_tests/` | Playwright trace/screenshot for failed tests |
 | `report.html` | pytest-html report (parse for FAILED rows) |
-| `allure-report/` | Allure JSON results (parse `*-result.json` for `status: failed`) |
+| `allure-results/` | Allure JSON results (parse `*-result.json` for `status: failed`) |
 
 Read every source that exists. Aggregate all failures across all sources. Tell the user what was loaded:
 
@@ -28,7 +28,7 @@ Read every source that exists. Aggregate all failures across all sources. Tell t
 > - `thoughts/runs/` — N file(s)
 > - `test-logs/` — N log(s)
 > - `report.html` — N failures
-> - `allure-report/` — N failed result(s)
+> - `allure-results/` — N failed result(s)
 > Diagnosing N unique failing tests.
 
 De-duplicate failures by test node ID — if the same test appears in multiple sources, merge the information and use the most detailed failure output available.

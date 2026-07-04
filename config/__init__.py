@@ -1,10 +1,12 @@
 """Centralised configuration for the multi-app test platform."""
 
-VALID_ENVS = frozenset(("prod", "local"))
+VALID_ENVS = frozenset(("prod", "local", "docker"))
 
 APP_URLS: dict[str, dict[str, str]] = {
     "acceptapayment": {
         "local": "http://localhost:4242",
+        # Hostname of the `app` service on the docker-compose network.
+        "docker": "http://app:4242",
     },
 }
 

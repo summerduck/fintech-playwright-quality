@@ -281,7 +281,7 @@ Scope can be:
 
 **Stage:** 6 — Debug
 
-**When to use:** After `/run_tests` produces failures. If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-report/`.
+**When to use:** After `/run_tests` produces failures. If called with no argument, automatically reads all known output locations: `thoughts/runs/`, `test-logs/`, `test-results/failed_tests/`, `report.html`, `allure-results/`.
 
 **What happens:**
 1. Collects and aggregates failures from all available output sources (de-duplicated by test node ID)

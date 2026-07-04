@@ -10,101 +10,115 @@ concurrency:
   group: tests-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  # Accept a Payment has no "prod" URL, so the suite must target the
-  # locally-booted app. With TEST_ENV=local the `env` fixture resolves
-  # acceptapayment -> http://localhost:4242 (see config/__init__.py).
-  TEST_ENV: local
-  APP_PORT: "4242"
+permissions:
+  contents: read
 
 jobs:
   tests:
-    name: pytest (framework + Accept a Payment E2E)
+    name: e2e (${{ matrix.browser }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    env:
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+      STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
 
     steps:
-      - name: Checkout tests
+      - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.12"
-          cache: "pip"
-
-      - name: Install test dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Install Playwright browser
-        run: python -m playwright install --with-deps chromium
 
       # Fail early with an actionable message instead of letting every
       # payment test fail cryptically when the app boots without keys.
       - name: Verify Stripe test keys are configured
-        env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
         run: |
           if [ -z "$STRIPE_SECRET_KEY" ] || [ -z "$STRIPE_PUBLISHABLE_KEY" ]; then
-            echo "::error::STRIPE_SECRET_KEY and STRIPE_PUBLISHABLE_KEY repo secrets are required to boot the app on :$APP_PORT. Add them under Settings -> Secrets and variables -> Actions (use Stripe TEST-mode keys)."
+            echo "::error::STRIPE_SECRET_KEY and STRIPE_PUBLISHABLE_KEY repo secrets are required. Add them under Settings -> Secrets and variables -> Actions (use Stripe TEST-mode keys)."
             exit 1
           fi
 
-      - name: Clone Accept a Payment sample app
-        run: git clone --depth 1 https://github.com/stripe-samples/accept-a-payment.git app-under-test
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
 
-      - name: Install app server dependencies
-        run: pip install -r app-under-test/custom-payment-flow/server/python/requirements.txt
+      - name: Build images (GHA layer cache)
+        uses: docker/bake-action@5be5f02ff8819ecd3092ea6b2e6261c31774f2b4 # v6
+        with:
+          files: docker-compose.yml
+          load: true
+          set: |
+            *.cache-from=type=gha
+            *.cache-to=type=gha,mode=max
 
-      - name: Start app on :4242
-        working-directory: app-under-test/custom-payment-flow/server/python
-        env:
-          FLASK_APP: server.py
-          # server.py resolves STATIC_DIR relative to its own file and has no
-          # default (the sample expects it from a .env we don't create), so set
-          # it explicitly: ../../client/html serves card.html.
-          STATIC_DIR: ../../client/html
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY }}
-        run: |
-          python -m flask run --port "$APP_PORT" > "$GITHUB_WORKSPACE/app-server.log" 2>&1 &
-          echo "APP_PID=$!" >> "$GITHUB_ENV"
+      - name: Run tests (${{ matrix.browser }})
+        run: docker compose run --rm tests --browser=${{ matrix.browser }}
 
-      - name: Wait for app to be ready on :4242
-        run: |
-          for i in $(seq 1 30); do
-            if curl -sSf "http://localhost:$APP_PORT/card.html" > /dev/null; then
-              echo "App is up on :$APP_PORT"
-              exit 0
-            fi
-            sleep 1
-          done
-          echo "::error::App did not become ready on :$APP_PORT within 30s"
-          cat app-server.log || true
-          exit 1
-
-      # Non-zero pytest exit fails this step, which fails the job and turns
-      # the PR/push check red. Scope is framework unit tests + the Accept a
-      # Payment E2E suite.
-      - name: Run pytest
-        run: pytest tests/framework tests/accept_a_payment
-
-      - name: Dump app server log on failure
+      - name: Dump app logs on failure
         if: failure()
-        run: cat app-server.log || true
+        run: docker compose logs app
 
-      - name: Upload test artifacts
+      - name: Shut down compose stack
+        if: always()
+        run: docker compose down -v
+
+      - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: |
-            report.html
-            allure-report/
-            test-results/
-            test-logs/
-            app-server.log
+          name: allure-results-${{ matrix.browser }}
+          path: allure-results/
           if-no-files-found: ignore
           retention-days: 14
+
+      - name: Upload traces and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ matrix.browser }}
+          path: |
+            test-results/
+            test-logs/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  publish-report:
+    name: Publish Allure report to GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: tests
+    # Publish from main even when tests are red: failed runs in the trend
+    # are more honest than a stale green report.
+    if: always() && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download Allure results from all browsers
+        uses: actions/download-artifact@v4
+        with:
+          pattern: allure-results-*
+          merge-multiple: true
+          path: allure-results
+
+      - name: Fetch gh-pages history
+        uses: actions/checkout@v6
+        # First run: gh-pages does not exist yet — report generates without trends.
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate report with history
+        uses: simple-elf/allure-report-action@f841fec0e421b5d7d8e807dedfb03efb8cf30303 # v1.12
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

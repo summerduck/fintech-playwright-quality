@@ -15,9 +15,18 @@ FAILED_LOG_DIR = LOG_DIR / "failed_tests"
 
 
 def clean_and_create_log_dirs() -> None:
-    """Remove existing log tree and recreate all required directories."""
+    """Empty the log tree and recreate all required directories.
+
+    Clears the *contents* of ``LOG_DIR`` rather than removing the directory
+    itself, since ``LOG_DIR`` may be a bind-mounted Docker volume — removing
+    a mount point raises ``OSError: Device or resource busy``.
+    """
     if LOG_DIR.exists():
-        shutil.rmtree(LOG_DIR)
+        for child in LOG_DIR.iterdir():
+            if child.is_dir():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
 
     LOG_DIR.mkdir(exist_ok=True)
     FAILED_LOG_DIR.mkdir(parents=True, exist_ok=True)
