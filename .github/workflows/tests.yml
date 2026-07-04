@@ -39,10 +39,10 @@ jobs:
           fi
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
 
       - name: Build images (GHA layer cache)
-        uses: docker/bake-action@v6
+        uses: docker/bake-action@5be5f02ff8819ecd3092ea6b2e6261c31774f2b4 # v6
         with:
           files: docker-compose.yml
           load: true
@@ -106,7 +106,7 @@ jobs:
           path: gh-pages
 
       - name: Generate report with history
-        uses: simple-elf/allure-report-action@v1.12
+        uses: simple-elf/allure-report-action@f841fec0e421b5d7d8e807dedfb03efb8cf30303 # v1.12
         with:
           allure_results: allure-results
           gh_pages: gh-pages
@@ -115,7 +115,7 @@ jobs:
           keep_reports: 20
 
       - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
