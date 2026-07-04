@@ -1,0 +1,2 @@
+20:07:30 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-visa-grouped]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-visa-grouped]
+20:07:30 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-visa-grouped]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-visa-grouped]

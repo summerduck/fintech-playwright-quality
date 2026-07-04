@@ -1,0 +1,9 @@
+20:05:47 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[webkit]
+20:05:48 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+20:05:49 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+20:05:51 [INFO] [pages.accept_a_payment.card_page] Filling card number
+20:05:52 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+20:05:52 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 
+20:05:53 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+20:05:54 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card’s expiry date is incomplete.
+20:05:55 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[webkit]

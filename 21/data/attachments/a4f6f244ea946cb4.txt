@@ -1,0 +1,11 @@
+20:07:11 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]] Starting test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]
+20:07:12 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+20:07:12 [INFO] [pages.accept_a_payment.card_page] Filling card form with card: **** **** **** 4242
+20:07:12 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+20:07:13 [INFO] [pages.accept_a_payment.card_page] Filling card number
+20:07:15 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+20:07:16 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+20:07:17 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+20:07:18 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+20:07:18 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Payment succeeded: pi_
+20:07:20 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]] Finished test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]

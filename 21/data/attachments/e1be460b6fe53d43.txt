@@ -1,0 +1,11 @@
+20:06:04 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-mastercard]] Starting test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-mastercard]
+20:06:05 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+20:06:05 [INFO] [pages.accept_a_payment.card_page] Filling card form with card: **** **** **** 4444
+20:06:05 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+20:06:07 [INFO] [pages.accept_a_payment.card_page] Filling card number
+20:06:07 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+20:06:08 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+20:06:08 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+20:06:08 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+20:06:09 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Payment succeeded: pi_
+20:06:10 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-mastercard]] Finished test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-mastercard]

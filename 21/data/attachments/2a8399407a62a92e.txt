@@ -1,0 +1,4 @@
+20:04:49 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]
+20:04:50 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+20:04:53 [INFO] [pages.accept_a_payment.card_page] Verifying page title equals 'Card'
+20:04:54 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]
