@@ -33,7 +33,7 @@ def pytest_addoption(parser: pytest.Parser) -> None:
     parser.addoption(
         "--env",
         action="store",
-        help="Target environment: prod | local",
+        help="Target environment: prod | local | docker",
         default=os.getenv("TEST_ENV", "prod"),
     )
 
