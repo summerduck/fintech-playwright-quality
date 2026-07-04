@@ -116,6 +116,12 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
+      # allure-report-action is a Docker action running as root: it copies the
+      # gh-pages checkout (including .git) into allure-history as root-owned
+      # files, which peaceiris can neither remove nor push over.
+      - name: Drop stray .git dirs from publish assets
+        run: sudo rm -rf allure-history/.git gh-pages/.git
+
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
