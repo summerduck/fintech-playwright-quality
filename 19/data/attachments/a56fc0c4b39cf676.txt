@@ -1,0 +1,4 @@
+17:53:11 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[firefox]
+17:53:17 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+17:53:21 [INFO] [pages.base_page] 200 response from /card.html
+17:53:21 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[firefox]

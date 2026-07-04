@@ -1,0 +1,2 @@
+17:54:07 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[chromium]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[chromium]
+17:54:07 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[chromium]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[chromium]

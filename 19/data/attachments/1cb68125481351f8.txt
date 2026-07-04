@@ -1,0 +1,2 @@
+17:54:08 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-exactly-four-masks-everything]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-exactly-four-masks-everything]
+17:54:08 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-exactly-four-masks-everything]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-exactly-four-masks-everything]
