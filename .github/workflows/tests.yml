@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   tests:
@@ -84,6 +84,8 @@ jobs:
   publish-report:
     name: Publish Allure report to GitHub Pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: tests
     # Publish from main even when tests are red: failed runs in the trend
     # are more honest than a stale green report.
