@@ -12,7 +12,7 @@ iniconfig==2.1.0
 Jinja2==3.1.6
 MarkupSafe==3.0.2
 packaging==25.0
-playwright==1.58.0
+playwright==1.58.0  # keep in sync with docker/runner.Dockerfile base image tag
 pluggy==1.5.0
 pyee==13.0.1
 pytest==8.4.2

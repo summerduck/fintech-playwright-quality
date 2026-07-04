@@ -76,6 +76,21 @@ tasks:
       - "{{.PYTEST}} {{.CLI_ARGS}} tests/"
 
   # ============================================================================
+  # Docker
+  # ============================================================================
+
+  docker-build:
+    desc: Build app and test runner Docker images
+    cmds:
+      - docker compose build
+
+  docker-test:
+    desc: "Run the suite in Docker (usage: task docker-test -- --browser=firefox)"
+    cmds:
+      - defer: docker compose down
+      - docker compose run --rm tests {{.CLI_ARGS}}
+
+  # ============================================================================
   # Code Quality
   # ============================================================================
 

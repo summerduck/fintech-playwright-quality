@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: docker
+      dockerfile: app.Dockerfile
+    image: fintech-app:local
+    ports:
+      - "4242:4242"
+    environment:
+      # Read from the host environment or the project .env file.
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY}
+
+  tests:
+    build:
+      context: .
+      dockerfile: docker/runner.Dockerfile
+    image: fintech-tests:local
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      TEST_ENV: docker
+    volumes:
+      - ./allure-results:/work/allure-results
+      - ./test-results:/work/test-results
+      - ./test-logs:/work/test-logs
