@@ -141,7 +141,7 @@ addopts = [
     "-n=auto",
     "--html=report.html",
     "--self-contained-html",
-    "--alluredir=allure-report",
+    "--alluredir=allure-results",
     "--reruns=0",
 ]
 markers = [

@@ -216,6 +216,7 @@ __marimo__/
 # Test logs
 test-logs/
 allure-report/
+allure-results/
 report.html
 htmlcov/
 mutants/

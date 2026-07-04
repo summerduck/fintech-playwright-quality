@@ -155,17 +155,17 @@ tasks:
     silent: true
 
   allure-report:
-    desc: Generate Allure report
+    desc: Generate Allure report from raw results
     cmds:
       - echo "Generating Allure report..."
-      - allure generate allure-report -o allure-results --clean
-      - echo "Allure report generated in allure-results/"
+      - allure generate allure-results -o allure-report --clean
+      - echo "Allure report generated in allure-report/"
 
   allure-serve:
     desc: Generate and serve Allure report
     cmds:
       - echo "Generating and serving Allure report..."
-      - allure serve allure-report
+      - allure serve allure-results
 
   # ============================================================================
   # Claude Code
