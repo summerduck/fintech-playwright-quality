@@ -1,0 +1,12 @@
+15:28:53 [INFO] [tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[webkit-mastercard]] Starting test - tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[webkit-mastercard]
+15:28:53 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+15:28:55 [INFO] [pages.accept_a_payment.card_page] Filling card form with card: **** **** **** 4444
+15:28:55 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+15:28:56 [INFO] [pages.accept_a_payment.card_page] Filling card number
+15:28:57 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+15:28:58 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+15:28:58 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+15:28:58 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+15:28:59 [INFO] [pages.accept_a_payment.three_ds_page] Three ds is not required
+15:28:59 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Payment succeeded: pi_
+15:29:01 [INFO] [tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[webkit-mastercard]] Finished test - tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[webkit-mastercard]

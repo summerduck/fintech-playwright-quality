@@ -1,0 +1,2 @@
+15:28:56 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-no-spaces]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-no-spaces]
+15:28:56 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-no-spaces]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-no-spaces]
