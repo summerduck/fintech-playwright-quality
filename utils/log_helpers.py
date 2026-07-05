@@ -12,24 +12,41 @@ from pathlib import Path
 # ── Directory layout for test artifacts ──────────────────────────────────────
 LOG_DIR = Path("test-logs")
 FAILED_LOG_DIR = LOG_DIR / "failed_tests"
+ALLURE_RESULTS_DIR = Path("allure-results")
+
+
+def _empty_dir_contents(path: Path) -> None:
+    """Remove everything inside ``path`` without removing ``path`` itself.
+
+    Symlinks (whether they point at a file or a directory) are ``unlink()``-ed
+    rather than followed, since ``shutil.rmtree`` on a symlinked directory
+    would delete the *target's* contents instead of just the link.
+    """
+    if not path.exists():
+        return
+
+    for child in path.iterdir():
+        if child.is_symlink():
+            child.unlink()
+        elif child.is_dir():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
 
 
 def clean_and_create_log_dirs() -> None:
-    """Empty the log tree and recreate all required directories.
+    """Empty the log tree and allure results, then recreate all required directories.
 
-    Clears the *contents* of ``LOG_DIR`` rather than removing the directory
-    itself, since ``LOG_DIR`` may be a bind-mounted Docker volume — removing
-    a mount point raises ``OSError: Device or resource busy``.
+    Clears the *contents* of ``LOG_DIR`` and ``ALLURE_RESULTS_DIR`` rather than
+    removing the directories themselves, since both may be bind-mounted Docker
+    volumes — removing a mount point raises ``OSError: Device or resource busy``.
     """
-    if LOG_DIR.exists():
-        for child in LOG_DIR.iterdir():
-            if child.is_dir():
-                shutil.rmtree(child)
-            else:
-                child.unlink()
+    _empty_dir_contents(LOG_DIR)
+    _empty_dir_contents(ALLURE_RESULTS_DIR)
 
     LOG_DIR.mkdir(exist_ok=True)
     FAILED_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    ALLURE_RESULTS_DIR.mkdir(exist_ok=True)
 
 
 def ensure_log_dirs_exist() -> None:
