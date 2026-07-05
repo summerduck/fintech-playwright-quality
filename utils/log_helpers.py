@@ -19,8 +19,8 @@ def _empty_dir_contents(path: Path) -> None:
     """Remove everything inside ``path`` without removing ``path`` itself.
 
     Symlinks (whether they point at a file or a directory) are ``unlink()``-ed
-    rather than followed, since ``shutil.rmtree`` on a symlinked directory
-    would delete the *target's* contents instead of just the link.
+    rather than passed to ``shutil.rmtree``, since ``rmtree`` refuses symlinks
+    and raises ``OSError: Cannot call rmtree on a symbolic link``.
     """
     if not path.exists():
         return
