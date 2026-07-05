@@ -23,6 +23,7 @@ jobs:
   tests:
     name: e2e (${{ matrix.browser }})
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -92,6 +93,7 @@ jobs:
   publish-report:
     name: Publish Allure report to GitHub Pages
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     permissions:
       contents: write
     needs: tests
