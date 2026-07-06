@@ -1,0 +1,2 @@
+17:58:45 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[firefox]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[firefox]
+17:58:45 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[firefox]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[firefox]

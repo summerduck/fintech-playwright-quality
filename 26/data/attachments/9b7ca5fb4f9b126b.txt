@@ -1,0 +1,4 @@
+17:58:13 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]
+17:58:14 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+17:58:15 [INFO] [pages.accept_a_payment.card_page] Verifying #card-errors is empty on load
+17:58:18 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]

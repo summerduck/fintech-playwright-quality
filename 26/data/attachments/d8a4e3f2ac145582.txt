@@ -1,0 +1,4 @@
+17:58:43 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[chromium]
+17:58:44 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+17:58:48 [INFO] [pages.accept_a_payment.card_page] Verifying #name input is pre-filled with 'Jenny Rosen'
+17:58:49 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[chromium]

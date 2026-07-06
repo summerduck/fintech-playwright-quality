@@ -1,0 +1,2 @@
+17:58:48 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[firefox]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[firefox]
+17:58:48 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[firefox]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[firefox]
