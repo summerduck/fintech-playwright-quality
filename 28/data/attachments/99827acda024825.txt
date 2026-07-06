@@ -1,0 +1,2 @@
+18:38:12 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-amex-uneven]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-amex-uneven]
+18:38:12 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-amex-uneven]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-amex-uneven]

@@ -1,0 +1,4 @@
+18:37:43 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[chromium]
+18:37:44 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+18:37:49 [INFO] [pages.base_page] 200 response from /card.html
+18:37:49 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[chromium]

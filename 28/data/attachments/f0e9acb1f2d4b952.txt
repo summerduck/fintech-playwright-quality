@@ -1,0 +1,2 @@
+18:38:15 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[firefox]
+18:38:20 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[firefox]

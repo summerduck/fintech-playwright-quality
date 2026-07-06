@@ -1,0 +1,2 @@
+18:38:20 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[webkit]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[webkit]
+18:38:20 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[webkit]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[webkit]

@@ -1,0 +1,2 @@
+18:38:14 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[firefox]
+18:38:15 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[firefox]

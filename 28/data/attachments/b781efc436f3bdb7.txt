@@ -1,0 +1,2 @@
+18:38:08 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[chromium]] Starting test - tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[chromium]
+18:38:12 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[chromium]] Finished test - tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[chromium]

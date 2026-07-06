@@ -1,0 +1,2 @@
+18:38:18 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[firefox]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[firefox]
+18:38:18 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[firefox]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[firefox]

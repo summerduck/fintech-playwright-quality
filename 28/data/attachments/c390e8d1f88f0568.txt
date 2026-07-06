@@ -1,0 +1,4 @@
+18:38:12 [INFO] [tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]] Starting test - tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]
+18:38:12 [INFO] [tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]] Finished test - tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]
+18:38:12 [INFO] [tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]] Starting test - tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]
+18:38:12 [INFO] [tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]] Finished test - tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]
