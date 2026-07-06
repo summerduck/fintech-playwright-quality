@@ -59,8 +59,26 @@ jobs:
             *.cache-from=type=gha
             *.cache-to=type=gha,mode=max
 
+      # Retry policy: CI-only, browser-e2e-only, max 1 retry, and only for
+      # infra-shaped failures — assertion failures never retry. The regex
+      # covers Playwright TimeoutError (all browsers), Chromium net::ERR_*,
+      # Firefox NS_ERROR_*, and WebKit's freeform "Could not connect".
+      # GITHUB_STEP_SUMMARY inside the container points at a file under the
+      # mounted test-logs/ volume; the step below bridges it to the runner's
+      # real step summary (the runner-side file is not visible in-container).
       - name: Run tests (${{ matrix.browser }})
-        run: docker compose run --rm tests --browser=${{ matrix.browser }}
+        run: >-
+          docker compose run --rm
+          -e GITHUB_STEP_SUMMARY=/work/test-logs/flaky-summary.md
+          tests --browser=${{ matrix.browser }}
+          --reruns=1 --only-rerun "TimeoutError|net::ERR|NS_ERROR_|Could not connect"
+
+      - name: Publish flaky summary to run page
+        if: always()
+        run: |
+          if [ -s test-logs/flaky-summary.md ]; then
+            cat test-logs/flaky-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Dump app logs on failure
         if: failure()
