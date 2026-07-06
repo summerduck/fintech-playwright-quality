@@ -24,7 +24,7 @@ loudly reported.
 
 | Decision | Choice |
 |---|---|
-| Retry scope | CI-only, e2e-only, max 1 retry. Local and unit-test runs keep `--reruns=0`. |
+| Retry scope | CI-only, browser-e2e-only, max 1 retry. Local and unit-test runs keep `--reruns=0`. API tests (planned next) are never retry-eligible. |
 | Retry eligibility | Only infra-shaped failures via `--only-rerun` regex; assertion failures never retry. |
 | Flaky counting | Custom `pytest_terminal_summary` hook prints `flaky (passed on retry): N` + test list, distinct from clean passes. Allure Retries tab provides report-side visibility for free. |
 | Demo test | Runs in every CI run so the published Allure report always demonstrates retry marking. |
@@ -50,6 +50,20 @@ docker compose run --rm tests --browser=${{ matrix.browser }} \
   `AssertionError` is not.
 - `pyproject.toml` keeps `--reruns=0` with a short comment block explaining
   the policy and pointing at the workflow.
+
+Retry eligibility is a property of the test layer, not the run: only
+browser-driven e2e tests may retry, because only they fail on browser/infra
+noise. API tests (planned as the next suite) must never retry — an HTTP
+timeout against the app under test is signal, not noise, and the
+`--only-rerun` regex alone cannot exclude them (`requests` timeout
+tracebacks contain `ConnectTimeoutError`/`ReadTimeoutError`, which would
+match `TimeoutError`). Mechanism, binding when `tests/api/` is created:
+its `conftest.py` carries a `pytest_collection_modifyitems` hook stamping
+`pytest.mark.flaky(reruns=0)` on every collected item — per-test flaky
+markers take precedence over the CLI `--reruns` flag in
+pytest-rerunfailures, so the API suite opts itself out regardless of how
+CI invokes pytest. Same pattern applies to any future non-browser layer.
+No code ships for this now (the directory does not exist yet).
 
 ### 2. Flaky-count terminal hook (root `conftest.py`)
 
@@ -115,3 +129,5 @@ docker compose run --rm tests --browser=${{ matrix.browser }} \
 - Quarantine mechanism, flake-history storage, auto-detection thresholds.
 - Any change to unit-test or local retry behavior.
 - Failure Triage Agent integration (separate roadmap phase).
+- The `tests/api/` opt-out hook itself — specified above, implemented with
+  the API suite.
