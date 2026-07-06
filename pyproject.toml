@@ -142,6 +142,11 @@ addopts = [
     "--html=report.html",
     "--self-contained-html",
     "--alluredir=allure-results",
+    # Retries default OFF everywhere. CI (and only CI) overrides on the
+    # pytest CLI with `--reruns=1 --only-rerun <infra regex>` — see
+    # .github/workflows/tests.yml. Retries are an observability mechanism,
+    # not a fix: assertion failures never retry, and pass-on-retry is
+    # counted separately (utils/flaky_summary.py).
     "--reruns=0",
 ]
 markers = [
@@ -160,6 +165,7 @@ markers = [
     "acceptance: Acceptance tests",
     "integration: Integration tests",
     "acceptapayment: Accept a Payment application tests",
+    "flaky_demo: Deterministic retry-pipeline demo; exempt from the framework layer's retry opt-out",
 ]
 
 [tool.hypothesis]
