@@ -34,6 +34,15 @@ def test_always_fails() -> None:
     raise AssertionError("always fails")
 """
 
+_DEMO_FAIL_THEN_PASS = """
+import pytest
+
+
+@pytest.mark.flaky_demo
+def test_demo_recovers(request: pytest.FixtureRequest) -> None:
+    assert getattr(request.node, "execution_count", 1) > 1
+"""
+
 
 @pytest.fixture
 def flaky_pytester(pytester: pytest.Pytester) -> pytest.Pytester:
@@ -79,3 +88,40 @@ def test_fail_then_fail_lands_in_failed_after_retry(
         ]
     )
     result.stdout.no_fnmatch_line("*flaky (passed on retry)*")
+
+
+def test_demo_marker_bucketed_separately(
+    flaky_pytester: pytest.Pytester,
+) -> None:
+    flaky_pytester.makepyfile(_DEMO_FAIL_THEN_PASS)
+    result = flaky_pytester.runpytest_subprocess("--reruns=1")
+    result.assert_outcomes(passed=1)
+    result.stdout.fnmatch_lines(
+        [
+            "flaky (demo): 1",
+            "*test_demo_recovers*",
+        ]
+    )
+    result.stdout.no_fnmatch_line("*flaky (passed on retry)*")
+
+
+def test_xdist_forwards_rerun_reports(
+    flaky_pytester: pytest.Pytester,
+) -> None:
+    flaky_pytester.makepyfile(_FAIL_THEN_PASS)
+    result = flaky_pytester.runpytest_subprocess("--reruns=1", "-n", "2")
+    result.assert_outcomes(passed=1)
+    result.stdout.fnmatch_lines(["flaky (passed on retry): 1"])
+
+
+def test_summary_mirrored_to_github_step_summary(
+    flaky_pytester: pytest.Pytester,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    summary_file = tmp_path / "step_summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary_file))
+    flaky_pytester.makepyfile(_FAIL_THEN_PASS)
+    result = flaky_pytester.runpytest_subprocess("--reruns=1")
+    result.assert_outcomes(passed=1)
+    assert "flaky (passed on retry): 1" in summary_file.read_text()
