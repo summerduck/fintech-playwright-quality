@@ -30,7 +30,7 @@ def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
 
 
 @pytest.fixture
-def flaky_simulation(request: pytest.FixtureRequest) -> None:
+def flaky_simulation(request: pytest.FixtureRequest) -> int:
     """Deterministically fail attempt 1 with an infra-shaped error.
 
     Keyed on ``request.node.execution_count`` (set by pytest-rerunfailures,
@@ -38,6 +38,7 @@ def flaky_simulation(request: pytest.FixtureRequest) -> None:
     plugin outright (mutmut runs ``-p no:rerunfailures``), where the option
     lookup below also falls back to 0 and the test skips. Raises Playwright
     ``TimeoutError`` so the failure matches the CI ``--only-rerun`` regex.
+    Returns the attempt number (2 on the passing attempt) so the test can assert on it.
     """
     reruns: int = request.config.getoption("--reruns", default=0) or 0
     if reruns == 0:
@@ -49,3 +50,4 @@ def flaky_simulation(request: pytest.FixtureRequest) -> None:
         raise PlaywrightTimeoutError(
             "simulated infrastructure flake: attempt 1 always times out"
         )
+    return getattr(request.node, "execution_count", 1)

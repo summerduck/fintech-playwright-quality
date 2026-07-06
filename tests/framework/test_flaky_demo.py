@@ -18,5 +18,6 @@ import pytest
     "pass-on-retry reporting; it is not a test of the application. "
     "Skips locally, where retries are disabled (--reruns=0)."
 )
-def test_deterministic_flaky_demo(flaky_simulation: None) -> None:
+def test_deterministic_flaky_demo(flaky_simulation: int) -> None:
     """Passes only on attempt 2; the fixture raises on attempt 1."""
+    assert flaky_simulation > 1
