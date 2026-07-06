@@ -45,8 +45,16 @@ def test_demo_recovers(request: pytest.FixtureRequest) -> None:
 
 
 @pytest.fixture
-def flaky_pytester(pytester: pytest.Pytester) -> pytest.Pytester:
-    """A pytester sandbox whose conftest is the production plugin source."""
+def flaky_pytester(
+    pytester: pytest.Pytester, monkeypatch: pytest.MonkeyPatch
+) -> pytest.Pytester:
+    """A pytester sandbox whose conftest is the production plugin source.
+
+    Drops ``GITHUB_STEP_SUMMARY`` so sandbox runs never append their fake
+    results to the real CI step summary (pytester subprocesses inherit
+    os.environ; in CI the variable points at the job's summary file).
+    """
+    monkeypatch.delenv("GITHUB_STEP_SUMMARY", raising=False)
     pytester.makeconftest(_PLUGIN_SOURCE)
     return pytester
 
