@@ -133,3 +133,21 @@ def test_summary_mirrored_to_github_step_summary(
     result = flaky_pytester.runpytest_subprocess("--reruns=1")
     result.assert_outcomes(passed=1)
     assert "flaky (passed on retry): 1" in summary_file.read_text()
+
+
+def test_xdist_mirrors_step_summary_exactly_once(
+    flaky_pytester: pytest.Pytester,
+    monkeypatch: pytest.MonkeyPatch,
+    tmp_path: Path,
+) -> None:
+    """Under xdist the worker that saw the rerun must not also write the file.
+
+    ``pytest_terminal_summary`` runs on workers too — their terminal output
+    is discarded, but a file append is not. Only the controller may mirror.
+    """
+    summary_file = tmp_path / "step_summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary_file))
+    flaky_pytester.makepyfile(_FAIL_THEN_PASS)
+    result = flaky_pytester.runpytest_subprocess("--reruns=1", "-n", "2")
+    result.assert_outcomes(passed=1)
+    assert summary_file.read_text().count("## Flaky test summary") == 1

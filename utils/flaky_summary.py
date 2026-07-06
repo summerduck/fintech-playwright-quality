@@ -9,8 +9,9 @@ starts at zero. Inert when retries are disabled (no rerun reports, no
 section) — i.e. every local run, and any profile that disables the plugin
 outright (``-p no:rerunfailures``).
 
-Works under xdist: workers forward reports to the controller, where
-``pytest_terminal_summary`` runs.
+Works under xdist: workers forward reports to the controller, and only the
+controller writes the summary — ``pytest_terminal_summary`` fires on workers
+too, where the terminal output is discarded but a file append would not be.
 """
 
 import os
@@ -44,6 +45,11 @@ def pytest_runtest_logreport(report: pytest.TestReport) -> None:
 
 def pytest_terminal_summary(terminalreporter: TerminalReporter) -> None:
     """Print flaky counts as their own section; mirror to the CI step summary."""
+    # xdist workers run this hook too; without the guard the step-summary
+    # file gets the same block from both the worker and the controller.
+    if hasattr(terminalreporter.config, "workerinput"):
+        return
+
     flaky = sorted(_rerun_nodeids & _passed_nodeids)
     demo = sorted(_demo_rerun_nodeids & _passed_nodeids)
     failed = sorted((_rerun_nodeids | _demo_rerun_nodeids) - _passed_nodeids)
