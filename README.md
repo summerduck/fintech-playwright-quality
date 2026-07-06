@@ -50,7 +50,25 @@ Production-grade test automation platform with integrated AI agents demonstratin
 | Payments App | Planned | Stripe E2E + API tests (15+ scenarios) |
 | AI Integration | Planned | Test Generator, Failure Triage, LLM-as-Judge — all with accuracy metrics |
 | Performance Testing | Planned | Locust load scenarios, CI threshold gate |
+| Flaky Quarantine & Auto-Detection | Planned | History-based flake detection, auto-quarantine marker; feeds the Failure Triage Agent |
 | Polish | Planned | Architecture diagrams, full walkthrough |
+
+---
+
+## Flaky Reliability
+
+Retries are an observability mechanism, not a fix. CI — and only CI — runs
+e2e tests with `--reruns=1`, restricted via `--only-rerun` to
+infrastructure-shaped failures (Playwright timeouts, browser network
+errors); an assertion failure never retries, and non-browser test layers
+opt out entirely. Tests that pass only on retry are counted separately from
+clean passes: a `flaky (passed on retry)` section in the pytest output and
+on the Actions run page, plus the Retries view in the
+[live Allure report](https://summerduck.github.io/fintech-playwright-quality/).
+One deterministic demo test (`tests/framework/test_flaky_demo.py`) fails its
+first attempt in every CI run to prove the pipeline end to end; it is
+counted on its own `flaky (demo)` line so any nonzero real flake count is
+unambiguous signal.
 
 ---
 
