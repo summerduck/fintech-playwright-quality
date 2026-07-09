@@ -10,11 +10,16 @@ import json
 from pathlib import Path
 from typing import Any
 
+import pytest
+
 from scripts.analyze_flake_history import (
     KEEP_RUNS,
+    Report,
     detect,
     load_history,
+    main,
     merge,
+    render_markdown,
 )
 
 NODEID = "tests/app/test_x.py::test_y"
@@ -218,3 +223,82 @@ def test_schema_mismatch_starts_fresh(tmp_path: Path) -> None:
     path.write_text(json.dumps({"schema": 99, "tests": {NODEID: {}}}))
     history = load_history(path)
     assert history == {"schema": 1, "tests": {}}
+
+
+# ── rendering ────────────────────────────────────────────────────────────────
+
+
+def test_healthy_report_says_so_explicitly() -> None:
+    md = render_markdown(Report(), "owner/repo", TODAY, "Analyzed 0 run record(s)")
+    assert "No candidates. Suite is healthy." in md
+
+
+def test_candidate_includes_paste_ready_marker_with_computed_expiry() -> None:
+    history = _history(_clean(8) + [_incident(8), _incident(9)])
+    report = detect(history, {}, TODAY)
+    md = render_markdown(report, "owner/repo", TODAY, "meta")
+    assert '@pytest.mark.quarantine(reason="TICKET-???' in md
+    assert 'expires="2026-08-08"' in md
+
+
+def test_candidate_evidence_links_incident_runs() -> None:
+    history = _history(_clean(8) + [_incident(8), _incident(9)])
+    report = detect(history, {}, TODAY)
+    md = render_markdown(report, "owner/repo", TODAY, "meta")
+    assert "https://github.com/owner/repo/actions/runs/9" in md
+
+
+def test_clean_browser_shown_alongside_dirty_one() -> None:
+    dirty = _clean(8) + [_incident(8), _incident(9)]
+    history = _two_browser_history(dirty, _clean(10))
+    report = detect(history, {}, TODAY)
+    md = render_markdown(report, "owner/repo", TODAY, "meta")
+    assert "clean (10/10)" in md
+
+
+def test_failing_not_flaky_section_renders() -> None:
+    history = _history(_clean(10) + [_fail(10), _fail(11), _fail(12)])
+    report = detect(history, {}, TODAY)
+    md = render_markdown(report, "owner/repo", TODAY, "meta")
+    assert "Failing, not flaky" in md
+    assert "No candidates. Suite is healthy." not in md
+
+
+def test_expiring_section_renders() -> None:
+    history = _history([_xpass(0)])
+    report = detect(history, {NODEID: "2026-07-12"}, TODAY)
+    md = render_markdown(report, "owner/repo", TODAY, "meta")
+    assert "Expiring soon" in md
+    assert "2026-07-12" in md
+
+
+# ── CLI end-to-end ───────────────────────────────────────────────────────────
+
+
+def test_main_end_to_end(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> None:
+    records_dir = tmp_path / "records"
+    records_dir.mkdir()
+    record = _record(99, [_record_test()])
+    (records_dir / "run-record-chromium.json").write_text(json.dumps(record))
+    out_dir = tmp_path / "publish"
+    exit_code = main(
+        [
+            "--history-file",
+            str(tmp_path / "gh-pages" / "flake-history" / "history.json"),
+            "--run-records-dir",
+            str(records_dir),
+            "--output-dir",
+            str(out_dir),
+            "--repo",
+            "owner/repo",
+            "--browsers",
+            "chromium,firefox,webkit",
+        ]
+    )
+    assert exit_code == 0
+    written = json.loads((out_dir / "history.json").read_text())
+    assert NODEID in written["tests"]
+    md = (out_dir / "candidates.md").read_text()
+    assert "no run record for firefox" in md
+    assert "no run record for webkit" in md
+    assert capsys.readouterr().out == md

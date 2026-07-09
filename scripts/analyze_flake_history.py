@@ -17,6 +17,7 @@ code and never fails the build (the workflow step uses continue-on-error).
 Stdlib-only: it runs on the bare runner without installing dependencies.
 """
 
+import argparse
 import datetime as dt
 import json
 import sys
@@ -204,3 +205,137 @@ def detect(
         if dt.date.fromisoformat(expires_raw) <= warn_horizon:
             report.expiring.append((nodeid, expires_raw))
     return report
+
+
+def render_markdown(report: Report, repo: str, today: dt.date, meta: str) -> str:
+    """Render candidates.md — one reader (weekly review), one job (marker PR).
+
+    Regenerated whole from state every run; deterministic ordering (sorted by
+    nodeid, done in ``detect``) so gh-pages diffs show state changes, not row
+    shuffling.
+    """
+    lines = [f"# Flake candidates — {today.isoformat()}", "", meta, ""]
+    suggested_expiry = (today + dt.timedelta(days=QUARANTINE_TTL_DAYS)).isoformat()
+    if report.quarantine:
+        lines.append(f"## Quarantine candidates ({len(report.quarantine)})")
+        for nodeid, stats in report.quarantine.items():
+            lines += ["", f"### `{nodeid}`", "", "| browser | evidence |", "|---|---|"]
+            lines += [f"| {s.browser} | {_evidence(s, repo)} |" for s in stats]
+            lines += [
+                "",
+                "Suggested marker (fill in the ticket):",
+                "",
+                "```python",
+                (
+                    '@pytest.mark.quarantine(reason="TICKET-???: <root cause>", '
+                    f'expires="{suggested_expiry}")'
+                ),
+                "```",
+            ]
+        lines.append("")
+    if report.release:
+        lines.append(f"## Un-quarantine candidates ({len(report.release)})")
+        lines.append("")
+        lines += [
+            (
+                f"- `{nodeid}` — last {RELEASE_STREAK} runs XPASS on every recorded "
+                "browser. Action: remove the `quarantine` marker."
+            )
+            for nodeid in report.release
+        ]
+        lines.append("")
+    if report.expiring:
+        lines.append(f"## Expiring soon ({len(report.expiring)})")
+        lines.append("")
+        lines += [
+            f"- `{nodeid}` — quarantine expires **{expires}**; fix or extend "
+            "before it aborts CI at collection."
+            for nodeid, expires in report.expiring
+        ]
+        lines.append("")
+    if report.failing:
+        lines.append(
+            f"## Failing, not flaky ({len(report.failing)}) — fix, don't quarantine"
+        )
+        lines.append("")
+        lines += [
+            f"- `{nodeid}` — deterministic fail streak on: {', '.join(browsers)}"
+            for nodeid, browsers in sorted(report.failing.items())
+        ]
+        lines.append("")
+    if report.gaps:
+        lines.append("## Data gaps")
+        lines.append("")
+        lines += [f"- {gap}" for gap in report.gaps]
+        lines.append("")
+    if not (report.quarantine or report.release or report.expiring or report.failing):
+        lines += ["**No candidates. Suite is healthy.**", ""]
+    return "\n".join(lines)
+
+
+def _evidence(stats: BrowserStats, repo: str) -> str:
+    """One evidence cell: incident links + fail count, or an explicit clean."""
+    if not stats.incidents and stats.fail_count == 0:
+        return f"clean ({stats.total}/{stats.total})"
+    parts: list[str] = []
+    if stats.incidents:
+        links = ", ".join(
+            f"[run {run['run_id']}]"
+            f"(https://github.com/{repo}/actions/runs/{run['run_id']})"
+            for run in stats.incidents
+        )
+        parts.append(
+            f"{len(stats.incidents)} flake incident(s) in last "
+            f"{stats.total} runs: {links}"
+        )
+    if stats.fail_count:
+        parts.append(f"{stats.fail_count} fail(s) in last {stats.total} runs")
+    return "; ".join(parts)
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI entry point for the publish-report workflow step."""
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--history-file", required=True, type=Path)
+    parser.add_argument("--run-records-dir", required=True, type=Path)
+    parser.add_argument("--output-dir", required=True, type=Path)
+    parser.add_argument("--repo", required=True, help="owner/repo for run links")
+    parser.add_argument(
+        "--browsers", required=True, help="comma-separated expected browsers"
+    )
+    args = parser.parse_args(argv)
+
+    today = dt.date.today()
+    history = load_history(args.history_file)
+    records = load_run_records(args.run_records_dir)
+    quarantined_now: dict[str, str] = {
+        test["nodeid"]: test["expires"]
+        for record in records
+        for test in record["tests"]
+        if test.get("quarantined") and test.get("expires")
+    }
+    merge(history, records)
+    report = detect(history, quarantined_now, today)
+
+    expected = {browser for browser in args.browsers.split(",") if browser}
+    found = {record["browser"] for record in records}
+    report.gaps = sorted(f"no run record for {browser}" for browser in expected - found)
+
+    run_ids = sorted({record["run_id"] for record in records})
+    meta = (
+        f"Analyzed {len(records)} run record(s) from run(s) "
+        f"{', '.join(run_ids) or '—'} · {len(history['tests'])} test(s) tracked"
+    )
+    markdown = render_markdown(report, args.repo, today, meta)
+
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    (args.output_dir / "history.json").write_text(
+        json.dumps(history, indent=2) + "\n", encoding="utf-8"
+    )
+    (args.output_dir / "candidates.md").write_text(markdown, encoding="utf-8")
+    sys.stdout.write(markdown)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
