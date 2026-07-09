@@ -24,9 +24,11 @@ reports them loudly. v2 adds the remaining stages:
 | Storage | `flake-history/history.json` on the `gh-pages` branch, written only by the existing `publish-report` job (already the single gh-pages writer for Allure history). Permanent, auditable via git log, zero new concurrency surface. |
 | Automation level | Detect and propose only. CI emits a candidates report; a human adds/removes markers in a reviewed PR. No bot ever changes test code or a quarantine list. |
 | Detection thresholds | Quarantine candidate: ≥2 flake incidents within the last 30 recorded runs, OR fail rate ≥5% over ≥10 runs. A flake incident = pass-on-retry (same-commit fail+pass, `reruns > 0` and final pass). |
+| Freshness | Either branch also requires the most recent bad event (flake incident or failure) within the last 10 runs. Stale candidates drop out of the report on their own instead of lingering for the full 30-run window. Window = 10 deliberately matches the un-quarantine streak: a test that just needed 10 clean runs to exit quarantine cannot be immediately re-proposed from its pre-quarantine incidents. |
 | Release thresholds | Un-quarantine candidate: 10 consecutive clean runs. For a quarantined test, clean = XPASS (it ran, passed, and no longer needed the quarantine shield). |
-| Marker hygiene | Every `quarantine` marker requires `reason` and `expires` (ISO date, ~30 days out). An expired marker aborts the run with `UsageError` naming the test — forces fix-or-extend, never silent decay. |
+| Marker hygiene | Every `quarantine` marker requires `reason` and `expires` (ISO date, ~30 days out). An expired marker aborts the run with `UsageError` naming the test — forces fix-or-extend, never silent decay. The hard stop is pre-announced: the analyzer lists markers expiring within 7 days in `candidates.md` and the step summary, so expiry never surprises — strictness and predictability are separate knobs; we keep the teeth and remove the surprise. |
 | Plugins | Keep pytest-rerunfailures (healthy, pytest-dev). Do NOT adopt pytest-quarantine (abandoned since 2020). Build small custom conftest plugins, consistent with v1. |
+| Quarantine granularity | Whole-test, even though detection is per-`(nodeid, browser)`. Accepted trade-off: a marker prompted by one browser also un-blocks the healthy browsers until release. A per-browser marker (`browsers=[...]` + conditional xfail) would couple the plugin to the browser fixture and create half-quarantined states the analyzer must model — not worth it at this suite's size (YAGNI). Mitigation: `candidates.md` shows the per-browser contrast (including clean browsers) on every review. |
 
 ## Architecture
 
@@ -47,7 +49,9 @@ plugins registered from the root `conftest.py` via `pytest_plugins`:
 
 - Records every test's final outcome for the run: `nodeid`, outcome
   (`passed | failed | xfailed | xpassed | skipped`), `reruns` used,
-  `quarantined` flag.
+  `quarantined` flag. Quarantined entries also carry the marker's `expires`
+  date — the analyzer reads expiry state from the freshest run records, so it
+  never needs the test sources.
 - xdist-aware exactly like `utils/flaky_summary.py`: workers forward reports,
   only the controller writes (guard on `workerinput`).
 - Writes `test-logs/run-records/run-record-<browser>.json` at session end.
@@ -87,7 +91,8 @@ Run record (one per browser job per run):
   "browser": "chromium",
   "timestamp": "2026-07-09T12:00:00Z",
   "tests": [
-    {"nodeid": "tests/x/test_y.py::test_z", "outcome": "passed", "reruns": 1, "quarantined": false}
+    {"nodeid": "tests/x/test_y.py::test_z", "outcome": "passed", "reruns": 1, "quarantined": false},
+    {"nodeid": "tests/x/test_y.py::test_q", "outcome": "xfailed", "reruns": 0, "quarantined": true, "expires": "2026-08-08"}
   ]
 }
 ```
@@ -133,11 +138,43 @@ Per `(nodeid, browser)` key over its recorded window:
   (v1's pass-on-retry — same commit failed then passed).
 - **Quarantine candidate**: not currently quarantined AND
   (≥2 flake incidents in the last 30 runs, OR
-  fail rate ≥5% with ≥10 recorded runs).
+  fail rate ≥5% with ≥10 recorded runs)
+  AND the most recent bad event (incident or failure) is within the last
+  10 runs (freshness — see decisions table; also prevents quarantine ↔
+  un-quarantine ping-pong).
 - **Un-quarantine candidate**: currently quarantined AND the 10 most recent
   runs are all `xpassed` with `reruns == 0`.
 - A test currently failing deterministically (fail streak, no passes) is
   reported as "failing, not flaky" — quarantine is for flakes, not regressions.
+
+## Candidates report (`candidates.md`)
+
+One reader (an engineer on a weekly review), one job (turn candidates into a
+reviewed marker PR). The report is regenerated whole from history state every
+run — a candidate stays visible until acted on or until it goes stale per the
+freshness rule.
+
+- Header: generation date, runs/browsers analyzed, link to the producing run.
+- Quarantine candidates: per test, a per-browser evidence table that includes
+  clean browsers (`chromium: clean (30/30)`) — the cross-browser contrast is a
+  root-cause hint and an honest reminder that the marker silences all
+  browsers. Each incident links to its Actions run
+  (`…/actions/runs/<run_id>`) so review claims are verifiable.
+- Each quarantine candidate carries a ready-to-paste marker line with
+  `expires` precomputed (analysis date + 30 days); only the ticket reference
+  is filled in by hand.
+- Un-quarantine candidates: streak evidence + "remove the marker" action.
+- Expiring soon: quarantine markers whose `expires` is within 7 days
+  (read from the freshest run records), with the date and reason — the early
+  warning that makes the collection-time hard stop predictable instead of a
+  calendar surprise.
+- "Failing, not flaky" section is mandatory — the report explicitly refuses
+  to propose quarantine for deterministic regressions.
+- Data gaps section (missing run-records) and an explicit
+  "No candidates. Suite is healthy." line when empty — silence must be
+  distinguishable from a broken analyzer.
+- Deterministic ordering (sorted by nodeid) so gh-pages git diffs between
+  runs show state changes, not row shuffling.
 
 ## Error handling
 
