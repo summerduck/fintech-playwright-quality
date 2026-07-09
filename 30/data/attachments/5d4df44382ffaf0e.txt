@@ -1,0 +1,2 @@
+15:31:38 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[chromium]] Starting test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[chromium]
+15:31:40 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[chromium]] Finished test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[chromium]

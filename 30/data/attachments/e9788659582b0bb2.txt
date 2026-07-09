@@ -1,0 +1,2 @@
+15:32:03 [INFO] [tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[firefox]
+15:32:03 [INFO] [tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[firefox]

@@ -1,0 +1,2 @@
+15:32:02 [INFO] [tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[firefox]
+15:32:02 [INFO] [tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[firefox]

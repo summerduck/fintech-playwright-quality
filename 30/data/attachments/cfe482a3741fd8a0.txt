@@ -1,0 +1,2 @@
+15:31:20 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[chromium]] Starting test - tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[chromium]
+15:31:22 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[chromium]] Finished test - tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[chromium]

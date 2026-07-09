@@ -1,0 +1,21 @@
+running: /usr/bin/python -mpytest --basetemp=/tmp/pytest-of-root/pytest-0/popen-gw0/test_inert_without_github_run_id0/runpytest-0
+     in: /tmp/pytest-of-root/pytest-0/popen-gw0/test_inert_without_github_run_id0
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.5.0
+rootdir: /tmp/pytest-of-root/pytest-0/popen-gw0/test_inert_without_github_run_id0
+plugins: Faker-37.1.0, hypothesis-6.151.9, reportlog-0.4.0, sugar-1.1.1, html-4.1.1, allure-pytest-2.13.3, rerunfailures-15.0, cov-6.1.1, playwright-0.7.0, metadata-3.1.1, base-url-2.1.0, xdist-3.6.1
+collected 3 items
+
+test_inert_without_github_run_id.py .Fs                                  [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_fails __________________________________
+
+    def test_fails() -> None:
+>       raise AssertionError("boom")
+E       AssertionError: boom
+
+test_inert_without_github_run_id.py:9: AssertionError
+=========================== short test summary info ============================
+FAILED test_inert_without_github_run_id.py::test_fails - AssertionError: boom
+==================== 1 failed, 1 passed, 1 skipped in 0.47s ====================

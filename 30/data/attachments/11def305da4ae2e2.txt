@@ -1,0 +1,4 @@
+15:31:05 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[chromium]
+15:31:06 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+15:31:11 [INFO] [pages.accept_a_payment.card_page] Verifying pay button is enabled on load
+15:31:12 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[chromium]

@@ -1,0 +1,2 @@
+15:31:36 [INFO] [tests/framework/test_quarantine.py::test_missing_expires_is_rejected[chromium]] Starting test - tests/framework/test_quarantine.py::test_missing_expires_is_rejected[chromium]
+15:31:38 [INFO] [tests/framework/test_quarantine.py::test_missing_expires_is_rejected[chromium]] Finished test - tests/framework/test_quarantine.py::test_missing_expires_is_rejected[chromium]

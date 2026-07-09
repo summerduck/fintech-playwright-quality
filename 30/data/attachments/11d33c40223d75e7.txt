@@ -1,0 +1,2 @@
+15:32:22 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[firefox]] Starting test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[firefox]
+15:32:24 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[firefox]] Finished test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[firefox]

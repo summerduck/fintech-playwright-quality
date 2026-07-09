@@ -1,0 +1,2 @@
+15:32:03 [INFO] [tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[firefox]
+15:32:03 [INFO] [tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[firefox]

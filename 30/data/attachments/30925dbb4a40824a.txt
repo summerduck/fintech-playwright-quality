@@ -1,0 +1,2 @@
+15:32:17 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[firefox]] Starting test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[firefox]
+15:32:19 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[firefox]] Finished test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[firefox]
