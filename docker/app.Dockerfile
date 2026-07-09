@@ -1,6 +1,6 @@
 # App under test: stripe-samples/accept-a-payment (custom-payment-flow, Python server).
 # Stripe keys are runtime-only env vars — never bake them into the image.
-FROM python:3.12-slim@sha256:423ed6ab25b1921a477529254bfeeabf5855151dc2c3141699a1bfc852199fbf
+FROM python:3.14-slim@sha256:b877e50bd90de10af8d82c57a022fc2e0dc731c5320d762a27986facfc3355c1
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends git ca-certificates \
