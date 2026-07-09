@@ -1,0 +1,2876 @@
+{
+  "schema": 1,
+  "tests": {
+    "tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[chromium-mastercard]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[chromium-mastercard]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[chromium-visa]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[chromium-acceptapayment-docker]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[chromium-acceptapayment-local]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_evidence_links_incident_runs[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_includes_paste_ready_marker_with_computed_expiry[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_expiring_section_renders[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_below_threshold_is_quiet[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_failing_not_flaky_section_renders[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_far_expiry_is_not_listed[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_healthy_report_says_so_explicitly[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_main_end_to_end[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_marker_expiring_within_week_is_listed[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_appends_new_run[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_is_idempotent_per_run_id[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_missing_history_starts_fresh[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_single_incident_is_not_enough[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 1,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_empties_allure_results_dir_contents_but_keeps_directory[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-amex-uneven]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-exactly-four-masks-everything]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-no-spaces]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-short-masks-everything]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-visa-grouped]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_expires_is_rejected[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_reason_is_rejected[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "xfailed",
+          "reruns": 0,
+          "quarantined": true
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_framework_items_never_rerun[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_inert_without_github_run_id[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[chromium]": {
+      "chromium": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[firefox-mastercard]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-mastercard]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[firefox-acceptapayment-docker]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[firefox-acceptapayment-local]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_evidence_links_incident_runs[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_includes_paste_ready_marker_with_computed_expiry[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_expiring_section_renders[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_below_threshold_is_quiet[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_failing_not_flaky_section_renders[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_far_expiry_is_not_listed[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_healthy_report_says_so_explicitly[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_main_end_to_end[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_marker_expiring_within_week_is_listed[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_appends_new_run[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_is_idempotent_per_run_id[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_missing_history_starts_fresh[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_single_incident_is_not_enough[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 1,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_empties_allure_results_dir_contents_but_keeps_directory[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-amex-uneven]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-exactly-four-masks-everything]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-no-spaces]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-short-masks-everything]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-visa-grouped]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_expires_is_rejected[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_reason_is_rejected[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "xfailed",
+          "reruns": 0,
+          "quarantined": true
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_framework_items_never_rerun[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_inert_without_github_run_id[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[firefox]": {
+      "firefox": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::Test3DSecureAuthenticationFlow::test_fill_card_form_and_complete_payment_with_3ds_authentication[webkit-mastercard]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-mastercard]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[webkit-visa]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[webkit-acceptapayment-docker]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_returns_correct_url_for_every_registered_combination[webkit-acceptapayment-local]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_evidence_links_incident_runs[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_candidate_includes_paste_ready_marker_with_computed_expiry[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_expiring_section_renders[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_below_threshold_is_quiet[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_failing_not_flaky_section_renders[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_far_expiry_is_not_listed[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_healthy_report_says_so_explicitly[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_main_end_to_end[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_marker_expiring_within_week_is_listed[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_appends_new_run[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_is_idempotent_per_run_id[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_missing_history_starts_fresh[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_after_ten_consecutive_xpass[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_schema_mismatch_starts_fresh[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_single_incident_is_not_enough[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flake_analysis.py::test_two_recent_incidents_propose_quarantine[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_demo.py::test_deterministic_flaky_demo[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 1,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_fail_then_pass_is_counted_flaky[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_flaky_summary.py::test_xdist_mirrors_step_summary_exactly_once[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_empties_allure_results_dir_contents_but_keeps_directory[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-amex-uneven]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-exactly-four-masks-everything]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-no-spaces]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-short-masks-everything]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-visa-grouped]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_expires_is_rejected[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_missing_reason_is_rejected[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "xfailed",
+          "reruns": 0,
+          "quarantined": true
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_framework_items_never_rerun[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_inert_without_github_run_id[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    },
+    "tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[webkit]": {
+      "webkit": [
+        {
+          "run_id": "29031207512",
+          "sha": "4954980ac9e8d1aa722fb7a2ddf95140bd4f6fc0",
+          "outcome": "passed",
+          "reruns": 0,
+          "quarantined": false
+        }
+      ]
+    }
+  }
+}

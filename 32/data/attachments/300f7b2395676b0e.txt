@@ -1,0 +1,2 @@
+15:54:08 [INFO] [tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[firefox]
+15:54:08 [INFO] [tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_currently_quarantined_test_is_never_proposed[firefox]

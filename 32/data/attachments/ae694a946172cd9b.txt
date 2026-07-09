@@ -1,0 +1,2 @@
+15:54:27 [INFO] [tests/framework/test_run_record.py::test_inert_without_github_run_id[firefox]] Starting test - tests/framework/test_run_record.py::test_inert_without_github_run_id[firefox]
+15:54:28 [INFO] [tests/framework/test_run_record.py::test_inert_without_github_run_id[firefox]] Finished test - tests/framework/test_run_record.py::test_inert_without_github_run_id[firefox]

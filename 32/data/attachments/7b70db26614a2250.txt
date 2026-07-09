@@ -1,0 +1,2 @@
+15:54:28 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-short-masks-everything]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-short-masks-everything]
+15:54:28 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-short-masks-everything]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[firefox-short-masks-everything]

@@ -1,0 +1,2 @@
+15:54:10 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[chromium]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[chromium]
+15:54:10 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[chromium]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[chromium]

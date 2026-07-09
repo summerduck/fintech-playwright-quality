@@ -1,0 +1,5 @@
+15:53:51 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[webkit]
+15:53:53 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+15:53:58 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+15:54:02 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card number is incomplete.
+15:54:04 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[webkit]

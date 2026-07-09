@@ -1,0 +1,2 @@
+15:54:16 [INFO] [tests/framework/test_run_record.py::test_inert_without_github_run_id[chromium]] Starting test - tests/framework/test_run_record.py::test_inert_without_github_run_id[chromium]
+15:54:16 [INFO] [tests/framework/test_run_record.py::test_inert_without_github_run_id[chromium]] Finished test - tests/framework/test_run_record.py::test_inert_without_github_run_id[chromium]

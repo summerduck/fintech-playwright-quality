@@ -1,0 +1,2 @@
+15:54:12 [INFO] [tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[firefox]
+15:54:13 [INFO] [tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_demo_marker_bucketed_separately[firefox]
