@@ -66,10 +66,13 @@ jobs:
       # GITHUB_STEP_SUMMARY inside the container points at a file under the
       # mounted test-logs/ volume; the step below bridges it to the runner's
       # real step summary (the runner-side file is not visible in-container).
+      # GITHUB_RUN_ID/SHA/REF_NAME feed utils/run_record.py (flake history);
+      # compose does not inherit runner env, so each var is bridged explicitly.
       - name: Run tests (${{ matrix.browser }})
         run: >-
           docker compose run --rm
           -e GITHUB_STEP_SUMMARY=/work/test-logs/flaky-summary.md
+          -e GITHUB_RUN_ID -e GITHUB_SHA -e GITHUB_REF_NAME
           tests --browser=${{ matrix.browser }}
           --reruns=1 --only-rerun "TimeoutError|net::ERR|NS_ERROR_|Could not connect"
 
@@ -108,6 +111,17 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+      # Dedicated tiny artifact: publish-report needs only this JSON, not the
+      # hundreds of MB of traces that live in test-artifacts-<browser>.
+      - name: Upload run record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-record-${{ matrix.browser }}
+          path: test-logs/run-records/
+          if-no-files-found: ignore
+          retention-days: 14
+
   publish-report:
     name: Publish Allure report to GitHub Pages
     runs-on: ubuntu-latest
@@ -120,12 +134,26 @@ jobs:
     if: always() && github.ref == 'refs/heads/main'
 
     steps:
+      # The analyzer script must come from the tested ref; path: repo keeps
+      # every existing relative path (allure-results, gh-pages) untouched.
+      - name: Checkout repo (for the analyzer script)
+        uses: actions/checkout@v6
+        with:
+          path: repo
+
       - name: Download Allure results from all browsers
         uses: actions/download-artifact@v4
         with:
           pattern: allure-results-*
           merge-multiple: true
           path: allure-results
+
+      - name: Download run records from all browsers
+        uses: actions/download-artifact@v4
+        with:
+          pattern: run-record-*
+          merge-multiple: true
+          path: run-records
 
       - name: Fetch gh-pages history
         uses: actions/checkout@v6
@@ -149,6 +177,21 @@ jobs:
       # files, which peaceiris can neither remove nor push over.
       - name: Drop stray .git dirs from publish assets
         run: sudo rm -rf allure-history/.git gh-pages/.git
+
+      # The analyzer proposes; it never fails the build. allure-report-action
+      # has already copied the previous gh-pages content (including last run's
+      # flake-history/) into allure-history, so on analyzer failure the stale
+      # copy survives instead of vanishing.
+      - name: Analyze flake history
+        continue-on-error: true
+        run: |
+          python3 repo/scripts/analyze_flake_history.py \
+            --history-file gh-pages/flake-history/history.json \
+            --run-records-dir run-records \
+            --output-dir allure-history/flake-history \
+            --repo "${{ github.repository }}" \
+            --browsers chromium,firefox,webkit \
+            >> "$GITHUB_STEP_SUMMARY"
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
