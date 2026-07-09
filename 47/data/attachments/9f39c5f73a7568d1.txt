@@ -1,0 +1,9 @@
+17:00:03 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[chromium]
+17:00:04 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+17:00:08 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+17:00:08 [INFO] [pages.accept_a_payment.card_page] Filling card number
+17:00:09 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+17:00:09 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+17:00:09 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+17:00:09 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your postal code is incomplete.
+17:00:09 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_zip_incomplete[chromium]

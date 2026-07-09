@@ -1,0 +1,2 @@
+16:59:50 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[webkit]] Starting test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[webkit]
+16:59:52 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[webkit]] Finished test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[webkit]

@@ -1,0 +1,2 @@
+16:59:38 [INFO] [tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[firefox]
+16:59:38 [INFO] [tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_stale_incidents_self_clean[firefox]

@@ -1,0 +1,9 @@
+16:59:34 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[firefox]
+16:59:35 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+16:59:36 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+16:59:38 [INFO] [pages.accept_a_payment.card_page] Filling card number
+16:59:40 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+16:59:40 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+16:59:41 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+16:59:41 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card number is invalid.
+16:59:42 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_invalid[firefox]

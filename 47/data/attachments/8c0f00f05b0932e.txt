@@ -1,0 +1,14 @@
+16:59:47 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[firefox]
+16:59:48 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+16:59:49 [INFO] [pages.accept_a_payment.card_page] Filling card form with card: **** **** **** 4242
+16:59:49 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+16:59:49 [INFO] [pages.accept_a_payment.card_page] Filling card number
+16:59:51 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+16:59:52 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+16:59:52 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+16:59:53 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+16:59:53 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Payment succeeded: pi_
+16:59:55 [INFO] [pages.accept_a_payment.card_page] Verifying dashboard link is visible
+16:59:55 [INFO] [pages.accept_a_payment.card_page] Getting dashboard link element
+16:59:55 [INFO] [pages.accept_a_payment.card_page] Getting payment ID from dashboard link element
+16:59:55 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_payment_succeeded_and_dashboard_link_is_visible[firefox]
