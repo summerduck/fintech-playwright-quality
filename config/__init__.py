@@ -5,8 +5,10 @@ VALID_ENVS = frozenset(("prod", "local", "docker"))
 APP_URLS: dict[str, dict[str, str]] = {
     "acceptapayment": {
         "local": "http://localhost:4242",
-        # Hostname of the `app` service on the docker-compose network.
-        "docker": "http://app:4242",
+        # Hostname of the `stripe-app` service on the docker-compose network.
+        # Must never match an HSTS-preloaded gTLD (e.g. bare `app`, `dev`) —
+        # browsers force https:// on those, breaking plain-http navigation.
+        "docker": "http://stripe-app:4242",
     },
 }
 
