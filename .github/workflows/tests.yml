@@ -175,8 +175,13 @@ jobs:
       # allure-report-action is a Docker action running as root: it copies the
       # gh-pages checkout (including .git) into allure-history as root-owned
       # files, which peaceiris can neither remove nor push over.
-      - name: Drop stray .git dirs from publish assets
-        run: sudo rm -rf allure-history/.git gh-pages/.git
+      # The chown lets the analyzer step below mkdir flake-history/ inside
+      # the root-owned tree (PermissionError otherwise — seen in run
+      # 29029709119, the first main run after PR #58).
+      - name: Drop stray .git dirs and reclaim publish assets
+        run: |
+          sudo rm -rf allure-history/.git gh-pages/.git
+          sudo chown -R "$USER" allure-history
 
       # The analyzer proposes; it never fails the build. allure-report-action
       # has already copied the previous gh-pages content (including last run's
