@@ -1,6 +1,6 @@
 # Flake candidates — 2026-07-09
 
-Analyzed 3 run record(s) from run(s) 29032674223 · 261 test(s) tracked
+Analyzed 0 run record(s) from run(s) — · 261 test(s) tracked
 
 ## Quarantine candidates (3)
 
@@ -39,3 +39,9 @@ Suggested marker (fill in the ticket):
 ```python
 @pytest.mark.quarantine(reason="TICKET-???: <root cause>", expires="2026-08-08")
 ```
+
+## Data gaps
+
+- no run record for chromium
+- no run record for firefox
+- no run record for webkit
