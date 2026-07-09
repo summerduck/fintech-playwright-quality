@@ -93,7 +93,7 @@ jobs:
 
       - name: Upload Allure results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: allure-results-${{ matrix.browser }}
           path: allure-results/
@@ -102,7 +102,7 @@ jobs:
 
       - name: Upload traces and logs
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-artifacts-${{ matrix.browser }}
           path: |
@@ -115,7 +115,7 @@ jobs:
       # hundreds of MB of traces that live in test-artifacts-<browser>.
       - name: Upload run record
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: run-record-${{ matrix.browser }}
           path: test-logs/run-records/
