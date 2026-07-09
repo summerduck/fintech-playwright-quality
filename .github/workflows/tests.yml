@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Fail early with an actionable message instead of letting every
       # payment test fail cryptically when the app boots without keys.
@@ -137,7 +137,7 @@ jobs:
       # The analyzer script must come from the tested ref; path: repo keeps
       # every existing relative path (allure-results, gh-pages) untouched.
       - name: Checkout repo (for the analyzer script)
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: repo
 
@@ -156,7 +156,7 @@ jobs:
           path: run-records
 
       - name: Fetch gh-pages history
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         # First run: gh-pages does not exist yet — report generates without trends.
         continue-on-error: true
         with:
