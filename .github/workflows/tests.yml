@@ -142,14 +142,14 @@ jobs:
           path: repo
 
       - name: Download Allure results from all browsers
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: allure-results-*
           merge-multiple: true
           path: allure-results
 
       - name: Download run records from all browsers
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           pattern: run-record-*
           merge-multiple: true
