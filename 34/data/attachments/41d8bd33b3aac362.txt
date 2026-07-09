@@ -1,0 +1,2 @@
+16:16:17 [INFO] [tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[firefox]
+16:16:17 [INFO] [tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[firefox]

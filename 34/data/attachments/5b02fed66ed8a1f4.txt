@@ -1,0 +1,2 @@
+16:16:53 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[chromium]] Starting test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[chromium]
+16:16:54 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[chromium]] Finished test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[chromium]

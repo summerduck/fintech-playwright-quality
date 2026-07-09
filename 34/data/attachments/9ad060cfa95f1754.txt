@@ -1,0 +1,2 @@
+16:16:43 [INFO] [tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[firefox]] Starting test - tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[firefox]
+16:16:44 [INFO] [tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[firefox]] Finished test - tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[firefox]

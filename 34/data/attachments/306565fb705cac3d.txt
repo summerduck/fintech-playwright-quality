@@ -1,0 +1,2 @@
+16:16:23 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[firefox]
+16:16:26 [INFO] [tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_fail_then_fail_lands_in_failed_after_retry[firefox]

@@ -1,0 +1,2 @@
+16:16:42 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[webkit]] Starting test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[webkit]
+16:16:43 [INFO] [tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[webkit]] Finished test - tests/framework/test_run_record.py::test_outcomes_and_run_metadata_recorded[webkit]

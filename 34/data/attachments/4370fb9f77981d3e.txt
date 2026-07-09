@@ -1,0 +1,2 @@
+16:16:49 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[chromium]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[chromium]
+16:16:49 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[chromium]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[chromium]

@@ -1,0 +1,4 @@
+16:16:15 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[webkit]
+16:16:16 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+16:16:19 [INFO] [pages.accept_a_payment.card_page] Verifying #messages panel is hidden on load
+16:16:19 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[webkit]

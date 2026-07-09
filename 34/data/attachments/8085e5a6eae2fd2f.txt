@@ -1,0 +1,2 @@
+16:16:33 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[webkit]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[webkit]
+16:16:33 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[webkit]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_file_without_deleting_its_target[webkit]

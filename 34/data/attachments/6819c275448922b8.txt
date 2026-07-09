@@ -1,0 +1,4 @@
+16:16:34 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[chromium]
+16:16:34 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+16:16:37 [INFO] [pages.accept_a_payment.card_page] Verifying Stripe card element iframe is visible in #card-element
+16:16:38 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_stripe_card_element_iframe_visible[chromium]

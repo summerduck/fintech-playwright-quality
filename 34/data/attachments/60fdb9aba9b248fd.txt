@@ -1,0 +1,2 @@
+16:16:17 [INFO] [tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[firefox]
+16:16:21 [INFO] [tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_clean_pass_prints_no_flaky_section[firefox]

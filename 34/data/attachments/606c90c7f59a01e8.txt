@@ -1,0 +1,1 @@
+warning: unexpected history schema at /tmp/pytest-of-root/pytest-0/popen-gw3/test_schema_mismatch_starts_fr0/history.json; starting fresh

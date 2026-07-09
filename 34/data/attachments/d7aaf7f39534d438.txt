@@ -1,0 +1,2 @@
+16:16:56 [INFO] [tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[chromium]] Starting test - tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[chromium]
+16:16:58 [INFO] [tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[chromium]] Finished test - tests/framework/test_run_record.py::test_reruns_counted_with_final_pass[chromium]

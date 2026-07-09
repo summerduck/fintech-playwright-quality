@@ -1,0 +1,2 @@
+16:16:33 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[firefox]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[firefox]
+16:16:33 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[firefox]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[firefox]

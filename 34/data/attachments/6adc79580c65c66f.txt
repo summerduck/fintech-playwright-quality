@@ -1,0 +1,2 @@
+16:16:32 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[chromium]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[chromium]
+16:16:32 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[chromium]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[chromium]

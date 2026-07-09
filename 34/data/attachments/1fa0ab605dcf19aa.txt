@@ -1,0 +1,2 @@
+16:16:42 [INFO] [tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[firefox]] Starting test - tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[firefox]
+16:16:43 [INFO] [tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[firefox]] Finished test - tests/framework/test_retry_optout.py::test_optout_scoped_to_conftest_directory[firefox]

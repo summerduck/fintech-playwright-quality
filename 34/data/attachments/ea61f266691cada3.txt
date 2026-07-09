@@ -1,0 +1,2 @@
+16:16:37 [INFO] [tests/framework/test_quarantine.py::test_missing_expires_is_rejected[firefox]] Starting test - tests/framework/test_quarantine.py::test_missing_expires_is_rejected[firefox]
+16:16:38 [INFO] [tests/framework/test_quarantine.py::test_missing_expires_is_rejected[firefox]] Finished test - tests/framework/test_quarantine.py::test_missing_expires_is_rejected[firefox]

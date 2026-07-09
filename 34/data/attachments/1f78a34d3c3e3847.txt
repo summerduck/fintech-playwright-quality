@@ -1,0 +1,4 @@
+16:16:06 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[webkit]
+16:16:08 [INFO] [pages.base_page] Navigating to: http://app:4242/card.html
+16:16:09 [INFO] [pages.accept_a_payment.card_page] Verifying page title equals 'Card'
+16:16:10 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[webkit]

@@ -1,0 +1,2 @@
+16:17:01 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-no-spaces]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-no-spaces]
+16:17:01 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-no-spaces]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[chromium-no-spaces]

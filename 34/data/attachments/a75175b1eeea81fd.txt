@@ -1,0 +1,2 @@
+16:16:16 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[firefox]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[firefox]
+16:16:16 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[firefox]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[firefox]

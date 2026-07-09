@@ -1,0 +1,2 @@
+16:16:32 [INFO] [tests/framework/test_flake_analysis.py::test_merge_appends_new_run[chromium]] Starting test - tests/framework/test_flake_analysis.py::test_merge_appends_new_run[chromium]
+16:16:32 [INFO] [tests/framework/test_flake_analysis.py::test_merge_appends_new_run[chromium]] Finished test - tests/framework/test_flake_analysis.py::test_merge_appends_new_run[chromium]
