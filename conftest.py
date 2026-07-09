@@ -31,8 +31,14 @@ logger = logging.getLogger(__name__)
 # - utils.flaky_summary: retry observability (pass-on-retry counting);
 #   lives in its own module so pytester tests can load the exact source.
 # - utils.quarantine: quarantine marker -> xfail(strict=False) conversion.
+# - utils.run_record: CI-only per-run outcome recorder for flake history.
 # - pytester: enables the pytester fixture for framework plugin tests.
-pytest_plugins = ["utils.flaky_summary", "utils.quarantine", "pytester"]
+pytest_plugins = [
+    "utils.flaky_summary",
+    "utils.quarantine",
+    "utils.run_record",
+    "pytester",
+]
 
 
 # ── CLI Options ──────────────────────────────────────────────────────────────
