@@ -47,10 +47,10 @@ Production-grade test automation platform with integrated AI agents demonstratin
 | AI Setup | ✅ Done | Claude Code subagents, multi-agent workflows, Playwright MCP |
 | Framework Foundation | ✅ Done | POM patterns, fixtures, multi-app config |
 | Docker + CI | ✅ Done | Dockerized test runner, CI matrix, Allure on GitHub Pages |
+| Flaky Quarantine & Detection | ✅ Done | Expiring quarantine marker, history-based flake detection proposing candidates; feeds the Failure Triage Agent |
 | Payments App | Planned | Stripe E2E + API tests (15+ scenarios) |
 | AI Integration | Planned | Test Generator, Failure Triage, LLM-as-Judge — all with accuracy metrics |
 | Performance Testing | Planned | Locust load scenarios, CI threshold gate |
-| Flaky Quarantine & Auto-Detection | Planned | History-based flake detection, auto-quarantine marker; feeds the Failure Triage Agent |
 | Polish | Planned | Architecture diagrams, full walkthrough |
 
 ---
@@ -69,6 +69,34 @@ One deterministic demo test (`tests/framework/test_flaky_demo.py`) fails its
 first attempt in every CI run to prove the pipeline end to end; it is
 counted on its own `flaky (demo)` line so any nonzero real flake count is
 unambiguous signal.
+
+---
+
+## Flaky Quarantine & Detection
+
+A known-flaky test is marked `@pytest.mark.quarantine(reason=..., expires=...)`,
+which collection turns into `xfail(strict=False)`: it still runs and still
+reports, but neither a failure nor a pass blocks the merge. Both arguments are
+mandatory and an `expires` date in the past aborts collection by name — a
+quarantine cannot rot silently. There is no registry file; the markers are the
+list, so `git grep quarantine` enumerates it. Because `pytest-rerunfailures`
+skips xfailed tests, a quarantined test also stops consuming the CI retry
+budget.
+
+Detection is history-based. Each browser job writes a run record; on every push
+to `main` the `publish-report` job folds those records into a durable
+`history.json` on `gh-pages` (last 50 runs per test and browser) and re-derives
+[`candidates.md`](https://summerduck.github.io/fintech-playwright-quality/flake-history/candidates.md),
+also mirrored to the Actions run summary. A test becomes a quarantine candidate
+when it passed-on-retry at least twice in the last 30 runs, or failed in at
+least 5% of them over a minimum of 10 runs — and only if something bad happened
+within the last 10 runs, so old scars heal. Three consecutive failures read as a
+regression, not a flake: those are listed separately under *fix, don't
+quarantine*. Ten consecutive clean XPASS runs propose release from quarantine,
+and markers within a week of expiring are flagged before they break CI.
+
+The analyzer proposes and never disposes: it prints a ready-to-paste marker,
+never edits a test, and never fails the build. A human opens the PR.
 
 ---
 
