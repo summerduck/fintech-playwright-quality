@@ -1,5 +1,7 @@
 services:
-  app:
+  # Named stripe-app (not "app"): .app is an HSTS-preloaded gTLD, so browsers
+  # force https:// on any matching hostname; hyphenated names can never be TLDs.
+  stripe-app:
     build:
       context: docker
       dockerfile: app.Dockerfile
@@ -17,7 +19,7 @@ services:
       dockerfile: docker/runner.Dockerfile
     image: fintech-tests:local
     depends_on:
-      app:
+      stripe-app:
         condition: service_healthy
     environment:
       TEST_ENV: docker

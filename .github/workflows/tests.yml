@@ -85,7 +85,7 @@ jobs:
 
       - name: Dump app logs on failure
         if: failure()
-        run: docker compose logs app
+        run: docker compose logs stripe-app
 
       - name: Shut down compose stack
         if: always()

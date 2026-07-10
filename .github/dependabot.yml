@@ -4,6 +4,11 @@ updates:
     directory: /docker
     schedule:
       interval: weekly
+    ignore:
+      # The runner image tag must match the playwright pin in requirements.txt —
+      # browsers are resolved by pip-package version. An image-only bump breaks
+      # every browser launch, so this pair is bumped by hand, together.
+      - dependency-name: mcr.microsoft.com/playwright/python
 
   - package-ecosystem: github-actions
     directory: /
