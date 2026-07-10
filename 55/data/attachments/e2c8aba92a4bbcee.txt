@@ -1,0 +1,2 @@
+13:44:33 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[webkit]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[webkit]
+13:44:33 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[webkit]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_unknown_app_error_lists_registered_apps[webkit]

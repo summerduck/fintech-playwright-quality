@@ -1,6 +1,6 @@
 # Flake candidates — 2026-07-10
 
-Analyzed 3 run record(s) from run(s) 29094144216 · 261 test(s) tracked
+Analyzed 3 run record(s) from run(s) 29097078182 · 261 test(s) tracked
 
 ## Quarantine candidates (3)
 
@@ -8,7 +8,7 @@ Analyzed 3 run record(s) from run(s) 29094144216 · 261 test(s) tracked
 
 | browser | evidence |
 |---|---|
-| chromium | 4 flake incident(s) in last 4 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216) |
+| chromium | 5 flake incident(s) in last 5 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216), [run 29097078182](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29097078182) |
 
 Suggested marker (fill in the ticket):
 
@@ -20,7 +20,7 @@ Suggested marker (fill in the ticket):
 
 | browser | evidence |
 |---|---|
-| firefox | 4 flake incident(s) in last 4 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216) |
+| firefox | 5 flake incident(s) in last 5 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216), [run 29097078182](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29097078182) |
 
 Suggested marker (fill in the ticket):
 
@@ -32,7 +32,7 @@ Suggested marker (fill in the ticket):
 
 | browser | evidence |
 |---|---|
-| webkit | 4 flake incident(s) in last 4 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216) |
+| webkit | 5 flake incident(s) in last 5 runs: [run 29031207512](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29031207512), [run 29032674223](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29032674223), [run 29035300912](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29035300912), [run 29094144216](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29094144216), [run 29097078182](https://github.com/summerduck/fintech-playwright-quality/actions/runs/29097078182) |
 
 Suggested marker (fill in the ticket):
 

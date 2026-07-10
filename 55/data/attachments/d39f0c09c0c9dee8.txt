@@ -1,0 +1,2 @@
+13:46:15 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[chromium]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[chromium]
+13:46:15 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[chromium]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_docker_env_resolves_to_compose_service_hostname[chromium]

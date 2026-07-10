@@ -1,0 +1,4 @@
+13:44:36 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]
+13:44:37 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+13:44:38 [INFO] [pages.accept_a_payment.card_page] Verifying #card-errors is empty on load
+13:44:39 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_errors_empty_on_load[webkit]

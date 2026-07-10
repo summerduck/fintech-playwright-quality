@@ -1,0 +1,2 @@
+13:45:44 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[firefox]] Starting test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[firefox]
+13:45:46 [INFO] [tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[firefox]] Finished test - tests/framework/test_quarantine.py::test_expired_marker_aborts_the_run_naming_the_test[firefox]

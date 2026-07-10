@@ -1,0 +1,9 @@
+13:45:31 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[firefox]
+13:45:32 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+13:45:35 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+13:45:36 [INFO] [pages.accept_a_payment.card_page] Filling card number
+13:45:37 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+13:45:37 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 01/20
+13:45:38 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+13:45:38 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card’s expiry year is in the past.
+13:45:38 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_in_past[firefox]

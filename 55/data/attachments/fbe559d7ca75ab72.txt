@@ -1,0 +1,2 @@
+13:46:39 [INFO] [tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[chromium]] Starting test - tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[chromium]
+13:46:41 [INFO] [tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[chromium]] Finished test - tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[chromium]

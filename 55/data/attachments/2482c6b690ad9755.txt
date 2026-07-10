@@ -1,0 +1,2 @@
+13:46:35 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[chromium]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[chromium]
+13:46:35 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[chromium]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[chromium]

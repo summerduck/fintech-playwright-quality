@@ -1,0 +1,2 @@
+13:46:35 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[chromium]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[chromium]
+13:46:35 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[chromium]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_keeps_non_sensitive_fields_readable[chromium]

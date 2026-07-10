@@ -1,0 +1,4 @@
+13:45:17 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[firefox]
+13:45:18 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+13:45:23 [INFO] [pages.accept_a_payment.card_page] Verifying #messages panel is hidden on load
+13:45:24 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_messages_panel_hidden_on_load[firefox]
