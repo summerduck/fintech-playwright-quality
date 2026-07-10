@@ -1,0 +1,2 @@
+12:57:16 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[firefox]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[firefox]
+12:57:16 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[firefox]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_masks_the_pan[firefox]

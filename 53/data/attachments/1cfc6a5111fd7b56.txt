@@ -1,0 +1,2 @@
+12:57:14 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[webkit]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[webkit]
+12:57:14 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[webkit]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_invalid_environment[webkit]

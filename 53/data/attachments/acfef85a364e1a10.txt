@@ -1,0 +1,2 @@
+12:57:16 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[firefox]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[firefox]
+12:57:16 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[firefox]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[firefox]

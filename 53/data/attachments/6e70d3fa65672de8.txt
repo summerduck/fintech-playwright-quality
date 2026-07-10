@@ -1,0 +1,2 @@
+12:56:52 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[chromium]] Starting test - tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[chromium]
+12:56:58 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[chromium]] Finished test - tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[chromium]

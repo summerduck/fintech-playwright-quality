@@ -1,0 +1,5 @@
+12:56:32 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[chromium]
+12:56:33 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+12:56:38 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+12:56:39 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card number is incomplete.
+12:56:40 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_card_number_incomplete[chromium]

@@ -1,0 +1,2 @@
+12:57:01 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[chromium]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[chromium]
+12:57:01 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[chromium]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_creates_missing_log_and_allure_dirs[chromium]

@@ -1,0 +1,2 @@
+12:56:57 [INFO] [tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[firefox]
+12:56:57 [INFO] [tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_trailing_fail_streak_is_regression_not_flake[firefox]
