@@ -11,7 +11,6 @@ from config.data.models import Card
 from pages.accept_a_payment import locators as loc
 from pages.accept_a_payment.accept_a_payment_base_page import AcceptAPaymentBasePage
 from pages.accept_a_payment.constants import PAYMENT_TIMEOUT
-from pages.accept_a_payment.three_ds_frame import ThreeDSFrame
 
 logger = logging.getLogger(__name__)
 
@@ -38,8 +37,6 @@ class CardPage(AcceptAPaymentBasePage):
         )
         self._zip_input: Locator = _stripe_frame.locator(loc.ZIP_INPUT)
         self._dashboard_link: Locator = page.locator(loc.DASHBOARD_LINK)
-        # ── Components ───────────────────────────────────────────────────
-        self._three_ds: ThreeDSFrame = ThreeDSFrame(page)
 
     # ── Actions ──────────────────────────────────────────────────────────
 
