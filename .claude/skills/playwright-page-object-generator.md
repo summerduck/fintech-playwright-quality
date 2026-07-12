@@ -46,11 +46,15 @@ pages/
 └── accept_a_payment/
     ├── __init__.py
     ├── accept_a_payment_base_page.py     # Tier 2: Domain base
-    ├── card_page.py
-    └── three_ds_page.py
+    ├── card_page.py                      # Tier 3: Concrete page
+    ├── three_ds_frame.py                 # Component — owned by CardPage
+    ├── constants.py                      # Shared timeouts (PAYMENT_TIMEOUT)
+    └── locators.py
 ```
 
-File naming: `<feature>_page.py` for concrete pages, `<app>_base_page.py` for domain bases, `locators.py` for selector constants.
+File naming: `<feature>_page.py` for concrete pages, `<feature>_frame.py` / `<feature>_component.py` for components, `<app>_base_page.py` for domain bases, `locators.py` for selector constants, `constants.py` for values shared across the app's pages.
+
+Shared values (timeouts, retry budgets) live in `constants.py` and are imported — never redeclared per module. Two files declaring the same `PAYMENT_TIMEOUT = 30_000` is a DRY violation, not a coincidence.
 
 ## Locators Module (`pages/<app>/locators.py`)
 
@@ -84,8 +88,9 @@ Tier 1: BasePage (pages/base_page.py)
   └── Tier 2: AcceptAPaymentBasePage (pages/accept_a_payment/accept_a_payment_base_page.py)
         │     get_page_heading(), get_status_message()
         │
-        ├── Tier 3: CardPage
-        └── Tier 3: ThreeDSPage
+        └── Tier 3: CardPage
+              │     owns (composition, not inheritance):
+              └── ThreeDSFrame — component, no base class
 ```
 
 | Tier | Scope | Contains |
@@ -95,6 +100,34 @@ Tier 1: BasePage (pages/base_page.py)
 | 3 — Concrete Page | One app, one page | Page-specific locators and actions |
 
 Page objects are provided to tests via fixtures in `tests/<app>/conftest.py`. Tests never instantiate page objects directly.
+
+### Page or Component?
+
+Before inheriting from a base page, ask: **can a user navigate to this thing by URL?**
+
+- **Yes** → it is a page. Give it a `URL_PATH`, inherit the domain base, add a fixture.
+- **No** → it is a **component**. Plain class, no base page, constructor takes only `page` (it needs no `base_url` — it never navigates). The page that hosts it constructs it in `__init__` and exposes it through delegating methods.
+
+`ThreeDSFrame` is the reference example: the 3DS challenge is a nested iframe Stripe mounts on `card.html` after the pay button is clicked. It has no URL of its own, so `CardPage` owns it and delegates:
+
+```python
+class CardPage(AcceptAPaymentBasePage):
+    def __init__(self, page: Page, base_url: str) -> None:
+        super().__init__(page, base_url)
+        # ── Components ───────────────────────────────────────────────
+        self._three_ds: ThreeDSFrame = ThreeDSFrame(page)
+
+    @allure.step("Handle the 3DS challenge raised after submitting the card form")
+    def handle_three_ds(self, requires_3ds: bool = True, fail: bool = False) -> Self:
+        """Delegate to the 3DS component mounted on this page."""
+        self._three_ds.handle_three_ds(requires_3ds, fail)
+        return self  # return the page, never the component
+```
+
+Two rules this enforces:
+
+1. **Never make a class inherit a `navigate()` it cannot honour.** Overriding it to `raise NotImplementedError` is a Refused Bequest — the signature is a lie, and under `mypy --strict` an incompatible override is an error. The fix is composition, not a louder exception.
+2. **Delegating methods return the page (`self`), not the component.** Returning the component leaks internals and breaks the page's fluent chain.
 
 ## Conventions
 
