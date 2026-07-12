@@ -117,11 +117,6 @@ class CardPage(AcceptAPaymentBasePage):
         # ── Components ───────────────────────────────────────────────
         self._three_ds: ThreeDSFrame = ThreeDSFrame(page)
 
-    @allure.step("Handle the 3DS challenge raised after submitting the card form")
-    def handle_three_ds(self, requires_3ds: bool = True, fail: bool = False) -> Self:
-        """Delegate to the 3DS component mounted on this page."""
-        self._three_ds.handle_three_ds(requires_3ds, fail)
-        return self  # return the page, never the component
 ```
 
 Two rules this enforces:

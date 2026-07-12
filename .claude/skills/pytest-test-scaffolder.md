@@ -112,7 +112,7 @@ Each app directory has its own `conftest.py` that provides **page object fixture
 
 Note: page objects are always received as **fixtures**. Methods that transition the user to another page still return `Self` — the next page object comes from a separate fixture parameter, not from the return value of a POM method.
 
-Components are **not** fixtures. A component (e.g. `ThreeDSFrame`, the 3DS iframe on `card.html`) is constructed by the page that owns it and reached through that page's methods — `card_page.handle_three_ds(...)`, never a `three_ds_frame` fixture. If a thing cannot be navigated to on its own, it does not get a fixture.
+Components are **not** fixtures. A component (e.g. `ThreeDSFrame`, the 3DS iframe on `card.html`) is constructed by the page that owns it and reached through that page's methods — `three_ds_frame.handle_three_ds(...)`, never a `three_ds_frame` fixture. If a thing cannot be navigated to on its own, it does not get a fixture.
 
 ### How `base_url` Works
 
