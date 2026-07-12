@@ -1,0 +1,2 @@
+18:38:50 [INFO] [tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[firefox]
+18:38:50 [INFO] [tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_release_needs_the_full_streak[firefox]

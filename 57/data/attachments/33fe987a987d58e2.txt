@@ -1,0 +1,2 @@
+18:39:38 [INFO] [tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[chromium]] Starting test - tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[chromium]
+18:39:40 [INFO] [tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[chromium]] Finished test - tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[chromium]

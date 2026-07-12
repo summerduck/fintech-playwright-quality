@@ -1,0 +1,2 @@
+18:38:53 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[webkit]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[webkit]
+18:38:53 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[webkit]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[webkit]

@@ -1,0 +1,2 @@
+18:39:17 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[chromium]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[chromium]
+18:39:17 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[chromium]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_raises_for_unknown_app[chromium]

@@ -1,0 +1,1 @@
+warning: corrupt history at /tmp/pytest-of-root/pytest-0/popen-gw3/test_corrupt_history_starts_fr0/history.json; starting fresh

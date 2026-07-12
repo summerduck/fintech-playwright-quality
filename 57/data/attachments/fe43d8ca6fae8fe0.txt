@@ -1,0 +1,2 @@
+18:39:06 [INFO] [tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[firefox]] Starting test - tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[firefox]
+18:39:08 [INFO] [tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[firefox]] Finished test - tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[firefox]

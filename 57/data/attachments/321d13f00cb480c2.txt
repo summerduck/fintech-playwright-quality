@@ -1,0 +1,11 @@
+18:38:44 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]] Starting test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]
+18:38:45 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+18:38:46 [INFO] [pages.accept_a_payment.card_page] Filling card form with card: **** **** **** 4242
+18:38:46 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+18:38:50 [INFO] [pages.accept_a_payment.card_page] Filling card number
+18:38:50 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+18:38:51 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+18:38:52 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+18:38:52 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+18:38:52 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Payment succeeded: pi_
+18:38:53 [INFO] [tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]] Finished test - tests/accept_a_payment/test_card.py::TestSuccessfulPayment::test_fill_card_form_and_complete_payment[firefox-visa]

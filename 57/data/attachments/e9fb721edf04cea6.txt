@@ -1,0 +1,2 @@
+18:39:33 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[chromium]] Starting test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[chromium]
+18:39:35 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[chromium]] Finished test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[chromium]

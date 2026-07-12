@@ -1,0 +1,2 @@
+18:39:36 [INFO] [tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[chromium]] Starting test - tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[chromium]
+18:39:37 [INFO] [tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[chromium]] Finished test - tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[chromium]

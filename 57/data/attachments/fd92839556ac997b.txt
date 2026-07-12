@@ -1,0 +1,2 @@
+18:38:50 [INFO] [tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[firefox]
+18:38:51 [INFO] [tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_release_requires_every_browser_clean[firefox]

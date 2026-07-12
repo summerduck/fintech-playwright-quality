@@ -1,0 +1,2 @@
+18:39:09 [INFO] [tests/framework/test_quarantine.py::test_missing_reason_is_rejected[firefox]] Starting test - tests/framework/test_quarantine.py::test_missing_reason_is_rejected[firefox]
+18:39:11 [INFO] [tests/framework/test_quarantine.py::test_missing_reason_is_rejected[firefox]] Finished test - tests/framework/test_quarantine.py::test_missing_reason_is_rejected[firefox]

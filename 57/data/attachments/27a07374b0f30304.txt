@@ -1,0 +1,9 @@
+18:39:21 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[chromium]
+18:39:21 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+18:39:24 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+18:39:25 [INFO] [pages.accept_a_payment.card_page] Filling card number
+18:39:25 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+18:39:25 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 
+18:39:25 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+18:39:25 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card’s expiry date is incomplete.
+18:39:26 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_expiration_date_incomplete[chromium]

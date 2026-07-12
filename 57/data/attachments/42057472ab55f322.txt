@@ -1,0 +1,2 @@
+18:39:06 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[firefox]] Starting test - tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[firefox]
+18:39:06 [INFO] [tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[firefox]] Finished test - tests/framework/test_models.py::TestCardMasking::test_repr_never_exposes_the_cvc[firefox]

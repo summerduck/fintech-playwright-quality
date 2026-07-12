@@ -1,0 +1,2 @@
+18:39:12 [INFO] [tests/framework/test_retry_optout.py::test_framework_items_never_rerun[firefox]] Starting test - tests/framework/test_retry_optout.py::test_framework_items_never_rerun[firefox]
+18:39:14 [INFO] [tests/framework/test_retry_optout.py::test_framework_items_never_rerun[firefox]] Finished test - tests/framework/test_retry_optout.py::test_framework_items_never_rerun[firefox]

@@ -1,0 +1,2 @@
+18:39:10 [INFO] [tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[firefox]] Starting test - tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[firefox]
+18:39:12 [INFO] [tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[firefox]] Finished test - tests/framework/test_quarantine.py::test_non_iso_expires_is_rejected[firefox]

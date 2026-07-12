@@ -1,0 +1,2 @@
+18:39:05 [INFO] [tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[firefox]
+18:39:07 [INFO] [tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_summary_mirrored_to_github_step_summary[firefox]
