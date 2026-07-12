@@ -13,7 +13,6 @@ from config import get_base_url
 from config.data.models import Card
 from config.data.test_cards import TestCard
 from pages.accept_a_payment.card_page import CardPage
-from pages.accept_a_payment.three_ds_page import ThreeDSPage
 
 
 @pytest.fixture
@@ -21,13 +20,6 @@ def card_page(page: Page, env: str) -> CardPage:
     """Provide a CardPage instance for the current test."""
     base_url = get_base_url(CardPage.APP_NAME, env)
     return CardPage(page, base_url)
-
-
-@pytest.fixture
-def three_ds_page(page: Page, env: str) -> ThreeDSPage:
-    """Provide a ThreeDSPage instance for the current test."""
-    base_url = get_base_url(ThreeDSPage.APP_NAME, env)
-    return ThreeDSPage(page, base_url)
 
 
 @pytest.fixture

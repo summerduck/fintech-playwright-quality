@@ -17,7 +17,6 @@ from config.data.test_cards import (
     TestCard,
 )
 from pages.accept_a_payment.card_page import CardPage
-from pages.accept_a_payment.three_ds_page import ThreeDSPage
 
 logger = logging.getLogger(__name__)
 
@@ -160,14 +159,13 @@ class Test3DSecureAuthenticationFlow:
     def test_fill_card_form_and_complete_payment_with_3ds_authentication(
         self,
         card_page: CardPage,
-        three_ds_page: ThreeDSPage,
         card: Card,
     ) -> None:
         """Fill the card form and complete payment for the given card."""
         card_page.navigate()
         card_page.fill_card_form(card)
         card_page.click_pay_button()
-        three_ds_page.handle_three_ds(card.requires_3ds)
+        card_page.handle_three_ds(card.requires_3ds)
         card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
 
 

@@ -192,18 +192,23 @@ that carry their own `@allure.step()` decorators.
 A test can use a workflow for setup and a page object for the action under test:
 
 ```python
-    def test_three_ds_after_navigation(
+    def test_payment_succeeds_with_3ds_challenge(
         self,
         accept_a_payment_workflow: AcceptAPaymentWorkflow,
-        three_ds_page: ThreeDSPage,
+        card_page: CardPage,
+        card: Card,
     ) -> None:
-        """Verify the 3DS page is reachable after card-form navigation."""
+        """Verify a 3DS card completes payment after the challenge is accepted."""
         # Arrange — workflow handles initial navigation
         accept_a_payment_workflow.navigate_to_card_form()
 
-        # Assert — interact with the 3DS page object directly
-        three_ds_page.navigate()
-        three_ds_page.verify_page_loaded()
+        # Act — the 3DS frame is owned by CardPage, not a fixture of its own
+        card_page.fill_card_form(card)
+        card_page.click_pay_button()
+        card_page.handle_three_ds(card.requires_3ds)
+
+        # Assert
+        card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
 ```
 
 ## Code Quality
