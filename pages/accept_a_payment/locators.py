@@ -18,7 +18,7 @@ EXPIRATION_DATE_INPUT = "[name='exp-date']"
 ZIP_INPUT = "[name='postal']"
 DASHBOARD_LINK = "[href*='dashboard.stripe.com']"
 
-# ── 3DS Page ────────────────────────────────────────────────────────────
+# ── 3DS Frame ───────────────────────────────────────────────────────────
 
 # Stripe.js injects an outer wrapper iframe for the 3DS redirect flow;
 # #challengeFrame lives inside it, not in the main document.

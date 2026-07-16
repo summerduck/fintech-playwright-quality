@@ -2,8 +2,9 @@
 
 This is not a page. The 3DS challenge is a nested iframe that Stripe mounts on
 card.html after the pay button is clicked; it cannot be navigated to directly.
-It is therefore owned by ``CardPage`` instead of inheriting from a page base
-class that would promise a ``navigate()`` it cannot honour.
+It is therefore a plain component — constructed from ``page`` alone and provided
+to tests as its own fixture — rather than inheriting from a page base class that
+would promise a ``navigate()`` it cannot honour.
 """
 
 import logging

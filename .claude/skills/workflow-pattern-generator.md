@@ -196,16 +196,17 @@ A test can use a workflow for setup and a page object for the action under test:
         self,
         accept_a_payment_workflow: AcceptAPaymentWorkflow,
         card_page: CardPage,
+        three_ds_frame: ThreeDSFrame,
         card: Card,
     ) -> None:
         """Verify a 3DS card completes payment after the challenge is accepted."""
         # Arrange — workflow handles initial navigation
         accept_a_payment_workflow.navigate_to_card_form()
 
-        # Act — the 3DS frame is owned by CardPage, not a fixture of its own
+        # Act — the 3DS frame is its own component fixture, driven directly
         card_page.fill_card_form(card)
         card_page.click_pay_button()
-        card_page.handle_three_ds(card.requires_3ds)
+        three_ds_frame.handle_three_ds(card.requires_3ds)
 
         # Assert
         card_page.verify_messages_contain_text(CardMessages.PAYMENT_SUCCEEDED_PREFIX)
