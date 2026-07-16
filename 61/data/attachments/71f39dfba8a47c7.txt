@@ -1,0 +1,2 @@
+17:54:49 [INFO] [tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[firefox]] Starting test - tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[firefox]
+17:54:50 [INFO] [tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[firefox]] Finished test - tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[firefox]

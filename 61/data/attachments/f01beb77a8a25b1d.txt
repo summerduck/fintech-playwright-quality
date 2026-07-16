@@ -1,0 +1,2 @@
+17:54:19 [INFO] [tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[firefox]
+17:54:19 [INFO] [tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_merge_windows_to_keep_runs[firefox]

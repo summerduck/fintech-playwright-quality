@@ -1,0 +1,22 @@
+running: /usr/bin/python -mpytest --basetemp=/tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_controller_writes_exactly_one_complete_file0/runpytest-0 -n 2
+     in: /tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_controller_writes_exactly_one_complete_file0
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.5.0
+rootdir: /tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_controller_writes_exactly_one_complete_file0
+plugins: hypothesis-6.151.9, rerunfailures-15.0, reportlog-0.4.0, allure-pytest-2.13.3, base-url-2.1.0, cov-6.1.1, xdist-3.6.1, metadata-3.1.1, playwright-0.7.0, Faker-37.1.0, html-4.1.1, sugar-1.1.1
+created: 2/2 workers
+2 workers [3 items]
+
+.sF                                                                      [100%]
+=================================== FAILURES ===================================
+__________________________________ test_fails __________________________________
+[gw0] linux -- Python 3.12.3 /usr/bin/python
+
+    def test_fails() -> None:
+>       raise AssertionError("boom")
+E       AssertionError: boom
+
+test_xdist_controller_writes_exactly_one_complete_file.py:9: AssertionError
+=========================== short test summary info ============================
+FAILED test_xdist_controller_writes_exactly_one_complete_file.py::test_fails
+==================== 1 failed, 1 passed, 1 skipped in 2.07s ====================

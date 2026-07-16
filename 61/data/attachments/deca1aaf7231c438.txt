@@ -1,0 +1,2 @@
+17:54:41 [INFO] [tests/framework/test_retry_optout.py::test_framework_items_never_rerun[chromium]] Starting test - tests/framework/test_retry_optout.py::test_framework_items_never_rerun[chromium]
+17:54:42 [INFO] [tests/framework/test_retry_optout.py::test_framework_items_never_rerun[chromium]] Finished test - tests/framework/test_retry_optout.py::test_framework_items_never_rerun[chromium]

@@ -1,0 +1,2 @@
+17:54:45 [INFO] [tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[firefox]] Starting test - tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[firefox]
+17:54:45 [INFO] [tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[firefox]] Finished test - tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[firefox]

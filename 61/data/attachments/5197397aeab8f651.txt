@@ -1,0 +1,4 @@
+17:54:10 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[webkit]
+17:54:12 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+17:54:15 [INFO] [pages.base_page] 200 response from /card.html
+17:54:15 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_card_page_direct_navigation_status_200[webkit]
