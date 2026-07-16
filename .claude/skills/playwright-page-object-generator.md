@@ -47,7 +47,7 @@ pages/
     ├── __init__.py
     ├── accept_a_payment_base_page.py     # Tier 2: Domain base
     ├── card_page.py                      # Tier 3: Concrete page
-    ├── three_ds_frame.py                 # Component — owned by CardPage
+    ├── three_ds_frame.py                 # Component — no base class, its own fixture
     ├── constants.py                      # Shared timeouts (PAYMENT_TIMEOUT)
     └── locators.py
 ```
@@ -89,8 +89,9 @@ Tier 1: BasePage (pages/base_page.py)
         │     get_page_heading(), get_status_message()
         │
         └── Tier 3: CardPage
-              │     owns (composition, not inheritance):
-              └── ThreeDSFrame — component, no base class
+
+    ThreeDSFrame — component (no base class); its own fixture,
+                   called directly by the test — not owned by CardPage
 ```
 
 | Tier | Scope | Contains |
@@ -106,28 +107,31 @@ Page objects are provided to tests via fixtures in `tests/<app>/conftest.py`. Te
 Before inheriting from a base page, ask: **can a user navigate to this thing by URL?**
 
 - **Yes** → it is a page. Give it a `URL_PATH`, inherit the domain base, add a fixture.
-- **No** → it is a **component**. Plain class, no base page, constructor takes only `page` (it needs no `base_url` — it never navigates). The page that hosts it constructs it in `__init__` and exposes it through delegating methods.
+- **No** → it is a **component**. Plain class, no base page, constructor takes only `page` (it needs no `base_url` — it never navigates). It gets its own fixture in `conftest.py` and the test calls it directly, alongside the page it appears on.
 
-`ThreeDSFrame` is the reference example: the 3DS challenge is a nested iframe Stripe mounts on `card.html` after the pay button is clicked. It has no URL of its own, so `CardPage` owns it and delegates:
+`ThreeDSFrame` is the reference example: the 3DS challenge is a nested iframe Stripe mounts on `card.html` after the pay button is clicked. It has no URL of its own, so it is a plain component constructed from `page` alone:
 
 ```python
-class CardPage(AcceptAPaymentBasePage):
-    def __init__(self, page: Page, base_url: str) -> None:
-        super().__init__(page, base_url)
-        # ── Components ───────────────────────────────────────────────
-        self._three_ds: ThreeDSFrame = ThreeDSFrame(page)
+class ThreeDSFrame:
+    """Represents the 3D Secure authentication overlay on the card page."""
 
-    @allure.step("Handle the 3DS challenge raised after submitting the card form")
-    def handle_three_ds(self, requires_3ds: bool = True, fail: bool = False) -> Self:
-        """Delegate to the 3DS component mounted on this page."""
-        self._three_ds.handle_three_ds(requires_3ds, fail)
-        return self  # return the page, never the component
+    def __init__(self, page: Page) -> None:
+        _wrapper = page.frame_locator(loc.THREE_DS_WRAPPER_FRAME)
+        ...
+```
+
+The test receives both the page and the component as separate fixtures and drives them in sequence — the component is not reached through the page:
+
+```python
+def test_...(self, card_page: CardPage, three_ds_frame: ThreeDSFrame, card: Card) -> None:
+    card_page.click_pay_button()
+    three_ds_frame.handle_three_ds(card.requires_3ds)
 ```
 
 Two rules this enforces:
 
-1. **Never make a class inherit a `navigate()` it cannot honour.** Overriding it to `raise NotImplementedError` is a Refused Bequest — the signature is a lie, and under `mypy --strict` an incompatible override is an error. The fix is composition, not a louder exception.
-2. **Delegating methods return the page (`self`), not the component.** Returning the component leaks internals and breaks the page's fluent chain.
+1. **Never make a class inherit a `navigate()` it cannot honour.** Overriding it to `raise NotImplementedError` is a Refused Bequest — the signature is a lie, and under `mypy --strict` an incompatible override is an error. The fix is to drop the base class, not to raise a louder exception.
+2. **A component is a peer fixture, not a member of the page.** The page does not construct, own, or expose it; the test composes page and component itself. This keeps their lifecycles independent and the coupling low.
 
 ## Conventions
 

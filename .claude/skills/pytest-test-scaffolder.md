@@ -109,10 +109,19 @@ Each app directory has its own `conftest.py` that provides **page object fixture
 | Fixture | Returns | Source |
 |---------|---------|--------|
 | `card_page` | `CardPage(page, base_url)` | `tests/accept_a_payment/conftest.py` |
+| `three_ds_frame` | `ThreeDSFrame(page)` — component, no `base_url` | `tests/accept_a_payment/conftest.py` |
 
 Note: page objects are always received as **fixtures**. Methods that transition the user to another page still return `Self` — the next page object comes from a separate fixture parameter, not from the return value of a POM method.
 
-Components are **not** fixtures. A component (e.g. `ThreeDSFrame`, the 3DS iframe on `card.html`) is constructed by the page that owns it and reached through that page's methods — `card_page.handle_three_ds(...)`, never a `three_ds_frame` fixture. If a thing cannot be navigated to on its own, it does not get a fixture.
+Components get fixtures too. A component (e.g. `ThreeDSFrame`, the 3DS iframe Stripe mounts on `card.html`) is received as its own fixture — `three_ds_frame.handle_three_ds(...)` — exactly like a page object. The difference is in the fixture's signature, not its existence:
+
+| | Page fixture | Component fixture |
+|---|---|---|
+| Depends on | `page`, `env` | `page` only |
+| Constructed with | `(page, base_url)` | `(page)` |
+| Has | `APP_NAME`, `URL_PATH`, `navigate()` | none of these |
+
+A component has no URL of its own, so it resolves no `base_url` and offers no `navigate()`. If a thing cannot be navigated to, it is a component — give it a fixture, but never a URL.
 
 ### How `base_url` Works
 
@@ -160,9 +169,15 @@ def login_page(page: Page, base_url: str) -> LoginPage:
 def inventory_page(page: Page, base_url: str) -> InventoryPage:
     """Provide an InventoryPage instance for the current test."""
     return InventoryPage(page, base_url)
+
+
+@pytest.fixture
+def example_component(page: Page) -> ExampleComponent:
+    """Provide an ExampleComponent for the current test."""
+    return ExampleComponent(page)
 ```
 
-Each app directory owns its `base_url` and page object fixtures. Tests never instantiate page objects directly.
+Each app directory owns its `base_url` and its page and component fixtures. Tests never instantiate page objects or components directly. Note the component fixture takes `page` alone — no `base_url`, because it has no URL of its own.
 
 ## Automatic Behaviours (from pyproject.toml addopts)
 
@@ -320,7 +335,8 @@ Apply all rules from the **code-quality-standards** skill.
 ### Do not
 - Put **any** Python logic (loops, conditionals, list comprehensions, try/except) in test bodies — tests must consist exclusively of method calls on page objects and fixtures; push all logic into page object or workflow methods
 - Use `assert` to check DOM elements — use `expect()` for auto-waiting assertions on DOM
-- Instantiate page objects in tests — receive them as fixtures via app-level `conftest.py`
+- Instantiate page objects or components in tests — receive them as fixtures via app-level `conftest.py`
+- Give a component fixture a `base_url` or `env` dependency — a component is mounted on a page and has no URL to resolve
 - Put page object logic in tests — keep it in `pages/`
 - Use `time.sleep()` — rely on Playwright auto-waiting
 - Hard-code URLs — always use `base_url` fixture
