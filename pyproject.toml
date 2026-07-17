@@ -142,6 +142,7 @@ addopts = [
     "--html=report.html",
     "--self-contained-html",
     "--alluredir=allure-results",
+    "--junitxml=test-results/junit.xml",
     # Retries default OFF everywhere. CI (and only CI) overrides on the
     # pytest CLI with `--reruns=1 --only-rerun <infra regex>` — see
     # .github/workflows/tests.yml. Retries are an observability mechanism,
