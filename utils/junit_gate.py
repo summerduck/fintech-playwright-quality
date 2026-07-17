@@ -25,7 +25,8 @@ def parse_junit(path: str) -> dict[str, int]:
     """
     # Trusted source (pytest self-generates junit.xml in-job): stdlib etree is
     # fine. Switch to defusedxml if this ever parses an untrusted report.
-    root = ET.parse(path).getroot()  # nosec B314  # <testsuites> wrapper or bare <testsuite>
+    # <testsuites> wrapper or bare <testsuite>
+    root = ET.parse(path).getroot()  # nosec B314
     totals = {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
     for suite in root.iter("testsuite"):
         for key in totals:
@@ -46,7 +47,7 @@ def evaluate_gate(counts: dict[str, int]) -> tuple[bool, str]:
         return False, "no tests collected"
     if counts["failures"] > 0 or counts["errors"] > 0:
         return False, f"{counts['failures']} failures / {counts['errors']} errors"
-    if counts["passed"] == 0:
+    if counts["passed"] <= 0:
         return False, "all tests skipped"
     return True, f"{counts['passed']} passed"
 

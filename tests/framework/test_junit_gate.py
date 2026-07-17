@@ -47,6 +47,12 @@ from utils.junit_gate import evaluate_gate, main, parse_junit
             False,
             "failures",
         ),
+        # malformed: derived passed goes negative -> must still FAIL, not false-pass
+        (
+            {"tests": 1, "passed": -1, "failures": 0, "errors": 0, "skipped": 2},
+            False,
+            "skipped",
+        ),
     ],
 )
 def test_evaluate_gate(counts, expected_ok, reason_contains):
