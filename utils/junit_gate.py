@@ -12,6 +12,28 @@ non-zero code swallowed upstream (`|| true`, a container layer). Reading the
 report closes that gap. See demos/false_green/ for the walkthrough.
 """
 
+import xml.etree.ElementTree as ET  # nosec B405
+
+
+def parse_junit(path: str) -> dict[str, int]:
+    """Sum test counts across every <testsuite> in a pytest JUnit XML file.
+
+    Returns keys: tests, failures, errors, skipped, passed.
+    `passed` is derived: tests - failures - errors - skipped.
+    Raises OSError (missing file) / ET.ParseError (malformed) to the caller.
+    """
+    # Trusted source (pytest self-generates junit.xml in-job): stdlib etree is
+    # fine. Switch to defusedxml if this ever parses an untrusted report.
+    root = ET.parse(path).getroot()  # nosec B314  # <testsuites> wrapper or bare <testsuite>
+    totals = {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
+    for suite in root.iter("testsuite"):
+        for key in totals:
+            totals[key] += int(suite.get(key, 0))
+    totals["passed"] = (
+        totals["tests"] - totals["failures"] - totals["errors"] - totals["skipped"]
+    )
+    return totals
+
 
 def evaluate_gate(counts: dict[str, int]) -> tuple[bool, str]:
     """Decide whether a run is trustworthy from its JUnit counts.

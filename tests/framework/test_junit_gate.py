@@ -1,8 +1,10 @@
 """Unit tests for the JUnit false-green gate."""
 
+import xml.etree.ElementTree as ET
+
 import pytest
 
-from utils.junit_gate import evaluate_gate
+from utils.junit_gate import evaluate_gate, parse_junit
 
 
 @pytest.mark.unit
@@ -51,3 +53,42 @@ def test_evaluate_gate(counts, expected_ok, reason_contains):
     ok, reason = evaluate_gate(counts)
     assert ok is expected_ok
     assert reason_contains in reason
+
+
+_TWO_SUITES = """<?xml version="1.0"?>
+<testsuites>
+  <testsuite tests="3" failures="1" errors="0" skipped="1"></testsuite>
+  <testsuite tests="2" failures="0" errors="1" skipped="0"></testsuite>
+</testsuites>
+"""
+
+
+@pytest.mark.unit
+def test_parse_junit_sums_across_suites(tmp_path):
+    xml_file = tmp_path / "junit.xml"
+    xml_file.write_text(_TWO_SUITES)
+
+    counts = parse_junit(str(xml_file))
+
+    assert counts == {
+        "tests": 5,
+        "failures": 1,
+        "errors": 1,
+        "skipped": 1,
+        "passed": 2,
+    }
+
+
+@pytest.mark.unit
+def test_parse_junit_missing_file_raises(tmp_path):
+    with pytest.raises(OSError):
+        parse_junit(str(tmp_path / "does_not_exist.xml"))
+
+
+@pytest.mark.unit
+def test_parse_junit_malformed_raises(tmp_path):
+    bad = tmp_path / "bad.xml"
+    bad.write_text("<testsuite not closed")
+
+    with pytest.raises(ET.ParseError):
+        parse_junit(str(bad))
