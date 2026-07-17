@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from utils.junit_gate import evaluate_gate, parse_junit
+from utils.junit_gate import evaluate_gate, main, parse_junit
 
 
 @pytest.mark.unit
@@ -92,3 +92,26 @@ def test_parse_junit_malformed_raises(tmp_path):
 
     with pytest.raises(ET.ParseError):
         parse_junit(str(bad))
+
+
+_HEALTHY = """<?xml version="1.0"?>
+<testsuite tests="2" failures="0" errors="0" skipped="0"></testsuite>
+"""
+
+
+@pytest.mark.unit
+def test_main_passes_on_healthy_report(tmp_path):
+    xml_file = tmp_path / "junit.xml"
+    xml_file.write_text(_HEALTHY)
+
+    assert main([str(xml_file)]) == 0
+
+
+@pytest.mark.unit
+def test_main_fails_on_missing_report(tmp_path):
+    assert main([str(tmp_path / "missing.xml")]) == 1
+
+
+@pytest.mark.unit
+def test_main_usage_error_on_bad_args():
+    assert main([]) == 2

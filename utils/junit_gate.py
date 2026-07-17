@@ -12,6 +12,7 @@ non-zero code swallowed upstream (`|| true`, a container layer). Reading the
 report closes that gap. See demos/false_green/ for the walkthrough.
 """
 
+import sys
 import xml.etree.ElementTree as ET  # nosec B405
 
 
@@ -48,3 +49,36 @@ def evaluate_gate(counts: dict[str, int]) -> tuple[bool, str]:
     if counts["passed"] == 0:
         return False, "all tests skipped"
     return True, f"{counts['passed']} passed"
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) != 1:
+        print("usage: junit_gate.py <junit.xml>", file=sys.stderr)
+        return 2
+
+    path = argv[0]
+    try:
+        counts = parse_junit(path)
+    except (OSError, ET.ParseError) as exc:
+        print(
+            f"❌ gate FAIL (false green): no junit report — run produced no "
+            f"result ({exc})",
+            file=sys.stderr,
+        )
+        return 1
+
+    print(
+        f"report: {counts['tests']} collected · {counts['passed']} passed · "
+        f"{counts['failures']} failed · {counts['errors']} errors · "
+        f"{counts['skipped']} skipped"
+    )
+    ok, reason = evaluate_gate(counts)
+    if ok:
+        print(f"✅ gate PASS: {reason}")
+        return 0
+    print(f"❌ gate FAIL (false green): {reason}", file=sys.stderr)
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
