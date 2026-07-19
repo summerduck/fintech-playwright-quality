@@ -76,6 +76,13 @@ jobs:
           tests --browser=${{ matrix.browser }}
           --reruns=1 --only-rerun "TimeoutError|net::ERR|NS_ERROR_|Could not connect"
 
+      # Judge the run by its report, not the process exit code: catches
+      # all-skipped (exit 0, verified nothing) and a swallowed non-zero code.
+      # if: always() so the gate still speaks when the test step went red.
+      - name: JUnit gate (${{ matrix.browser }})
+        if: always()
+        run: python3 utils/junit_gate.py test-results/junit.xml
+
       - name: Publish flaky summary to run page
         if: always()
         run: |
