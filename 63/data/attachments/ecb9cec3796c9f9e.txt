@@ -1,0 +1,2 @@
+14:10:51 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[webkit]] Starting test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[webkit]
+14:10:53 [INFO] [tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[webkit]] Finished test - tests/framework/test_quarantine.py::test_quarantined_pass_is_recorded_as_xpass[webkit]

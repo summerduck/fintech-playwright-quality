@@ -1,0 +1,1 @@
+❌ gate FAIL (false green): no junit report — run produced no result ([Errno 2] No such file or directory: '/tmp/pytest-of-root/pytest-0/popen-gw0/test_main_fails_on_missing_rep0/missing.xml')

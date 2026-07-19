@@ -1,0 +1,2 @@
+14:11:03 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts6-False-skipped]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts6-False-skipped]
+14:11:03 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts6-False-skipped]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts6-False-skipped]

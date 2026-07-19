@@ -1,0 +1,4 @@
+14:10:27 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[webkit]
+14:10:29 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+14:10:32 [INFO] [pages.accept_a_payment.card_page] Verifying #name input is pre-filled with 'Jenny Rosen'
+14:10:33 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_name_input_prefilled_jenny_rosen[webkit]

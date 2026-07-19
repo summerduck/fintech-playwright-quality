@@ -1,0 +1,2 @@
+14:10:20 [INFO] [tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[firefox]
+14:10:20 [INFO] [tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_fail_rate_branch_proposes[firefox]

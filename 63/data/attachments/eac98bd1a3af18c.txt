@@ -1,0 +1,2 @@
+14:10:20 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[firefox]] Starting test - tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[firefox]
+14:10:20 [INFO] [tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[firefox]] Finished test - tests/framework/test_config.py::TestGetBaseUrl::test_invalid_env_error_lists_valid_options[firefox]

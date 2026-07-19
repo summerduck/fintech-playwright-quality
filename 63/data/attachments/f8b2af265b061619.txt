@@ -1,0 +1,2 @@
+14:10:53 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts3-False-failures]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts3-False-failures]
+14:10:53 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts3-False-failures]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts3-False-failures]

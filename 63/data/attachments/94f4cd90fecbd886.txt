@@ -1,0 +1,1 @@
+usage: junit_gate.py <junit.xml>

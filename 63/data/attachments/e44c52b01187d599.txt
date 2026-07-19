@@ -1,0 +1,2 @@
+14:10:50 [INFO] [tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[firefox]] Starting test - tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[firefox]
+14:10:53 [INFO] [tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[firefox]] Finished test - tests/framework/test_run_record.py::test_xdist_controller_writes_exactly_one_complete_file[firefox]

@@ -1,0 +1,2 @@
+14:10:48 [INFO] [tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[firefox]] Starting test - tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[firefox]
+14:10:49 [INFO] [tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[firefox]] Finished test - tests/framework/test_retry_optout.py::test_flaky_demo_marker_stays_retry_eligible[firefox]

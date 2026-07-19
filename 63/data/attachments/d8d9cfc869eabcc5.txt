@@ -1,0 +1,2 @@
+14:10:49 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts1-False-no tests collected]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts1-False-no tests collected]
+14:10:49 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts1-False-no tests collected]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts1-False-no tests collected]

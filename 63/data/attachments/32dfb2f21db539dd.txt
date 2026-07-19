@@ -1,0 +1,2 @@
+14:10:34 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[chromium]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[chromium]
+14:10:34 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[chromium]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_never_contains_the_full_pan[chromium]
