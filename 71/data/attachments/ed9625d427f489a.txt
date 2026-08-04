@@ -1,0 +1,2 @@
+12:31:06 [INFO] [tests/framework/test_junit_gate.py::test_main_fails_on_missing_report[chromium]] Starting test - tests/framework/test_junit_gate.py::test_main_fails_on_missing_report[chromium]
+12:31:06 [INFO] [tests/framework/test_junit_gate.py::test_main_fails_on_missing_report[chromium]] Finished test - tests/framework/test_junit_gate.py::test_main_fails_on_missing_report[chromium]

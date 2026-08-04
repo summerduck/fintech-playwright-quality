@@ -1,0 +1,2 @@
+12:31:12 [INFO] [tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[chromium]] Starting test - tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[chromium]
+12:31:12 [INFO] [tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[chromium]] Finished test - tests/framework/test_quarantine_demo.py::test_quarantine_demo_shielded_failure[chromium]

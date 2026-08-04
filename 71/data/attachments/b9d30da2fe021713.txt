@@ -1,0 +1,2 @@
+12:31:13 [INFO] [tests/framework/test_junit_gate.py::test_main_passes_on_healthy_report[webkit]] Starting test - tests/framework/test_junit_gate.py::test_main_passes_on_healthy_report[webkit]
+12:31:13 [INFO] [tests/framework/test_junit_gate.py::test_main_passes_on_healthy_report[webkit]] Finished test - tests/framework/test_junit_gate.py::test_main_passes_on_healthy_report[webkit]

@@ -1,0 +1,2 @@
+ERROR: test_non_iso_expires_is_rejected.py::test_bad_date: quarantine expires= must be an ISO date (YYYY-MM-DD), got 'next month'
+

@@ -1,0 +1,2 @@
+12:31:29 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts3-False-failures]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts3-False-failures]
+12:31:29 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts3-False-failures]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[webkit-counts3-False-failures]

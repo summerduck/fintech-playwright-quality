@@ -1,0 +1,2 @@
+12:31:04 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts5-False-failures]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts5-False-failures]
+12:31:04 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts5-False-failures]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts5-False-failures]

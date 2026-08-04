@@ -1,0 +1,2 @@
+12:31:13 [INFO] [tests/framework/test_junit_gate.py::test_parse_junit_malformed_raises[webkit]] Starting test - tests/framework/test_junit_gate.py::test_parse_junit_malformed_raises[webkit]
+12:31:13 [INFO] [tests/framework/test_junit_gate.py::test_parse_junit_malformed_raises[webkit]] Finished test - tests/framework/test_junit_gate.py::test_parse_junit_malformed_raises[webkit]

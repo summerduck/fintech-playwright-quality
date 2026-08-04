@@ -1,0 +1,4 @@
+12:31:11 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[webkit]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[webkit]
+12:31:11 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+12:31:12 [INFO] [pages.accept_a_payment.card_page] Verifying pay button is enabled on load
+12:31:13 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[webkit]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_pay_button_enabled_on_load[webkit]

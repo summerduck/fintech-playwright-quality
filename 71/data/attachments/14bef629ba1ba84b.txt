@@ -1,0 +1,2 @@
+12:31:13 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-visa-grouped]] Starting test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-visa-grouped]
+12:31:13 [INFO] [tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-visa-grouped]] Finished test - tests/framework/test_models.py::TestCardMasking::test_str_shows_only_last_four_digits[webkit-visa-grouped]

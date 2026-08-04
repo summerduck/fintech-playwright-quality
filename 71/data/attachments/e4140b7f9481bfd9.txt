@@ -1,0 +1,2 @@
+12:30:24 [INFO] [tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[firefox]] Starting test - tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[firefox]
+12:30:24 [INFO] [tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[firefox]] Finished test - tests/framework/test_flake_analysis.py::test_clean_browser_shown_alongside_dirty_one[firefox]

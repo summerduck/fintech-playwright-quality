@@ -1,0 +1,2 @@
+12:30:43 [INFO] [tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[chromium]] Starting test - tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[chromium]
+12:30:43 [INFO] [tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[chromium]] Finished test - tests/framework/test_flake_analysis.py::test_corrupt_history_starts_fresh[chromium]
