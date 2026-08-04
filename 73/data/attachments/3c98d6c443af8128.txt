@@ -1,0 +1,2 @@
+12:36:22 [INFO] [tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[firefox]] Starting test - tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[firefox]
+12:36:24 [INFO] [tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[firefox]] Finished test - tests/framework/test_quarantine.py::test_unmarked_test_is_untouched[firefox]

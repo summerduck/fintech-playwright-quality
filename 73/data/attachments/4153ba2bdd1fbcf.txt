@@ -1,0 +1,14 @@
+running: /usr/bin/python -mpytest --basetemp=/tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_mirrors_step_summary_exactly_once0/runpytest-0 --reruns=1 -n 2
+     in: /tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_mirrors_step_summary_exactly_once0
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.2, pluggy-1.5.0
+rootdir: /tmp/pytest-of-root/pytest-0/popen-gw3/test_xdist_mirrors_step_summary_exactly_once0
+plugins: html-4.1.1, playwright-0.7.0, Faker-37.1.0, sugar-1.1.1, cov-6.1.1, xdist-3.6.1, rerunfailures-15.0, metadata-3.1.1, base-url-2.1.0, hypothesis-6.151.9, allure-pytest-2.13.3, reportlog-0.4.0
+created: 2/2 workers
+2 workers [1 item]
+
+R.                                                                       [100%]
+============================== flaky test summary ==============================
+flaky (passed on retry): 1
+  test_xdist_mirrors_step_summary_exactly_once.py::test_recovers
+========================== 1 passed, 1 rerun in 3.40s ==========================

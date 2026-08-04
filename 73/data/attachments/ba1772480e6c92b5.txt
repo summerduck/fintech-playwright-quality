@@ -1,0 +1,2 @@
+12:36:12 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts0-True-passed]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts0-True-passed]
+12:36:12 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts0-True-passed]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[firefox-counts0-True-passed]

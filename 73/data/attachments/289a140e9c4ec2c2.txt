@@ -1,0 +1,4 @@
+12:35:36 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]] Starting test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]
+12:35:36 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+12:35:40 [INFO] [pages.accept_a_payment.card_page] Verifying page title equals 'Card'
+12:35:40 [INFO] [tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]] Finished test - tests/accept_a_payment/test_card.py::TestPageLoadAndInitialState::test_page_title_is_card[chromium]

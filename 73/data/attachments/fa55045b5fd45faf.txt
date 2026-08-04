@@ -1,0 +1,2 @@
+12:35:56 [INFO] [tests/framework/test_junit_gate.py::test_parse_junit_sums_across_suites[chromium]] Starting test - tests/framework/test_junit_gate.py::test_parse_junit_sums_across_suites[chromium]
+12:35:56 [INFO] [tests/framework/test_junit_gate.py::test_parse_junit_sums_across_suites[chromium]] Finished test - tests/framework/test_junit_gate.py::test_parse_junit_sums_across_suites[chromium]

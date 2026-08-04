@@ -1,0 +1,10 @@
+12:36:08 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[firefox]] Starting test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[firefox]
+12:36:09 [INFO] [pages.base_page] Navigating to: http://stripe-app:4242/card.html
+12:36:12 [INFO] [pages.accept_a_payment.card_page] Filling name: John Doe
+12:36:13 [INFO] [pages.accept_a_payment.card_page] Filling card number
+12:36:14 [INFO] [pages.accept_a_payment.card_page] Filling cvc
+12:36:15 [INFO] [pages.accept_a_payment.card_page] Filling expiration date: 12/34
+12:36:15 [INFO] [pages.accept_a_payment.card_page] Filling ZIP: 12345
+12:36:15 [INFO] [pages.accept_a_payment.card_page] Clicking pay button
+12:36:15 [INFO] [pages.accept_a_payment.card_page] Verifying messages contain text: Your card’s security code is incomplete.
+12:36:15 [INFO] [tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[firefox]] Finished test - tests/accept_a_payment/test_card.py::TestCardFormValidation::test_form_validation_cvc_incomplete[firefox]

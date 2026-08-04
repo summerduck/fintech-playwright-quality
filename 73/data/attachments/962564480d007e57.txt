@@ -1,0 +1,2 @@
+12:35:56 [INFO] [tests/framework/test_junit_gate.py::test_main_usage_error_on_bad_args[chromium]] Starting test - tests/framework/test_junit_gate.py::test_main_usage_error_on_bad_args[chromium]
+12:35:56 [INFO] [tests/framework/test_junit_gate.py::test_main_usage_error_on_bad_args[chromium]] Finished test - tests/framework/test_junit_gate.py::test_main_usage_error_on_bad_args[chromium]

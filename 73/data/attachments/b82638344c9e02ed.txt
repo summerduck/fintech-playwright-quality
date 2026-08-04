@@ -1,0 +1,2 @@
+12:35:58 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[firefox]] Starting test - tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[firefox]
+12:36:04 [INFO] [tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[firefox]] Finished test - tests/framework/test_flaky_summary.py::test_xdist_forwards_rerun_reports[firefox]

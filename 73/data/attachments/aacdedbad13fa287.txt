@@ -1,0 +1,2 @@
+12:36:14 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts2-False-all tests skipped]] Starting test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts2-False-all tests skipped]
+12:36:14 [INFO] [tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts2-False-all tests skipped]] Finished test - tests/framework/test_junit_gate.py::test_evaluate_gate[chromium-counts2-False-all tests skipped]

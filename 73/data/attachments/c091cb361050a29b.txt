@@ -1,0 +1,2 @@
+12:36:05 [INFO] [tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[chromium]] Starting test - tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[chromium]
+12:36:07 [INFO] [tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[chromium]] Finished test - tests/framework/test_run_record.py::test_quarantined_entry_carries_flag_and_expires[chromium]

@@ -1,0 +1,2 @@
+12:35:05 [INFO] [tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[webkit]] Starting test - tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[webkit]
+12:35:07 [INFO] [tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[webkit]] Finished test - tests/framework/test_quarantine.py::test_quarantined_failure_becomes_xfail_and_run_stays_green[webkit]

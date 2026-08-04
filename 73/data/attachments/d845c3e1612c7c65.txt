@@ -1,0 +1,2 @@
+12:36:12 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[firefox]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[firefox]
+12:36:12 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[firefox]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_unlinks_symlinked_dir_without_deleting_its_target[firefox]

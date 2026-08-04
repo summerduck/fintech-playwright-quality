@@ -1,0 +1,2 @@
+12:36:12 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[firefox]] Starting test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[firefox]
+12:36:12 [INFO] [tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[firefox]] Finished test - tests/framework/test_log_helpers.py::TestCleanAndCreateLogDirs::test_removes_regular_files_and_subdirs_from_log_dir[firefox]

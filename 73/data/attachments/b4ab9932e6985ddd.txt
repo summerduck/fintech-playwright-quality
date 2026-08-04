@@ -1,0 +1,2 @@
+12:36:01 [INFO] [tests/framework/test_quarantine.py::test_missing_reason_is_rejected[chromium]] Starting test - tests/framework/test_quarantine.py::test_missing_reason_is_rejected[chromium]
+12:36:02 [INFO] [tests/framework/test_quarantine.py::test_missing_reason_is_rejected[chromium]] Finished test - tests/framework/test_quarantine.py::test_missing_reason_is_rejected[chromium]
