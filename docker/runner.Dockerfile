@@ -1,5 +1,5 @@
 # Base image version MUST match the playwright== pin in requirements.txt.
-FROM mcr.microsoft.com/playwright/python:v1.61.0-noble
+FROM mcr.microsoft.com/playwright/python:v1.64.1-noble
 
 WORKDIR /work
 
